@@ -102,7 +102,14 @@
       "name": "فيديو",
       "photos": [],
       "type": "videos",
-      "videos": []
+      "videos": [
+        {
+          "url": "https://www.facebook.com/share/v/19VKZ7YSMY/",
+          "title": "مسرحية مين ميحبش أنور - نادي الزهور",
+          "description": "",
+          "date": "2026-11-27"
+        }
+      ]
     },
     {
       "name": "مؤتمرات",
