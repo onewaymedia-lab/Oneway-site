@@ -60,7 +60,7 @@ collections:
               - { label: عنوان قسم المقالات, name: articles, widget: string, i18n: true }
               - { label: عنوان قسم العملاء, name: clients, widget: string, i18n: true }
               - { label: عنوان قسم الأسئلة, name: faq, widget: string, i18n: true }
-- label: أسماء القوائم والأزرار (اتركها فاضية لو عاوز الاسم الأصلي)
+              - label: أسماء القوائم والأزرار (اتركها فاضية لو عاوز الاسم الأصلي)
             name: labels
             widget: object
             i18n: true
@@ -90,7 +90,7 @@ collections:
               - { label: كلمة العنوان, name: address, widget: string, required: false, i18n: true }
               - { label: كلمة الإيميل, name: email, widget: string, required: false, i18n: true }
               - { label: لينك افتح الخريطة, name: openMap, widget: string, required: false, i18n: true }
-          - label: بيانات التواصل
+              - label: بيانات التواصل
 
             name: settings
             widget: object
