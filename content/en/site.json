@@ -1,0 +1,292 @@
+{
+ "settings": {
+  "whatsapp": "201157661811",
+  "whatsappMessage": "Hello OneWay Media, I'd like to book / ask about a service",
+  "phone": "01157661811",
+  "email": "onewaymediaegypt@gmail.com",
+  "address": "First Mall, 1st floor, 4th Model Area, 3rd District, 6th of October City, Giza, Egypt",
+  "map": "https://g.page/iso-studio"
+ },
+ "titles": {
+  "services": "What we do",
+  "work": "Our work",
+  "videos": "Latest promos",
+  "packages": "Packages and prices",
+  "steps": "How booking works",
+  "reviews": "What our clients say",
+  "about": "About OneWay Media",
+  "contact": "Contact us now",
+  "articles": "Articles and tips",
+  "clients": "Our clients",
+  "faq": "Frequently asked questions"
+ },
+ "socials": [
+  {
+   "name": "Instagram",
+   "url": "https://www.instagram.com/onewaymedia.eg/"
+  },
+  {
+   "name": "Facebook",
+   "url": "https://web.facebook.com/OneWayMediaEG/"
+  },
+  {
+   "name": "YouTube",
+   "url": "https://www.youtube.com/@OneWayMediaEG"
+  },
+  {
+   "name": "X (Twitter)",
+   "url": "https://x.com/[الحساب]"
+  }
+ ],
+ "videos": [
+  {
+   "title": "[Promo name 1]",
+   "note": "Latest company work",
+   "url": "https://www.youtube.com/@OneWayMediaEG"
+  },
+  {
+   "title": "[Promo name 2]",
+   "note": "Live streaming",
+   "url": "https://www.youtube.com/@OneWayMediaEG"
+  }
+ ],
+ "services": [
+  {
+   "icon": "live",
+   "name": "Live streaming",
+   "text": "Professional live streaming for your conferences, weddings and events on YouTube, Facebook and Instagram, with multiple cameras and clean sound."
+  },
+  {
+   "icon": "video",
+   "name": "Video production",
+   "text": "Video production for companies, ads and occasions, from the idea to the final edit."
+  },
+  {
+   "icon": "photo",
+   "name": "Photography",
+   "text": "Wedding, portrait and product photography, with pictures that tell the story with real feeling."
+  }
+ ],
+ "works": [
+  {
+   "name": "Live streaming",
+   "photos": []
+  },
+  {
+   "name": "Video",
+   "photos": []
+  },
+  {
+   "name": "Weddings",
+   "photos": []
+  },
+  {
+   "name": "Portraits",
+   "photos": []
+  },
+  {
+   "name": "Products",
+   "photos": []
+  },
+  {
+   "name": "Events",
+   "photos": []
+  }
+ ],
+ "packages": [
+  {
+   "name": "[Package 1 name]",
+   "price": "[Price]",
+   "items": [
+    {
+     "text": "[Detail 1]"
+    },
+    {
+     "text": "[Detail 2]"
+    },
+    {
+     "text": "[Detail 3]"
+    }
+   ],
+   "hot": false
+  },
+  {
+   "name": "[Package 2 name]",
+   "price": "[Price]",
+   "items": [
+    {
+     "text": "[Detail 1]"
+    },
+    {
+     "text": "[Detail 2]"
+    },
+    {
+     "text": "[Detail 3]"
+    }
+   ],
+   "hot": true
+  },
+  {
+   "name": "[Package 3 name]",
+   "price": "[Price]",
+   "items": [
+    {
+     "text": "[Detail 1]"
+    },
+    {
+     "text": "[Detail 2]"
+    },
+    {
+     "text": "[Detail 3]"
+    }
+   ],
+   "hot": false
+  }
+ ],
+ "reviews": [
+  {
+   "who": "Client name (demo)",
+   "what": "Conference live stream",
+   "text": "(Demo) Sample review: the work was organized and the stream ran without problems. It will be replaced with a real review."
+  },
+  {
+   "who": "Client name (demo)",
+   "what": "Wedding photography",
+   "text": "(Demo) Sample review: the photos came out great and were delivered on time. It will be replaced with a real review."
+  },
+  {
+   "who": "Client name (demo)",
+   "what": "Promo video",
+   "text": "(Demo) Sample review: the video came out exactly as we wanted. It will be replaced with a real review."
+  }
+ ],
+ "steps": [
+  {
+   "text": "Message us on WhatsApp with the occasion and date"
+  },
+  {
+   "text": "We send you a clear quote"
+  },
+  {
+   "text": "We confirm the booking and prepare everything"
+  },
+  {
+   "text": "We shoot or stream, and you get your work"
+  }
+ ],
+ "hero": {
+  "title": "We film and stream your story in quality you can see",
+  "text": "OneWay Media in 6th of October City, Giza: live streaming, video production and photography. From weddings to conferences to ads.",
+  "button": "Book on WhatsApp"
+ },
+ "about": {
+  "text": "[Short paragraph about the company: when you started and what makes you different.]"
+ },
+ "logo": {
+  "image": "/uploads/logo.png",
+  "alt": "OneWay Media logo"
+ },
+ "favicon": "",
+ "seo": {
+  "title": "OneWay Media | Live Streaming, Video & Photography in 6th of October, Giza",
+  "description": "OneWay Media in 6th of October City, Giza: live streaming for conferences and weddings, video and ad production, and photography. Book easily on WhatsApp.",
+  "shareImage": ""
+ },
+ "clients": [
+  {
+   "name": "Alpha Events (demo)",
+   "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EAlpha%20Events%3C/text%3E%3C/svg%3E"
+  },
+  {
+   "name": "Nile Group (demo)",
+   "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3ENile%20Group%3C/text%3E%3C/svg%3E"
+  },
+  {
+   "name": "Orbit Tech (demo)",
+   "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EOrbit%20Tech%3C/text%3E%3C/svg%3E"
+  },
+  {
+   "name": "Delta Hall (demo)",
+   "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EDelta%20Hall%3C/text%3E%3C/svg%3E"
+  },
+  {
+   "name": "Pyramid Co (demo)",
+   "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EPyramid%20Co%3C/text%3E%3C/svg%3E"
+  },
+  {
+   "name": "Zeta Brand (demo)",
+   "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EZeta%20Brand%3C/text%3E%3C/svg%3E"
+  }
+ ],
+ "faq": [
+  {
+   "q": "How much do your services cost?",
+   "a": "The price depends on the type of work, its length, the number of cameras and the location. Message us on WhatsApp with your details and we'll send a clear quote. [Write the price or a \"starting from\" price here if you want to publish it]"
+  },
+  {
+   "q": "How long until you deliver the work?",
+   "a": "We deliver photos and videos on a date we agree on before the job. [Write the usual delivery time for each service here]"
+  },
+  {
+   "q": "Which areas do you cover?",
+   "a": "We are based in 6th of October City, Giza, inside First Mall. [Write the areas and governorates you cover here, and whether there is a travel fee]"
+  },
+  {
+   "q": "How do I book?",
+   "a": "Message us on WhatsApp with the date, place and service you need, and we confirm the time and the quote. [Write here if there is a deposit or booking terms]"
+  },
+  {
+   "q": "Can you stream to YouTube and Facebook at the same time?",
+   "a": "[Write here whether this is available and under what conditions]"
+  }
+ ],
+ "articles": [
+  {
+   "title": "Company video: what to prepare before filming",
+   "slug": "corporate-video-checklist",
+   "date": "2026-11-26",
+   "draft": true,
+   "cover": "",
+   "coverAlt": "Company video: what to prepare before filming",
+   "description": "Before you film a video for your company, prepare the goal, audience, script and location. Practical tips that save time and money.",
+   "body": "A company video is one of the strongest ways to build customer trust, but a good video starts with preparation, not filming day. These are the points to settle before the camera starts.\n\n## 1. Decide the goal of the video\n\nDo you want to introduce the company, advertise a product or explain a service? Each goal needs a different style and length. A short ad is not the same as a longer introduction video.\n\n## 2. Know your audience\n\nAre you talking to individual customers or to companies? The tone, music and length all change with the audience. Think about where the video will be watched: Facebook, Instagram, YouTube or your website.\n\n## 3. Write a simple idea and script\n\nIt doesn't have to be complicated. One page with the scenes in order and the main sentence you want the viewer to leave with is enough. It saves time in filming and editing.\n\n## 4. Prepare the place and the people\n\nChoose a tidy place with good lighting, and make sure the people who appear in the video know the filming time and dress suitably. Small details like these change the result.\n\n## 5. Think about editing and delivery\n\nAsk from the start what size and format you will receive, and whether you need versions for mobile and social media. Also decide who will write the subtitles if the video needs them.\n\n## Want a video for your company?\n\nMessage us on WhatsApp with your business and your goal, and we'll plan the idea and filming dates with you in 6th of October City and Giza."
+  },
+  {
+   "title": "How to run a successful live stream for your wedding or conference",
+   "slug": "live-streaming-guide",
+   "date": "2026-11-26",
+   "draft": true,
+   "cover": "",
+   "coverAlt": "How to run a successful live stream for your wedding or conference",
+   "description": "Practical steps for a successful live stream at a wedding, conference or event in Egypt: internet, cameras, sound and what to prepare before the day.",
+   "body": "Live streaming is now normal at weddings, conferences and events, because it lets people who can't attend watch the moment as it happens. But a good stream takes more than a camera and a phone. It needs preparation before the day.\n\n## 1. The internet matters more than the camera\n\nThe most common problem that ruins a stream is weak internet. Ask the venue about the upload speed, not the download speed. If the hall is weak, ask for a dedicated line for the stream or prepare a backup line. A stream needs a stable connection more than a fast one.\n\n## 2. Sound is half the picture\n\nPeople forgive a picture that isn't perfect, but not choppy or echoing sound. Use a separate microphone for the speaker or for the couple, and take a direct feed from the sound system if the hall has a mixer.\n\n## 3. More than one camera makes a difference\n\nOne camera gives you a working stream. Two or three let you switch between angles like TV, which matters most at conferences and weddings. Agree early on who controls the switching.\n\n## 4. Choose the right platform\n\nYouTube suits conferences and events people will watch later. Facebook and Instagram suit you if your audience is there. A stream can go out to more than one platform at the same time.\n\n## 5. Test before the day\n\nDo a rehearsal at the same place with the same internet and equipment. A rehearsal shows lighting, sound and connection problems while you still have time to fix them.\n\n## Want us to set up your stream?\n\nIf you have a wedding, conference or event in 6th of October City or Giza, message us on WhatsApp with the date, place and number of guests, and we'll send you a clear offer."
+  },
+  {
+   "title": "Tips for better wedding photos",
+   "slug": "wedding-photography-tips",
+   "date": "2026-11-26",
+   "draft": true,
+   "cover": "",
+   "coverAlt": "Tips for better wedding photos",
+   "description": "Simple tips for better wedding photos: choosing the time, a shot list, lighting and agreeing with your photographer before the day.",
+   "body": "Wedding photos stay with you for years, so they are worth preparing for. These simple tips make a big difference to the photos you get.\n\n## 1. Agree with the photographer before the wedding\n\nSit with your photographer and tell them the style you like: natural or posed, and which shots must be taken. The clearer you are from the start, the closer the photos will be to what you expect.\n\n## 2. Make a list of important shots\n\nWrite down the people you must be photographed with: both families, friends, grandparents. In the rush of a wedding many people get forgotten, and a list makes sure nobody is missed.\n\n## 3. Lighting matters\n\nNatural light is best for outdoor photos, so for a session before the wedding choose a time before sunset. Inside the hall, agree on the lighting with the photographer so the photos don't come out dark.\n\n## 4. Take your time in the session\n\nNatural-looking photos are taken when the couple is relaxed. Don't rush, and let the photographer give you simple directions instead of standing in stiff poses.\n\n## 5. Think about the album and copies\n\nAsk how you will receive the photos: how many, in what quality and when. Also decide whether you want a printed album or a digital copy only.\n\n## Want to book a photographer for your wedding?\n\nMessage us on WhatsApp with the date and place, and we'll book you in and agree on every detail."
+  }
+ ],
+ "pages": {
+  "about": {
+   "title": "About us",
+   "description": "OneWay Media: a company in Egypt 6th of October City, Giza offering live streaming, video production and photography for weddings, conferences and companies.",
+   "body": "OneWay Media is a company in 6th of October City, Giza, working in **live streaming**, **video production** and **photography**.\n\nWe film and stream weddings, conferences, events and company ads, and our goal is for your work to come out in quality you can be proud of.\n\n## What do we do?\n\n- **Live streaming** for your conferences, weddings and events on YouTube, Facebook and Instagram.\n- **Video production** for companies, ads and occasions, from the idea to the final edit.\n- **Photography** for weddings, portraits and products.\n\n## Why choose us?\n\n[Write 3 real things that set you apart: years of experience, equipment, way of working, number of events covered.]\n\n## Our story\n\n[Write a short story here: when and how you started, and what you love about the work.]\n\n## Where to find us\n\nFirst Mall, 1st floor, 4th Model Area, 3rd District, 6th of October City, Giza. You can message us on WhatsApp any time."
+  },
+  "contact": {
+   "title": "Contact us",
+   "description": "Contact OneWay Media in 6th of October City: WhatsApp, phone, address inside First Mall 1st floor, and a map.",
+   "body": "Have a wedding, conference, event or ad? Tell us the date, the place and what you need, and we'll reply with a clear plan and offer.\n\nThe fastest way to reach us is **WhatsApp**."
+  },
+  "privacy": {
+   "title": "Privacy Policy",
+   "description": "Privacy Policy of the OneWay Media website: what data we collect and how we use it.",
+   "body": "Last updated: 26 November 2026\n\nThis page explains how the OneWay Media website handles your data when you visit the site or contact us.\n\n## Data we collect\n\nThe website has no sign-up forms or user accounts, and we do not ask you to enter your data on the site. The site does not currently use visitor analytics or advertising tools.\n\n## Contacting us\n\nWhen you press the WhatsApp button you are taken to the WhatsApp app. Messages you send are covered by WhatsApp's privacy policy, and we use your number and what you write only to answer your request and arrange the service.\n\n## Embedded videos\n\nSome pages show YouTube videos. The YouTube player is only loaded when you press the video, and YouTube may then store cookies according to its own policy.\n\n## Hosting\n\nThe website is hosted on Cloudflare, whose servers may record standard technical data such as IP address and browser type for security and performance.\n\n## External links\n\nThe website contains links to other sites such as Instagram, Facebook, YouTube and Google Maps. We are not responsible for the privacy policies of those sites.\n\n## Data sharing\n\nWe do not sell your data and do not share it with anyone unless required by law.\n\n## Questions about privacy\n\nFor any question about this policy, contact us on WhatsApp or at the email address shown on the Contact us page."
+  }
+ }
+}
