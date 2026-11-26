@@ -12,14 +12,14 @@ const S = {
     dir: 'rtl', locale: 'ar_EG', switchLabel: 'English', switchLang: 'en',
     brand: 'ون واي ميديا', bizName: 'ون واي ميديا (OneWay Media)', city: '6 أكتوبر', region: 'الجيزة',
     home: 'الرئيسية', about: 'من نحن', articles: 'المقالات', contact: 'تواصل معنا', faq: 'الأسئلة الشائعة', privacy: 'سياسة الخصوصية',
-    waBtn: 'ابعت رسالة على واتساب', askPkg: 'اسأل عن الباقة', askPrice: 'تواصل معانا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
+    waBtn: 'ابعت رسالة على واتساب', askPkg: 'اسأل عن الباقة', askPrice: 'كلمنا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
     phone: 'التليفون', whatsapp: 'واتساب', address: 'العنوان', email: 'الإيميل', openMap: 'افتح الخريطة', map: 'الخريطة',
     talkWa: 'كلمنا على واتساب', ready: 'جاهزين نرد عليك.', readyWa: 'جاهزين نرد عليك على واتساب.',
     addYt: 'ضيف لينك يوتيوب من اللوحة', photoHere: 'مكان الصور', defVideo: 'فيديو من ون واي ميديا', ytTitle: 'فيديو', lbOpen: 'كبّر الصورة', lbClose: 'اقفل', lbNext: 'الصورة اللي بعدها', lbPrev: 'الصورة اللي قبلها', lbOf: 'من', menu: 'القائمة', mServices: 'خدماتنا', mWork: 'من شغلنا', mPackages: 'الباقات', workAlt: ' - ون واي ميديا',
     artTitle: 'مقالات ونصايح', artHead: 'مقالات ونصايح عن البث المباشر والتصوير | ون واي ميديا',
     artDesc: 'مقالات ونصايح عملية عن البث المباشر وتصوير الفيديو والتصوير الفوتوغرافي في مصر من ون واي ميديا.', artEmpty: 'هننزل مقالات ونصايح جديدة قريباً.',
     faqHead: 'الأسئلة الشائعة | ون واي ميديا', faqDesc: 'إجابات على أسئلة العملاء عن الأسعار ومدة التسليم ومناطق التغطية وطريقة الحجز مع ون واي ميديا.',
-    floatWa: 'واتساب', logoAlt: 'شعار ون واي ميديا', defTitle: 'ون واي ميديا',
+    floatWa: 'واتساب', toTop: 'للأعلى', logoAlt: 'شعار ون واي ميديا', defTitle: 'ون واي ميديا',
   },
   en: {
     dir: 'ltr', locale: 'en_US', switchLabel: 'العربية', switchLang: 'ar',
@@ -32,7 +32,7 @@ const S = {
     artTitle: 'Articles and tips', artHead: 'Articles and Tips on Live Streaming and Photography | OneWay Media',
     artDesc: 'Practical articles and tips on live streaming, video production and photography in Egypt from OneWay Media.', artEmpty: 'New articles and tips are coming soon.',
     faqHead: 'FAQ | OneWay Media', faqDesc: 'Answers to client questions about prices, delivery time, coverage area and how to book with OneWay Media.',
-    floatWa: 'WhatsApp', logoAlt: 'OneWay Media logo', defTitle: 'OneWay Media',
+    floatWa: 'WhatsApp', toTop: 'Back to top', logoAlt: 'OneWay Media logo', defTitle: 'OneWay Media',
   },
 };
 
@@ -90,7 +90,7 @@ for (const lang of LANGS) {
 }
 // Arabic is the single source for entry. English only overrides prose; shared data always comes from Arabic,
 // and empty English prose falls back to the Arabic text so no blanks appear.
-const SHARED = [/^works\.\d+\.(photos|videos|type)$/, /^services\.\d+\.icon$/, /^videos\.\d+\.url$/, /^packages\.\d+\.(price|hot)$/, /^clients$/, /^socials\.\d+\.url$/, /^settings\.(whatsapp|phone|email|map)$/, /^logo\.image$/, /^favicon$/, /^seo\.shareImage$/];
+const SHARED = [/^works\.\d+\.(photos|videos|type)$/, /^services\.\d+\.icon$/, /^videos\.\d+\.url$/, /^packages\.\d+\.(price|hot)$/, /^clients$/, /^sections\./, /^socials\.\d+\.url$/, /^settings\.(whatsapp|phone|email|map)$/, /^logo\.image$/, /^favicon$/, /^seo\.shareImage$/];
 const isShared = (p) => SHARED.some((r) => r.test(p));
 const mergeEn = (a, e, p = '') => {
   if (isShared(p)) return a;
@@ -145,7 +145,8 @@ function buildLang(lang) {
   const t = d.titles;
   const wa = `https://wa.me/${d.settings.whatsapp}?text=` + encodeURIComponent(d.settings.whatsappMessage);
   const btn = (label) => `<a class="ow-btn" ${ext(wa)}>${esc(label)}</a>`;
-  const sec = (cls, id, title, body) => `<section class="ow-sec ${cls}"${id ? ` id="${id}"` : ''}><h2>${esc(title)}</h2>${body}</section>`;
+  const on = (k) => !(d.sections && d.sections[k] === false);
+  const sec = (cls, id, title, body) => id && !on(id) ? '' : `<section class="ow-sec ${cls}"${id ? ` id="${id}"` : ''}><h2>${esc(title)}</h2>${body}</section>`;
   const seo = d.seo || {};
   const title = seo.title || s.defTitle;
   const desc = seo.description || d.hero.text;
@@ -225,10 +226,11 @@ ${ldList.map((x) => `<script type="application/ld+json">${JSON.stringify(x).repl
   const footerHtml = (p) => `<footer class="ow-foot"><nav class="ow-fnav"><a href="${url('/about/')}">${s.about}</a><a href="${url('/articles/')}">${s.articles}</a>${faqs.length ? `<a href="${url('/faq/')}">${s.faq}</a>` : ''}<a href="${url('/contact/')}">${s.contact}</a><a href="${url('/privacy/')}">${s.privacy}</a>${switcher(p)}</nav>© ${esc(s.brand)}</footer>`;
   const topbar = (p) => {
     const L = (href, label) => `<a href="${href}">${esc(label)}</a>`;
-    const items = [L(url('/'), s.home), L(url('/') + '#services', s.mServices), L(url('/') + '#work', s.mWork), L(url('/') + '#packages', s.mPackages), (d.clients && d.clients.length ? L(url('/') + '#clients', s.mClients || t.clients) : ''), L(url('/articles/'), s.articles), faqs.length ? L(url('/faq/'), s.faq) : '', L(url('/about/'), s.about), L(url('/contact/'), s.contact)].filter(Boolean).join('');
+    const items = [L(url('/'), s.home), on('services') ? L(url('/') + '#services', s.mServices) : '', on('work') ? L(url('/') + '#work', s.mWork) : '', on('packages') ? L(url('/') + '#packages', s.mPackages) : '', (on('clients') && d.clients && d.clients.length ? L(url('/') + '#clients', s.mClients || t.clients) : ''), on('articles') ? L(url('/articles/'), s.articles) : '', on('faq') && faqs.length ? L(url('/faq/'), s.faq) : '', on('about') ? L(url('/about/'), s.about) : '', on('contact') ? L(url('/contact/'), s.contact) : ''].filter(Boolean).join('');
     return `<header class="ow-top"><a href="${url('/')}" class="ow-brand">${logo}</a><div class="ow-topr">${switcher(p)}<details class="ow-menu"><summary aria-label="${s.menu}"><span class="ow-burger" aria-hidden="true"></span><span class="ow-menutxt">${s.menu}</span></summary><nav aria-label="${s.menu}">${items}</nav></details></div></header>`;
   };
-  const menuJs = `<script>(function(){var m=document.querySelector('.ow-menu');if(!m)return;m.addEventListener('click',function(e){if(e.target.closest('nav a'))m.open=false});document.addEventListener('click',function(e){if(m.open&&!m.contains(e.target))m.open=false});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.open){m.open=false;m.querySelector('summary').focus()}})})();</script>`;
+  const menuJs = `<script>(function(){var m=document.querySelector('.ow-menu');if(!m)return;m.addEventListener('click',function(e){if(e.target.closest('nav a'))m.open=false});document.addEventListener('click',function(e){if(m.open&&!m.contains(e.target))m.open=false});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.open){m.open=false;m.querySelector('summary').focus()}})})();</script>`
+    + `<script>(function(){var b=document.createElement('button');b.type='button';b.className='ow-top-btn';b.setAttribute('aria-label','${s.toTop}');b.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';document.body.appendChild(b);function u(){b.classList.toggle('ow-show',(window.pageYOffset||document.documentElement.scrollTop)>500)}window.addEventListener('scroll',u,{passive:true});u();b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});})();</script>`;
   const shell = (inner, p) => `<body>
 <div class="ow" dir="${s.dir}" lang="${lang}">
   ${topbar(p)}
@@ -259,9 +261,9 @@ ${menuJs}
   ${articlesSec}
   ${faqs.length ? sec('', 'faq', t.faq, faqHtml + `<p><a class="ow-link" href="${url('/faq/')}">${s.allFaq}</a></p>`) : ''}
   ${sec('ow-alt', 'about', t.about, `<p class="ow-about">${esc(d.about.text)}</p>`)}
-  <section class="ow-sec ow-contact" id="contact"><h2>${esc(t.contact)}</h2><p>${s.readyWa}</p>${btn(s.waBtn)}
+  ${on('contact') ? `<section class="ow-sec ow-contact" id="contact"><h2>${esc(t.contact)}</h2><p>${s.readyWa}</p>${btn(s.waBtn)}
     <dl><dt>${s.phone}</dt><dd dir="ltr"><a href="tel:+${esc(d.settings.whatsapp)}">${esc(d.settings.phone)}</a></dd><dt>${s.address}</dt><dd>${esc(d.settings.address)}</dd><dt>${s.email}</dt><dd dir="ltr">${esc(d.settings.email)}</dd></dl>
-    <div class="ow-social"><a ${ext(d.settings.map)}>${SOCIAL_ICONS.map}<span>${s.map}</span></a>${d.socials.map((x) => socialLink(x, ext)).join('')}</div></section>
+    <div class="ow-social"><a ${ext(d.settings.map)}>${SOCIAL_ICONS.map}<span>${s.map}</span></a>${d.socials.map((x) => socialLink(x, ext)).join('')}</div></section>` : ''}
   </main>
   ${footerHtml('/')}<a class="ow-float" ${ext(wa)}>${s.floatWa}</a>
 </div>
