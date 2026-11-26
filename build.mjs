@@ -10,9 +10,9 @@ const PFX = { ar: '', en: '/en' };
 const S = {
   ar: {
     dir: 'rtl', locale: 'ar_EG', switchLabel: 'English', switchLang: 'en',
-    brand: 'ون واي ميديا', bizName: 'ون واي ميديا (OneWay Media)', city: '6 أكتوبر', region: 'الجيزة',
+    brand: 'ون واي ميديا 2026', bizName: 'ون واي ميديا (OneWay Media)', city: '6 أكتوبر', region: 'الجيزة',
     home: 'الرئيسية', about: 'من نحن', articles: 'المقالات', contact: 'تواصل معنا', faq: 'الأسئلة الشائعة', privacy: 'سياسة الخصوصية',
-    waBtn: 'ابعت رسالة على واتساب', askPkg: 'اسأل عن الباقة', askPrice: 'كلمنا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
+    waBtn: 'ابعت رسالة على واتساب', askPkg: 'إسأل عن الباقة', askPrice: 'تواصل معانا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
     phone: 'التليفون', whatsapp: 'واتساب', address: 'العنوان', email: 'الإيميل', openMap: 'افتح الخريطة', map: 'الخريطة',
     talkWa: 'كلمنا على واتساب', ready: 'جاهزين نرد عليك.', readyWa: 'جاهزين نرد عليك على واتساب.',
     addYt: 'ضيف لينك يوتيوب من اللوحة', photoHere: 'مكان الصور', defVideo: 'فيديو من ون واي ميديا', ytTitle: 'فيديو', lbOpen: 'كبّر الصورة', lbClose: 'اقفل', lbNext: 'الصورة اللي بعدها', lbPrev: 'الصورة اللي قبلها', lbOf: 'من', menu: 'القائمة', mServices: 'خدماتنا', mWork: 'من شغلنا', mPackages: 'الباقات', workAlt: ' - ون واي ميديا',
@@ -23,7 +23,7 @@ const S = {
   },
   en: {
     dir: 'ltr', locale: 'en_US', switchLabel: 'العربية', switchLang: 'ar',
-    brand: 'OneWay Media', bizName: 'OneWay Media', city: '6th of October City', region: 'Giza',
+    brand: 'OneWay Media 2026', bizName: 'OneWay Media', city: '6th of October City', region: 'Giza',
     home: 'Home', about: 'About us', articles: 'Articles', contact: 'Contact us', faq: 'FAQ', privacy: 'Privacy Policy',
     waBtn: 'Message us on WhatsApp', askPkg: 'Ask about this package', askPrice: 'Message us for the price', seeWork: 'See our work', allArticles: 'All articles', allFaq: 'All questions',
     phone: 'Phone', whatsapp: 'WhatsApp', address: 'Address', email: 'Email', openMap: 'Open the map', map: 'Map',
@@ -90,7 +90,7 @@ for (const lang of LANGS) {
 }
 // Arabic is the single source for entry. English only overrides prose; shared data always comes from Arabic,
 // and empty English prose falls back to the Arabic text so no blanks appear.
-const SHARED = [/^works\.\d+\.(photos|videos|type)$/, /^services\.\d+\.icon$/, /^videos\.\d+\.url$/, /^packages\.\d+\.(price|hot)$/, /^clients$/, /^sections\./, /^socials\.\d+\.url$/, /^settings\.(whatsapp|phone|email|map)$/, /^logo\.image$/, /^favicon$/, /^seo\.shareImage$/];
+const SHARED = [/^hero\.eyebrow$/, /^works\.\d+\.(photos|videos|type)$/, /^services\.\d+\.icon$/, /^videos\.\d+\.url$/, /^packages\.\d+\.(price|hot)$/, /^clients$/, /^sections\./, /^socials\.\d+\.url$/, /^settings\.(whatsapp|phone|email|map)$/, /^logo\.image$/, /^favicon$/, /^seo\.shareImage$/];
 const isShared = (p) => SHARED.some((r) => r.test(p));
 const mergeEn = (a, e, p = '') => {
   if (isShared(p)) return a;
@@ -249,7 +249,7 @@ ${menuJs}
 <body>
 <div class="ow" dir="${s.dir}" lang="${lang}">
   ${topbar('/')}
-  <header class="ow-hero"><h1>${esc(d.hero.title)}</h1><p>${esc(d.hero.text)}</p><div class="ow-cta">${btn(d.hero.button)}<a class="ow-btn2" href="#work">${s.seeWork}</a></div></header>
+  <header class="ow-hero">${(() => { const e = d.hero.eyebrow === undefined ? 'OneWay Media Production' : String(d.hero.eyebrow || '').trim(); if (!e) return ''; const w = e.split(/\s+/); return `<div class="ow-eyebrow" dir="ltr" lang="en"><span>${esc(w[0])}</span>${w[1] ? ` <span class="ow-er">${esc(w[1])}</span>` : ''}${w.length > 2 ? ` <span class="ow-ew">${esc(w.slice(2).join(' '))}</span>` : ''}</div>`; })()}<h1>${esc(d.hero.title)}</h1><p>${esc(d.hero.text)}</p><div class="ow-cta">${btn(d.hero.button)}<a class="ow-btn2" href="#work">${s.seeWork}</a></div></header>
   <main>
   ${sec('', 'services', t.services, `<div class="ow-grid">${d.services.map((x) => `<div class="ow-card ow-svc"><span class="ow-icon">${ICONS[x.icon] || ICONS.video}</span><h3>${esc(x.name)}</h3><p>${esc(x.text)}</p></div>`).join('')}</div>`)}
   ${sec('ow-alt', 'work', t.work, works)}
