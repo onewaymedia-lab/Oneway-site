@@ -154,7 +154,7 @@ collections:
             i18n: true
             fields:
               - { label: اسم الباقة, name: name, widget: string, i18n: true }
-              - { label: السعر, name: price, widget: string, i18n: duplicate }
+              - { label: السعر (سيبه فاضي لو مش عاوز تعرض سعر), name: price, widget: string, required: false, i18n: duplicate }
               - { label: مميزة؟, name: hot, widget: boolean, required: false, i18n: duplicate }
               - label: المحتويات
                 name: items
