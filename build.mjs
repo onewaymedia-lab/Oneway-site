@@ -12,7 +12,7 @@ const S = {
     dir: 'rtl', locale: 'ar_EG', switchLabel: 'English', switchLang: 'en',
     brand: 'ون واي ميديا', bizName: 'ون واي ميديا (OneWay Media)', city: '6 أكتوبر', region: 'الجيزة',
     home: 'الرئيسية', about: 'من نحن', articles: 'المقالات', contact: 'تواصل معنا', faq: 'الأسئلة الشائعة', privacy: 'سياسة الخصوصية',
-    waBtn: 'ابعت رسالة على واتساب', askPkg: 'اسأل عن الباقة', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
+    waBtn: 'ابعت رسالة على واتساب', askPkg: 'اسأل عن الباقة', askPrice: 'كلمنا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
     phone: 'التليفون', whatsapp: 'واتساب', address: 'العنوان', email: 'الإيميل', openMap: 'افتح الخريطة', map: 'الخريطة',
     talkWa: 'كلمنا على واتساب', ready: 'جاهزين نرد عليك.', readyWa: 'جاهزين نرد عليك على واتساب.',
     addYt: 'ضيف لينك يوتيوب من اللوحة', photoHere: 'مكان الصور', defVideo: 'فيديو من ون واي ميديا', ytTitle: 'فيديو', lbOpen: 'كبّر الصورة', lbClose: 'اقفل', lbNext: 'الصورة اللي بعدها', lbPrev: 'الصورة اللي قبلها', lbOf: 'من', menu: 'القائمة', mServices: 'خدماتنا', mWork: 'من شغلنا', mPackages: 'الباقات', workAlt: ' - ون واي ميديا',
@@ -25,7 +25,7 @@ const S = {
     dir: 'ltr', locale: 'en_US', switchLabel: 'العربية', switchLang: 'ar',
     brand: 'OneWay Media', bizName: 'OneWay Media', city: '6th of October City', region: 'Giza',
     home: 'Home', about: 'About us', articles: 'Articles', contact: 'Contact us', faq: 'FAQ', privacy: 'Privacy Policy',
-    waBtn: 'Message us on WhatsApp', askPkg: 'Ask about this package', seeWork: 'See our work', allArticles: 'All articles', allFaq: 'All questions',
+    waBtn: 'Message us on WhatsApp', askPkg: 'Ask about this package', askPrice: 'Message us for the price', seeWork: 'See our work', allArticles: 'All articles', allFaq: 'All questions',
     phone: 'Phone', whatsapp: 'WhatsApp', address: 'Address', email: 'Email', openMap: 'Open the map', map: 'Map',
     talkWa: 'Talk to us on WhatsApp', ready: "We're ready to reply.", readyWa: "We're ready to reply on WhatsApp.",
     addYt: 'Add a YouTube link from the dashboard', photoHere: 'Photos go here', defVideo: 'Video by OneWay Media', ytTitle: 'Video', lbOpen: 'Enlarge photo', lbClose: 'Close', lbNext: 'Next photo', lbPrev: 'Previous photo', lbOf: 'of', menu: 'Menu', mServices: 'Services', mWork: 'Our work', mPackages: 'Packages', workAlt: ' - OneWay Media',
@@ -166,6 +166,10 @@ function buildLang(lang) {
   const videoLd = [];
   const ytCard = (v) => {
     const id = ytId(v.url);
+    if (!id && /^https?:\/\/([\w-]+\.)?(facebook\.com|fb\.watch)\//i.test(String(v.url || '').trim())) {
+      const fu = String(v.url).trim();
+      return `<div class="ow-yt"><a class="ow-ytlink ow-fb" href="${esc(fu)}" data-fb="${esc(encodeURIComponent(fu))}" target="_blank" rel="noopener noreferrer"><span class="ow-fbbg">${SOCIAL_ICONS.facebook}<b>Facebook</b></span><span class="ow-ytplay">▶</span></a><p>${esc(v.title || s.defVideo)}</p></div>`;
+    }
     if (!id) return '';
     const name = v.title || s.defVideo;
     const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
@@ -248,7 +252,7 @@ ${menuJs}
   ${sec('', 'services', t.services, `<div class="ow-grid">${d.services.map((x) => `<div class="ow-card ow-svc"><span class="ow-icon">${ICONS[x.icon] || ICONS.video}</span><h3>${esc(x.name)}</h3><p>${esc(x.text)}</p></div>`).join('')}</div>`)}
   ${sec('ow-alt', 'work', t.work, works)}
   ${sec('', 'videos', t.videos, `<div class="ow-grid">${d.videos.map((v) => `<a class="ow-card ow-vid" ${ext(v.url)}><span class="ow-play">▶</span><h3>${esc(v.title)}</h3><p>${esc(v.note)}</p></a>`).join('')}</div>`)}
-  ${sec('ow-alt', 'packages', t.packages, `<div class="ow-grid">${d.packages.map((x) => `<div class="ow-card${x.hot ? ' ow-hot' : ''}"><h3>${esc(x.name)}</h3><div class="ow-price">${esc(x.price)}</div><ul>${x.items.map((i) => `<li>${esc(i.text)}</li>`).join('')}</ul>${btn(s.askPkg)}</div>`).join('')}</div>`)}
+  ${sec('ow-alt', 'packages', t.packages, `<div class="ow-grid">${d.packages.map((x) => `<div class="ow-card${x.hot ? ' ow-hot' : ''}"><h3>${esc(x.name)}</h3>${(() => { const pr = String(x.price || '').trim(); return !pr || /^\[.*\]$/.test(pr) ? `<div class="ow-price ow-price-ask">${s.askPrice}</div>` : `<div class="ow-price">${esc(pr)}</div>`; })()}<ul>${x.items.map((i) => `<li>${esc(i.text)}</li>`).join('')}</ul>${btn(s.askPkg)}</div>`).join('')}</div>`)}
   ${sec('', 'steps', t.steps, `<ol class="ow-steps">${d.steps.map((x) => `<li>${esc(x.text)}</li>`).join('')}</ol>`)}
   ${clientsSec}
   ${d.reviews.length ? sec('ow-alt', 'reviews', t.reviews, `<div class="ow-grid">${d.reviews.map((r) => `<figure class="ow-card"><blockquote>${esc(r.text)}</blockquote><figcaption>${esc(r.who)}${lang === 'ar' ? '،' : ','} ${esc(r.what)}</figcaption></figure>`).join('')}</div>`) : ''}
@@ -276,7 +280,7 @@ function close(){box.hidden=true;document.documentElement.classList.remove('ow-l
 document.addEventListener('click',function(e){var t=e.target;if(t.matches&&t.matches('img[data-lb]'))open(t)});
 document.addEventListener('keydown',function(e){var t=e.target;if((e.key==='Enter'||e.key===' ')&&t.matches&&t.matches('img[data-lb]')){e.preventDefault();open(t)}});})();</script>
 ` : ''}
-<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.ow-ytlink');if(!a)return;e.preventDefault();var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+a.dataset.yt+'?autoplay=1&rel=0';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.title='${s.ytTitle}';f.className='ow-ytframe';a.replaceWith(f);});</script>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.ow-ytlink');if(!a)return;e.preventDefault();var f=document.createElement('iframe');f.src=a.dataset.fb?'https://www.facebook.com/plugins/video.php?href='+a.dataset.fb+'&show_text=false&autoplay=true':'https://www.youtube-nocookie.com/embed/'+a.dataset.yt+'?autoplay=1&rel=0';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';f.setAttribute('allowfullscreen','');f.referrerPolicy='strict-origin-when-cross-origin';f.title='${s.ytTitle}';f.className='ow-ytframe';a.replaceWith(f);});</script>
 ${menuJs}
 </body>
 </html>
