@@ -28,6 +28,19 @@
     "faq": "Frequently asked questions"
   },
   "labels": null,
+  "sections": {
+    "services": true,
+    "work": true,
+    "videos": false,
+    "packages": true,
+    "steps": true,
+    "clients": true,
+    "reviews": true,
+    "articles": true,
+    "faq": true,
+    "about": true,
+    "contact": true
+  },
   "settings": {
     "whatsapp": "201157661811",
     "whatsappMessage": "Hello OneWay Media, I'd like to book / ask about a service",
