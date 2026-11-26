@@ -90,6 +90,23 @@ collections:
               - { label: كلمة العنوان, name: address, widget: string, required: false, i18n: true }
               - { label: كلمة الإيميل, name: email, widget: string, required: false, i18n: true }
               - { label: لينك افتح الخريطة, name: openMap, widget: string, required: false, i18n: true }
+          - label: إظهار وإخفاء الأقسام (شغّل أو اقفل أي قسم، الكل شغال افتراضيا)
+            name: sections
+            widget: object
+            i18n: duplicate
+            required: false
+            fields:
+              - { label: إظهار قسم الخدمات (بنعمل إيه؟), name: services, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم من شغلنا (الصور والفيديوهات), name: work, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم أحدث البرومو, name: videos, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم الباقات, name: packages, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم خطوات الحجز, name: steps, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم العملاء, name: clients, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم آراء العملاء, name: reviews, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم المقالات, name: articles, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم الأسئلة الشائعة, name: faq, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم من نحن, name: about, widget: boolean, default: true, required: false, i18n: duplicate }
+              - { label: إظهار قسم التواصل, name: contact, widget: boolean, default: true, required: false, i18n: duplicate }
           - label: بيانات التواصل
             name: settings
             widget: object
