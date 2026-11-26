@@ -1,11 +1,18 @@
 {
-  "settings": {
-    "whatsapp": "201157661811",
-    "whatsappMessage": "Hello OneWay Media, I'd like to book / ask about a service",
-    "phone": "01157661811",
-    "email": "onewaymediaegypt@gmail.com",
-    "address": "First Mall, 1st floor, 4th Model Area, 3rd District, 6th of October City, Giza, Egypt",
-    "map": "https://g.page/iso-studio"
+  "hero": {
+    "title": "We film and stream your story in quality you can see",
+    "text": "OneWay Media in Cairo, Giza, Nasr City, New Cairo, the New Administrative Capital and across Egypt: live streaming, video production and photography. From conferences and sports tournaments to medical reels and corporate events.",
+    "button": "Book on WhatsApp"
+  },
+  "logo": {
+    "image": "/uploads/logo.png",
+    "alt": "OneWay Media logo"
+  },
+  "favicon": "",
+  "seo": {
+    "title": "OneWay Media | Live Streaming, Video & Photography in Cairo, Giza & Egypt",
+    "description": "OneWay Media in Cairo, Giza, Nasr City, New Cairo, the New Administrative Capital and across Egypt: live streaming for conferences, sports tournaments and corporate events, medical reels and video production, and photography. Book easily on WhatsApp.",
+    "shareImage": ""
   },
   "titles": {
     "services": "What we do",
@@ -19,6 +26,15 @@
     "articles": "Articles and tips",
     "clients": "Our clients",
     "faq": "Frequently asked questions"
+  },
+  "labels": null,
+  "settings": {
+    "whatsapp": "201157661811",
+    "whatsappMessage": "Hello OneWay Media, I'd like to book / ask about a service",
+    "phone": "01157661811",
+    "email": "onewaymediaegypt@gmail.com",
+    "address": "First Mall, 1st floor, 4th Model Area, 3rd District, 6th of October City, Giza, Egypt",
+    "map": "https://g.page/iso-studio"
   },
   "socials": [
     {
@@ -38,6 +54,68 @@
       "url": "https://x.com/[الحساب]"
     }
   ],
+  "services": [
+    {
+      "name": "Live streaming",
+      "icon": "live",
+      "text": "Professional live streaming for your conferences, sports tournaments and corporate events on YouTube, Facebook and Instagram, with multiple cameras and clean sound."
+    },
+    {
+      "name": "Video production",
+      "icon": "video",
+      "text": "Video production for conferences, sports tournaments, medical reels, corporate events and ads, plus reels for content creators at important events, from the idea to the final edit."
+    },
+    {
+      "name": "Photography",
+      "icon": "photo",
+      "text": "Photography for conferences, tournaments and corporate events, plus portraits and products, with pictures that tell the story with real feeling."
+    }
+  ],
+  "works": [
+    {
+      "name": "Live streaming",
+      "photos": [],
+      "type": "videos",
+      "videos": [
+        {
+          "url": "https://youtu.be/7SuqQtZCX-M?si=JUXNZnaeQO4ZooGY",
+          "title": "بث مباشر بطولة العالم للسباحة بالزعانف العلمين",
+          "description": "",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    {
+      "name": "Video",
+      "photos": [],
+      "type": "videos",
+      "videos": []
+    },
+    {
+      "name": "Conferences",
+      "photos": [],
+      "type": "photos",
+      "videos": []
+    },
+    {
+      "name": "Portraits",
+      "photos": [],
+      "type": "photos",
+      "videos": []
+    },
+    {
+      "name": "Products",
+      "photos": [],
+      "type": "photos",
+      "videos": []
+    },
+    {
+      "name": "Events",
+      "photos": [],
+      "type": "photos",
+      "videos": []
+    }
+  ],
   "videos": [
     {
       "title": "[Promo name 1]",
@@ -50,53 +128,11 @@
       "url": "https://www.youtube.com/@OneWayMediaEG"
     }
   ],
-  "services": [
-    {
-      "icon": "live",
-      "name": "Live streaming",
-      "text": "Professional live streaming for your conferences, sports tournaments and corporate events on YouTube, Facebook and Instagram, with multiple cameras and clean sound."
-    },
-    {
-      "icon": "video",
-      "name": "Video production",
-      "text": "Video production for conferences, sports tournaments, medical reels, corporate events and ads, plus reels for content creators at important events, from the idea to the final edit."
-    },
-    {
-      "icon": "photo",
-      "name": "Photography",
-      "text": "Photography for conferences, tournaments and corporate events, plus portraits and products, with pictures that tell the story with real feeling."
-    }
-  ],
-  "works": [
-    {
-      "name": "Live streaming",
-      "photos": []
-    },
-    {
-      "name": "Video",
-      "photos": []
-    },
-    {
-      "name": "Conferences",
-      "photos": []
-    },
-    {
-      "name": "Portraits",
-      "photos": []
-    },
-    {
-      "name": "Products",
-      "photos": []
-    },
-    {
-      "name": "Events",
-      "photos": []
-    }
-  ],
   "packages": [
     {
       "name": "[Package 1 name]",
       "price": "[Price]",
+      "hot": false,
       "items": [
         {
           "text": "[Detail 1]"
@@ -107,12 +143,12 @@
         {
           "text": "[Detail 3]"
         }
-      ],
-      "hot": false
+      ]
     },
     {
       "name": "[Package 2 name]",
       "price": "[Price]",
+      "hot": true,
       "items": [
         {
           "text": "[Detail 1]"
@@ -123,12 +159,12 @@
         {
           "text": "[Detail 3]"
         }
-      ],
-      "hot": true
+      ]
     },
     {
       "name": "[Package 3 name]",
       "price": "[Price]",
+      "hot": false,
       "items": [
         {
           "text": "[Detail 1]"
@@ -139,8 +175,21 @@
         {
           "text": "[Detail 3]"
         }
-      ],
-      "hot": false
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "text": "Message us on WhatsApp with the occasion and date"
+    },
+    {
+      "text": "We send you a clear quote"
+    },
+    {
+      "text": "We confirm the booking and prepare everything"
+    },
+    {
+      "text": "We shoot or stream, and you get your work"
     }
   ],
   "reviews": [
@@ -160,38 +209,6 @@
       "text": "(Demo) Sample review: the video came out exactly as we wanted. It will be replaced with a real review."
     }
   ],
-  "steps": [
-    {
-      "text": "Message us on WhatsApp with the occasion and date"
-    },
-    {
-      "text": "We send you a clear quote"
-    },
-    {
-      "text": "We confirm the booking and prepare everything"
-    },
-    {
-      "text": "We shoot or stream, and you get your work"
-    }
-  ],
-  "hero": {
-    "title": "We film and stream your story in quality you can see",
-    "text": "OneWay Media in Cairo, Giza, Nasr City, New Cairo, the New Administrative Capital and across Egypt: live streaming, video production and photography. From conferences and sports tournaments to medical reels and corporate events.",
-    "button": "Book on WhatsApp"
-  },
-  "about": {
-    "text": "[Short paragraph about the company: when you started and what makes you different.]"
-  },
-  "logo": {
-    "image": "/uploads/logo.png",
-    "alt": "OneWay Media logo"
-  },
-  "favicon": "",
-  "seo": {
-    "title": "OneWay Media | Live Streaming, Video & Photography in Cairo, Giza & Egypt",
-    "description": "OneWay Media in Cairo, Giza, Nasr City, New Cairo, the New Administrative Capital and across Egypt: live streaming for conferences, sports tournaments and corporate events, medical reels and video production, and photography. Book easily on WhatsApp.",
-    "shareImage": ""
-  },
   "clients": [
     {
       "name": "Alpha Events (demo)",
@@ -240,6 +257,9 @@
       "a": "[Write here whether this is available and under what conditions]"
     }
   ],
+  "about": {
+    "text": "[Short paragraph about the company: when you started and what makes you different.]"
+  },
   "articles": [
     {
       "title": "Company video: what to prepare before filming",
