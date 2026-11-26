@@ -28,6 +28,7 @@ collections:
               - { label: العنوان الكبير, name: title, widget: string, i18n: true }
               - { label: الوصف, name: text, widget: text, i18n: true }
               - { label: كلمة زرار الحجز, name: button, widget: string, i18n: true }
+              - { label: "السطر الصغير فوق العنوان (انجليزي - الكلمة 1 أبيض، 2 أحمر، الباقي خفيف. سيبه فاضي لو عايز تخفيه)", name: eyebrow, widget: string, required: false, i18n: duplicate }
           - label: الشعار والأيقونة وصورة المشاركة
             name: logo
             widget: object
