@@ -12,7 +12,7 @@ const S = {
     dir: 'rtl', locale: 'ar_EG', switchLabel: 'English', switchLang: 'en',
     brand: 'ون واي ميديا', bizName: 'ون واي ميديا (OneWay Media)', city: '6 أكتوبر', region: 'الجيزة',
     home: 'الرئيسية', about: 'من نحن', articles: 'المقالات', contact: 'تواصل معنا', faq: 'الأسئلة الشائعة', privacy: 'سياسة الخصوصية',
-    waBtn: 'ابعت رسالة على واتساب', askPkg: 'اسأل عن الباقة', askPrice: 'كلمنا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
+    waBtn: 'ابعت رسالة على واتساب', askPkg: 'اسأل عن الباقة', askPrice: 'تواصل معانا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
     phone: 'التليفون', whatsapp: 'واتساب', address: 'العنوان', email: 'الإيميل', openMap: 'افتح الخريطة', map: 'الخريطة',
     talkWa: 'كلمنا على واتساب', ready: 'جاهزين نرد عليك.', readyWa: 'جاهزين نرد عليك على واتساب.',
     addYt: 'ضيف لينك يوتيوب من اللوحة', photoHere: 'مكان الصور', defVideo: 'فيديو من ون واي ميديا', ytTitle: 'فيديو', lbOpen: 'كبّر الصورة', lbClose: 'اقفل', lbNext: 'الصورة اللي بعدها', lbPrev: 'الصورة اللي قبلها', lbOf: 'من', menu: 'القائمة', mServices: 'خدماتنا', mWork: 'من شغلنا', mPackages: 'الباقات', workAlt: ' - ون واي ميديا',
