@@ -60,7 +60,38 @@ collections:
               - { label: عنوان قسم المقالات, name: articles, widget: string, i18n: true }
               - { label: عنوان قسم العملاء, name: clients, widget: string, i18n: true }
               - { label: عنوان قسم الأسئلة, name: faq, widget: string, i18n: true }
+                    - label: أسماء القوائم والأزرار (اتركها فاضية لو عاوز الاسم الأصلي)
+            name: labels
+            widget: object
+            i18n: true
+            required: false
+            fields:
+              - { label: كلمة زرار القائمة, name: menu, widget: string, required: false, i18n: true }
+              - { label: القائمة، الرئيسية, name: home, widget: string, required: false, i18n: true }
+              - { label: القائمة، الخدمات, name: mServices, widget: string, required: false, i18n: true }
+              - { label: القائمة، من شغلنا, name: mWork, widget: string, required: false, i18n: true }
+              - { label: القائمة، الباقات, name: mPackages, widget: string, required: false, i18n: true }
+              - { label: القائمة، العملاء أو الشركاء (لو فاضية بتاخد عنوان قسم العملاء), name: mClients, widget: string, required: false, i18n: true }
+              - { label: القائمة، المقالات, name: articles, widget: string, required: false, i18n: true }
+              - { label: القائمة، الأسئلة الشائعة, name: faq, widget: string, required: false, i18n: true }
+              - { label: القائمة، من نحن, name: about, widget: string, required: false, i18n: true }
+              - { label: القائمة، تواصل معنا, name: contact, widget: string, required: false, i18n: true }
+              - { label: زرار شوف شغلنا, name: seeWork, widget: string, required: false, i18n: true }
+              - { label: زرار اسأل عن الباقة, name: askPkg, widget: string, required: false, i18n: true }
+              - { label: زرار الواتساب الأخضر, name: waBtn, widget: string, required: false, i18n: true }
+              - { label: زرار الواتساب العايم (تحت), name: floatWa, widget: string, required: false, i18n: true }
+              - { label: لينك كل المقالات, name: allArticles, widget: string, required: false, i18n: true }
+              - { label: لينك كل الأسئلة, name: allFaq, widget: string, required: false, i18n: true }
+              - { label: عنوان قسم التواصل الأخير, name: talkWa, widget: string, required: false, i18n: true }
+              - { label: جملة تحت عنوان التواصل, name: ready, widget: string, required: false, i18n: true }
+              - { label: جملة التواصل على واتساب, name: readyWa, widget: string, required: false, i18n: true }
+              - { label: كلمة التليفون, name: phone, widget: string, required: false, i18n: true }
+              - { label: كلمة واتساب, name: whatsapp, widget: string, required: false, i18n: true }
+              - { label: كلمة العنوان, name: address, widget: string, required: false, i18n: true }
+              - { label: كلمة الإيميل, name: email, widget: string, required: false, i18n: true }
+              - { label: لينك افتح الخريطة, name: openMap, widget: string, required: false, i18n: true }
           - label: بيانات التواصل
+
             name: settings
             widget: object
             i18n: true
