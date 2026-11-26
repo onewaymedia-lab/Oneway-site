@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/oneway-site   # replace with the real repo
+  repo: onewaymedia-lab/oneway-site   # replace with the real repo
   branch: main
 media_folder: uploads
 public_folder: /uploads
