@@ -200,3 +200,7 @@ html[lang="en"] body * { font-family: 'Poppins', 'IBM Plex Sans Arabic', 'Segoe 
 .ow-shot figcaption{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-top:1px solid rgba(225,29,46,.55);font-size:15px;font-weight:700;color:#fff;text-align:start}
 .ow-shotv{appearance:none;background:none;border:0;padding:4px 2px;font:inherit;font-size:14px;font-weight:700;color:#e11d2e;cursor:pointer}
 .ow-shots + .ow-grid{margin-top:18px}
+
+.ow-shotbox{height:auto;min-height:150px;max-height:320px;display:flex;align-items:center;justify-content:center}
+.ow-shotimg{width:100%;height:auto;max-height:320px;object-fit:contain}
+.ow-shotbox::after{display:none}
