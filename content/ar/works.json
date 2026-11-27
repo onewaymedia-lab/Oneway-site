@@ -8,6 +8,7 @@
         {
           "youtube": "https://youtu.be/7SuqQtZCX-M?si=JUXNZnaeQO4ZooGY",
           "facebook": "",
+          "drive": "",
           "url": "",
           "title": "بث مباشر بطولة العالم للسباحة بالزعانف العلمين 2025",
           "description": "",
@@ -23,6 +24,7 @@
         {
           "youtube": "",
           "facebook": "https://www.facebook.com/share/v/19VKZ7YSMY/",
+          "drive": "",
           "url": "",
           "title": "مسرحية مين ميحبش أنور - نادي الزهور",
           "description": "",
@@ -33,8 +35,18 @@
     {
       "name": "مؤتمرات",
       "photos": [],
-      "type": "photos",
-      "videos": []
+      "type": "videos",
+      "videos": [
+        {
+          "youtube": "",
+          "facebook": "",
+          "drive": "https://drive.google.com/file/d/1nXrAS6wIJuuwqkJHKGksXnnSebRnRiez/view?usp=drivesdk",
+          "url": "",
+          "title": "Connect Splunk Event",
+          "description": "",
+          "date": ""
+        }
+      ]
     },
     {
       "name": "بورتريه",
