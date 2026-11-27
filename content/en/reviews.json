@@ -1,0 +1,19 @@
+{
+  "reviews": [
+    {
+      "who": "Client name (demo)",
+      "what": "Conference live stream",
+      "text": "(Demo) Sample review: the work was organized and the stream ran without problems. It will be replaced with a real review."
+    },
+    {
+      "who": "Client name (demo)",
+      "what": "Conference photography",
+      "text": "(Demo) Sample review: the photos came out great and were delivered on time. It will be replaced with a real review."
+    },
+    {
+      "who": "Client name (demo)",
+      "what": "Promo video",
+      "text": "(Demo) Sample review: the video came out exactly as we wanted. It will be replaced with a real review."
+    }
+  ]
+}

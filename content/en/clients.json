@@ -1,0 +1,28 @@
+{
+  "clients": [
+    {
+      "name": "Alpha Events (demo)",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EAlpha%20Events%3C/text%3E%3C/svg%3E"
+    },
+    {
+      "name": "Nile Group (demo)",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3ENile%20Group%3C/text%3E%3C/svg%3E"
+    },
+    {
+      "name": "Orbit Tech (demo)",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EOrbit%20Tech%3C/text%3E%3C/svg%3E"
+    },
+    {
+      "name": "Delta Hall (demo)",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EDelta%20Hall%3C/text%3E%3C/svg%3E"
+    },
+    {
+      "name": "Pyramid Co (demo)",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EPyramid%20Co%3C/text%3E%3C/svg%3E"
+    },
+    {
+      "name": "Zeta Brand (demo)",
+      "logo": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20400%20120%22%3E%3Ccircle%20cx=%2245%22%20cy=%2260%22%20r=%2225%22%20fill=%22%23fff%22/%3E%3Ctext%20x=%2285%22%20y=%2273%22%20font-family=%22Arial,sans-serif%22%20font-weight=%22700%22%20font-size=%2236%22%20fill=%22%23fff%22%3EZeta%20Brand%3C/text%3E%3C/svg%3E"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "settings": {
+    "whatsapp": "201157661811",
+    "whatsappMessage": "Hello OneWay Media, I'd like to book / ask about a service",
+    "phone": "01157661811",
+    "email": "onewaymediaegypt@gmail.com",
+    "address": "First Mall, 1st floor, 4th Model Area, 3rd District, 6th of October City, Giza, Egypt",
+    "map": "https://g.page/iso-studio"
+  },
+  "socials": [
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/onewaymedia.eg/"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://web.facebook.com/OneWayMediaEG/"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/@OneWayMediaEG"
+    },
+    {
+      "name": "X (Twitter)",
+      "url": "https://x.com/[الحساب]"
+    }
+  ]
+}

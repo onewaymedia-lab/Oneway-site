@@ -1,0 +1,52 @@
+{
+  "packages": [
+    {
+      "name": "[Package 1 name]",
+      "price": "[Price]",
+      "hot": false,
+      "items": [
+        {
+          "text": "[Detail 1]"
+        },
+        {
+          "text": "[Detail 2]"
+        },
+        {
+          "text": "[Detail 3]"
+        }
+      ]
+    },
+    {
+      "name": "[Package 2 name]",
+      "price": "[Price]",
+      "hot": true,
+      "items": [
+        {
+          "text": "[Detail 1]"
+        },
+        {
+          "text": "[Detail 2]"
+        },
+        {
+          "text": "[Detail 3]"
+        }
+      ]
+    },
+    {
+      "name": "[Package 3 name]",
+      "price": "[Price]",
+      "hot": false,
+      "items": [
+        {
+          "text": "[Detail 1]"
+        },
+        {
+          "text": "[Detail 2]"
+        },
+        {
+          "text": "[Detail 3]"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "works": [
+    {
+      "name": "بث مباشر",
+      "photos": [],
+      "type": "videos",
+      "videos": [
+        {
+          "url": "https://youtu.be/7SuqQtZCX-M?si=JUXNZnaeQO4ZooGY",
+          "title": "بث مباشر بطولة العالم للسباحة بالزعانف العلمين",
+          "description": "",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    {
+      "name": "فيديو",
+      "photos": [],
+      "type": "videos",
+      "videos": [
+        {
+          "url": "https://www.facebook.com/share/v/19VKZ7YSMY/",
+          "title": "مسرحية مين ميحبش أنور - نادي الزهور",
+          "description": "",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    {
+      "name": "مؤتمرات",
+      "photos": [],
+      "type": "photos",
+      "videos": []
+    },
+    {
+      "name": "بورتريه",
+      "photos": [],
+      "type": "photos",
+      "videos": []
+    },
+    {
+      "name": "منتجات",
+      "photos": [],
+      "type": "photos",
+      "videos": []
+    },
+    {
+      "name": "ايفنتات",
+      "photos": [],
+      "type": "photos",
+      "videos": []
+    }
+  ]
+}

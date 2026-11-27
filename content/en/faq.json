@@ -1,0 +1,24 @@
+{
+  "faq": [
+    {
+      "q": "How much do your services cost?",
+      "a": "The price depends on the type of work, its length, the number of cameras and the location. Message us on WhatsApp with your details and we'll send a clear quote. [Write the price or a \"starting from\" price here if you want to publish it]"
+    },
+    {
+      "q": "How long until you deliver the work?",
+      "a": "We deliver photos and videos on a date we agree on before the job. [Write the usual delivery time for each service here]"
+    },
+    {
+      "q": "Which areas do you cover?",
+      "a": "We work in Cairo, Giza, Nasr City, New Cairo, the New Administrative Capital and across Egypt. [Write the areas and governorates you cover here, and whether there is a travel fee]"
+    },
+    {
+      "q": "How do I book?",
+      "a": "Message us on WhatsApp with the date, place and service you need, and we confirm the time and the quote. [Write here if there is a deposit or booking terms]"
+    },
+    {
+      "q": "Can you stream to YouTube and Facebook at the same time?",
+      "a": "[Write here whether this is available and under what conditions]"
+    }
+  ]
+}

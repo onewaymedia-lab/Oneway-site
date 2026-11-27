@@ -1,0 +1,19 @@
+{
+  "services": [
+    {
+      "name": "Live streaming",
+      "icon": "live",
+      "text": "Professional live streaming for your conferences, sports tournaments and corporate events on YouTube, Facebook and Instagram, with multiple cameras and clean sound."
+    },
+    {
+      "name": "Video production",
+      "icon": "video",
+      "text": "Video production for conferences, sports tournaments, medical reels, corporate events and ads, plus reels for content creators at important events, from the idea to the final edit."
+    },
+    {
+      "name": "Photography",
+      "icon": "photo",
+      "text": "Photography for conferences, tournaments and corporate events, plus portraits and products, with pictures that tell the story with real feeling."
+    }
+  ]
+}

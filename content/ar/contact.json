@@ -1,0 +1,28 @@
+{
+  "settings": {
+    "whatsapp": "201157661811",
+    "whatsappMessage": "أهلاً ون واي ميديا، عايز أحجز / أسأل عن خدمة",
+    "phone": "01157661811",
+    "email": "onewaymediaegypt@gmail.com",
+    "address": "6 أكتوبر، الحي الثالث، المجاورة الرابعة، داخل فرست مول، الدور الأول",
+    "map": "https://g.page/iso-studio"
+  },
+  "socials": [
+    {
+      "name": "إنستجرام",
+      "url": "https://www.instagram.com/onewaymedia.eg/"
+    },
+    {
+      "name": "فيسبوك",
+      "url": "https://web.facebook.com/OneWayMediaEG/"
+    },
+    {
+      "name": "يوتيوب",
+      "url": "https://www.youtube.com/@OneWayMediaEG"
+    },
+    {
+      "name": "X (تويتر)",
+      "url": "https://x.com/[الحساب]"
+    }
+  ]
+}

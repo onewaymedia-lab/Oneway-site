@@ -1,0 +1,14 @@
+{
+  "videos": [
+    {
+      "title": "[Promo name 1]",
+      "note": "Latest company work",
+      "url": "https://www.youtube.com/@OneWayMediaEG"
+    },
+    {
+      "title": "[Promo name 2]",
+      "note": "Live streaming",
+      "url": "https://www.youtube.com/@OneWayMediaEG"
+    }
+  ]
+}

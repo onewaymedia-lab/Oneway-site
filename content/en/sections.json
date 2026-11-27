@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "services": true,
+    "work": true,
+    "videos": false,
+    "packages": true,
+    "steps": true,
+    "clients": true,
+    "reviews": true,
+    "articles": true,
+    "faq": true,
+    "about": true,
+    "contact": true
+  }
+}
