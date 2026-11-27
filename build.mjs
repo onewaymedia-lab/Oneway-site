@@ -4,18 +4,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const SITE = 'https://onewayeg.com';
+let SITE = 'https://oneway-site.onewaymediaegypt.workers.dev'; // replaced below by the dashboard setting (settings.siteUrl) when it is filled
 const LANGS = ['ar', 'en'];
 const PFX = { ar: '', en: '/en' };
 const S = {
   ar: {
     dir: 'rtl', locale: 'ar_EG', switchLabel: 'English', switchLang: 'en',
-    brand: 'ون واي ميديا 2026', bizName: 'ون واي ميديا (OneWay Media)', city: '6 أكتوبر', region: 'الجيزة',
+    brand: 'ون واي ميديا', bizName: 'ون واي ميديا (OneWay Media)', city: '6 أكتوبر', region: 'الجيزة',
     home: 'الرئيسية', about: 'من نحن', articles: 'المقالات', contact: 'تواصل معنا', faq: 'الأسئلة الشائعة', privacy: 'سياسة الخصوصية',
-    waBtn: 'ابعت رسالة على واتساب', askPkg: 'إسأل عن الباقة', askPrice: 'تواصل معانا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
+    waBtn: 'ابعت رسالة على واتساب', askPkg: 'اسأل عن الباقة', askPrice: 'تواصل معانا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
     phone: 'التليفون', whatsapp: 'واتساب', address: 'العنوان', email: 'الإيميل', openMap: 'افتح الخريطة', map: 'الخريطة',
     talkWa: 'كلمنا على واتساب', ready: 'جاهزين نرد عليك.', readyWa: 'جاهزين نرد عليك على واتساب.',
-    addYt: 'ضيف لينك يوتيوب من اللوحة', watchFb: 'شاهد على فيسبوك', photoHere: 'مكان الصور', defVideo: 'فيديو من ون واي ميديا', ytTitle: 'فيديو', lbOpen: 'كبّر الصورة', lbClose: 'اقفل', lbNext: 'الصورة اللي بعدها', lbPrev: 'الصورة اللي قبلها', lbOf: 'من', menu: 'القائمة', mServices: 'خدماتنا', mWork: 'من شغلنا', mPackages: 'الباقات', workAlt: ' - ون واي ميديا',
+    addYt: 'ضيف لينك يوتيوب من اللوحة', watchFb: 'شاهد على فيسبوك', viewShot: 'مشاهدة', revDef: 'رأي عميل', photoHere: 'مكان الصور', defVideo: 'فيديو من ون واي ميديا', ytTitle: 'فيديو', lbOpen: 'كبّر الصورة', lbClose: 'اقفل', lbNext: 'الصورة اللي بعدها', lbPrev: 'الصورة اللي قبلها', lbOf: 'من', menu: 'القائمة', mServices: 'خدماتنا', mWork: 'من شغلنا', mPackages: 'الباقات', workAlt: ' - ون واي ميديا',
     artTitle: 'مقالات ونصايح', artHead: 'مقالات ونصايح عن البث المباشر والتصوير | ون واي ميديا',
     artDesc: 'مقالات ونصايح عملية عن البث المباشر وتصوير الفيديو والتصوير الفوتوغرافي في مصر من ون واي ميديا.', artEmpty: 'هننزل مقالات ونصايح جديدة قريباً.',
     faqHead: 'الأسئلة الشائعة | ون واي ميديا', faqDesc: 'إجابات على أسئلة العملاء عن الأسعار ومدة التسليم ومناطق التغطية وطريقة الحجز مع ون واي ميديا.',
@@ -23,12 +23,12 @@ const S = {
   },
   en: {
     dir: 'ltr', locale: 'en_US', switchLabel: 'العربية', switchLang: 'ar',
-    brand: 'OneWay Media 2026', bizName: 'OneWay Media', city: '6th of October City', region: 'Giza',
+    brand: 'OneWay Media', bizName: 'OneWay Media', city: '6th of October City', region: 'Giza',
     home: 'Home', about: 'About us', articles: 'Articles', contact: 'Contact us', faq: 'FAQ', privacy: 'Privacy Policy',
     waBtn: 'Message us on WhatsApp', askPkg: 'Ask about this package', askPrice: 'Message us for the price', seeWork: 'See our work', allArticles: 'All articles', allFaq: 'All questions',
     phone: 'Phone', whatsapp: 'WhatsApp', address: 'Address', email: 'Email', openMap: 'Open the map', map: 'Map',
     talkWa: 'Talk to us on WhatsApp', ready: "We're ready to reply.", readyWa: "We're ready to reply on WhatsApp.",
-    addYt: 'Add a YouTube link from the dashboard', watchFb: 'Watch on Facebook', photoHere: 'Photos go here', defVideo: 'Video by OneWay Media', ytTitle: 'Video', lbOpen: 'Enlarge photo', lbClose: 'Close', lbNext: 'Next photo', lbPrev: 'Previous photo', lbOf: 'of', menu: 'Menu', mServices: 'Services', mWork: 'Our work', mPackages: 'Packages', workAlt: ' - OneWay Media',
+    addYt: 'Add a YouTube link from the dashboard', watchFb: 'Watch on Facebook', viewShot: 'View', revDef: 'Client feedback', photoHere: 'Photos go here', defVideo: 'Video by OneWay Media', ytTitle: 'Video', lbOpen: 'Enlarge photo', lbClose: 'Close', lbNext: 'Next photo', lbPrev: 'Previous photo', lbOf: 'of', menu: 'Menu', mServices: 'Services', mWork: 'Our work', mPackages: 'Packages', workAlt: ' - OneWay Media',
     artTitle: 'Articles and tips', artHead: 'Articles and Tips on Live Streaming and Photography | OneWay Media',
     artDesc: 'Practical articles and tips on live streaming, video production and photography in Egypt from OneWay Media.', artEmpty: 'New articles and tips are coming soon.',
     faqHead: 'FAQ | OneWay Media', faqDesc: 'Answers to client questions about prices, delivery time, coverage area and how to book with OneWay Media.',
@@ -94,9 +94,14 @@ for (const lang of LANGS) {
   const pages = ['about', 'contact', 'privacy'].filter((k) => d.pages && d.pages[k] && d.pages[k].title && String(d.pages[k].body || '').trim()).map((k) => ({ slug: k, ...d.pages[k] }));
   DATA[lang] = { d, articles, pages, faqs: d.faq || [] };
 }
+{
+  let u = String((DATA.ar.d.settings || {}).siteUrl || '').trim().replace(/\/+$/, '');
+  if (u && !/^https?:\/\//i.test(u)) u = 'https://' + u;
+  if (/^https?:\/\/[^\s/]+\.[^\s/]+$/i.test(u)) SITE = u; else if (u) console.log('settings.siteUrl ignored (not a plain domain): ' + u);
+}
 // Arabic is the single source for entry. English only overrides prose; shared data always comes from Arabic,
 // and empty English prose falls back to the Arabic text so no blanks appear.
-const SHARED = [/^hero\.eyebrow$/, /^works\.\d+\.(photos|videos|type)$/, /^services\.\d+\.icon$/, /^videos\.\d+\.(url|youtube|facebook)$/, /^packages\.\d+\.(price|hot)$/, /^clients$/, /^sections\./, /^socials\.\d+\.url$/, /^settings\.(whatsapp|phone|email|map)$/, /^logo\.image$/, /^favicon$/, /^seo\.shareImage$/];
+const SHARED = [/^hero\.eyebrow$/, /^works\.\d+\.(photos|videos|type)$/, /^services\.\d+\.icon$/, /^videos\.\d+\.(url|youtube|facebook)$/, /^packages\.\d+\.(price|hot)$/, /^clients$/, /^sections\./, /^socials\.\d+\.url$/, /^settings\.(whatsapp|phone|email|map|siteUrl)$/, /^logo\.image$/, /^favicon$/, /^seo\.shareImage$/];
 const isShared = (p) => SHARED.some((r) => r.test(p));
 const mergeEn = (a, e, p = '') => {
   if (isShared(p)) return a;
@@ -110,7 +115,7 @@ const mergeEn = (a, e, p = '') => {
   merged.articles = en.articles || []; merged.pages = en.pages || {};
   merged.labels = en.labels || {}; // button/menu labels are per language, never inherited from Arabic
   // reviews and FAQ are prose that cannot be shown in Arabic on an English page: keep only items that have English text
-  merged.reviews = (en.reviews || []).filter((r) => r && String(r.text || '').trim()).map((r, i) => ({ ...(ar.reviews || [])[i], ...r }));
+  merged.reviews = (ar.reviews || []).map((a, i) => { const e = (en.reviews || [])[i] || {}; return { ...a, who: e.who || a.who, what: e.what || a.what, image: a.image, text: e.text || '' }; }).filter((r) => r && (r.image || String(r.text || '').trim()));
   merged.faq = (en.faq || []).filter((f) => f && String(f.q || '').trim() && String(f.a || '').trim());
   DATA.en.d = merged; DATA.en.faqs = merged.faq;
 }
@@ -136,7 +141,7 @@ const sitemapEntries = [];
 const today = new Date().toISOString().slice(0, 10);
 
 function buildLang(lang) {
-  const LABEL_KEYS = ['menu', 'home', 'mServices', 'mWork', 'mPackages', 'mClients', 'articles', 'faq', 'about', 'contact', 'seeWork', 'askPkg', 'waBtn', 'allArticles', 'allFaq', 'talkWa', 'ready', 'readyWa', 'floatWa', 'phone', 'whatsapp', 'address', 'email', 'openMap'];
+  const LABEL_KEYS = ['menu', 'home', 'mServices', 'mWork', 'mPackages', 'mClients', 'articles', 'faq', 'about', 'contact', 'seeWork', 'askPkg', 'waBtn', 'allArticles', 'allFaq', 'talkWa', 'ready', 'readyWa', 'floatWa', 'phone', 'whatsapp', 'address', 'email', 'openMap', 'viewShot', 'revDef', 'watchFb'];
   const labelOverrides = {};
   for (const k of LABEL_KEYS) { const v = DATA[lang].d.labels && DATA[lang].d.labels[k]; if (typeof v === 'string' && v.trim() && !/^\[.*\]$/.test(v.trim())) labelOverrides[k] = v.trim(); }
   const s = { ...S[lang], ...labelOverrides };
@@ -186,6 +191,14 @@ function buildLang(lang) {
     if (v.date) videoLd.push({ '@context': 'https://schema.org', '@type': 'VideoObject', name, description: v.description || name, thumbnailUrl: thumb, uploadDate: v.date, embedUrl: `https://www.youtube.com/embed/${id}`, contentUrl: `https://www.youtube.com/watch?v=${id}` });
     return `<div class="ow-yt"><a class="ow-ytlink" href="https://www.youtube.com/watch?v=${id}" data-yt="${id}" target="_blank" rel="noopener noreferrer"><img src="${thumb}" alt="${esc(name)}" loading="lazy" decoding="async" width="480" height="360"><span class="ow-ytplay">▶</span></a><p>${esc(name)}</p>${fu ? fbLink(fu) : ''}</div>`;
   };
+  const shotItem = (r, dup) => { const cap = [r.who, r.what].map((x) => String(x || '').trim()).filter(Boolean).join(' - '); const alt = cap || t.reviews; return `<figure class="ow-shot" dir="${lang === 'ar' ? 'rtl' : 'ltr'}"><div class="ow-shotbox"><img class="ow-shotimg" ${dup ? 'data-dup="1" aria-hidden="true" alt="" tabindex="-1"' : `role="button" tabindex="0" alt="${esc(alt)}"`} data-lb="1" loading="lazy" decoding="async" src="${esc(r.image)}"></div><figcaption><span>${esc(cap || s.revDef)}</span><button class="ow-shotv" type="button"${dup ? ' tabindex="-1" aria-hidden="true"' : ''}>${s.viewShot}</button></figcaption></figure>`; };
+  const shots = d.reviews.filter((r) => r.image);
+  const textRevs = d.reviews.filter((r) => !r.image && String(r.text || '').trim());
+  const reviewsBody = (shots.length ? (() => {
+    const half = Array.from({ length: Math.max(1, Math.ceil(6 / shots.length)) }, () => shots).flat();
+    const dur = Math.max(30, Math.round(half.length * 7));
+    return `<div class="ow-marquee ow-shots" dir="ltr"><div class="ow-track" style="--dur:${dur}s">${half.map((r) => shotItem(r, false)).join('')}${half.map((r) => shotItem(r, true)).join('')}</div></div>`;
+  })() : '') + (textRevs.length ? `<div class="ow-grid">${textRevs.map((r) => `<figure class="ow-card"><blockquote>${esc(r.text)}</blockquote><figcaption>${esc(r.who)}${lang === 'ar' ? '،' : ','} ${esc(r.what)}</figcaption></figure>`).join('')}</div>` : '');
   const works = d.works.map((x) => {
     if (x.type === 'videos') {
       const cards = (x.videos || []).map(ytCard).filter(Boolean);
@@ -232,7 +245,7 @@ ${ldList.map((x) => `<script type="application/ld+json">${JSON.stringify(x).repl
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="/style.css">
 </head>`;
-  const footerHtml = (p) => `<footer class="ow-foot"><nav class="ow-fnav"><a href="${url('/about/')}">${s.about}</a><a href="${url('/articles/')}">${s.articles}</a>${faqs.length ? `<a href="${url('/faq/')}">${s.faq}</a>` : ''}<a href="${url('/contact/')}">${s.contact}</a><a href="${url('/privacy/')}">${s.privacy}</a>${switcher(p)}</nav>© ${esc(s.brand)}</footer>`;
+  const footerHtml = (p) => `<footer class="ow-foot"><nav class="ow-fnav"><a href="${url('/about/')}">${s.about}</a><a href="${url('/articles/')}">${s.articles}</a>${faqs.length ? `<a href="${url('/faq/')}">${s.faq}</a>` : ''}<a href="${url('/contact/')}">${s.contact}</a><a href="${url('/privacy/')}">${s.privacy}</a>${switcher(p)}</nav>© ${esc(s.brand)} 2026</footer>`;
   const topbar = (p) => {
     const L = (href, label) => `<a href="${href}">${esc(label)}</a>`;
     const items = [L(url('/'), s.home), on('services') ? L(url('/') + '#services', s.mServices) : '', on('work') ? L(url('/') + '#work', s.mWork) : '', on('packages') ? L(url('/') + '#packages', s.mPackages) : '', (on('clients') && d.clients && d.clients.length ? L(url('/') + '#clients', s.mClients || t.clients) : ''), on('articles') ? L(url('/articles/'), s.articles) : '', on('faq') && faqs.length ? L(url('/faq/'), s.faq) : '', on('about') ? L(url('/about/'), s.about) : '', on('contact') ? L(url('/contact/'), s.contact) : ''].filter(Boolean).join('');
@@ -266,7 +279,7 @@ ${menuJs}
   ${sec('ow-alt', 'packages', t.packages, `<div class="ow-grid">${d.packages.map((x) => `<div class="ow-card${x.hot ? ' ow-hot' : ''}"><h3>${esc(x.name)}</h3>${(() => { const pr = String(x.price || '').trim(); return !pr || /^\[.*\]$/.test(pr) ? `<div class="ow-price ow-price-ask">${s.askPrice}</div>` : `<div class="ow-price">${esc(pr)}</div>`; })()}<ul>${x.items.map((i) => `<li>${esc(i.text)}</li>`).join('')}</ul>${btn(s.askPkg)}</div>`).join('')}</div>`)}
   ${sec('', 'steps', t.steps, `<ol class="ow-steps">${d.steps.map((x) => `<li>${esc(x.text)}</li>`).join('')}</ol>`)}
   ${clientsSec}
-  ${d.reviews.length ? sec('ow-alt', 'reviews', t.reviews, `<div class="ow-grid">${d.reviews.map((r) => `<figure class="ow-card"><blockquote>${esc(r.text)}</blockquote><figcaption>${esc(r.who)}${lang === 'ar' ? '،' : ','} ${esc(r.what)}</figcaption></figure>`).join('')}</div>`) : ''}
+  ${d.reviews.length ? sec('ow-alt', 'reviews', t.reviews, reviewsBody) : ''}
   ${articlesSec}
   ${faqs.length ? sec('', 'faq', t.faq, faqHtml + `<p><a class="ow-link" href="${url('/faq/')}">${s.allFaq}</a></p>`) : ''}
   ${sec('ow-alt', 'about', t.about, `<p class="ow-about">${esc(d.about.text)}</p>`)}
@@ -286,9 +299,9 @@ box.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:
 box.addEventListener('keydown',function(e){if(e.key==='Escape'){close()}else if(e.key==='ArrowLeft'){go(rtl?1:-1)}else if(e.key==='ArrowRight'){go(rtl?-1:1)}else if(e.key==='Tab'){var f=box.querySelectorAll('button:not([hidden])');if(!f.length)return;var a0=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a0){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a0.focus()}}});}
 function show(){var e=g[i];im.src=e.currentSrc||e.src;im.alt=e.alt;ct.textContent=(i+1)+' '+L.o+' '+g.length;box.querySelector('.ow-lb-p').hidden=box.querySelector('.ow-lb-n').hidden=g.length<2;}
 function go(d){i=(i+d+g.length)%g.length;show()}
-function open(e){if(!box)mk();g=[].slice.call(e.parentNode.querySelectorAll('img[data-lb]'));i=g.indexOf(e);last=e;show();box.hidden=false;document.documentElement.classList.add('ow-lbo');box.querySelector('.ow-lb-x').focus()}
+function open(e){if(!box)mk();g=[].slice.call((e.closest('.ow-track')||e.parentNode).querySelectorAll('img[data-lb]:not([data-dup])'));i=g.findIndex(function(z){return z.src===e.src});if(i<0)i=0;last=e;show();box.hidden=false;document.documentElement.classList.add('ow-lbo');box.querySelector('.ow-lb-x').focus()}
 function close(){box.hidden=true;document.documentElement.classList.remove('ow-lbo');im.removeAttribute('src');if(last)last.focus()}
-document.addEventListener('click',function(e){var t=e.target;if(t.matches&&t.matches('img[data-lb]'))open(t)});
+document.addEventListener('click',function(e){var t=e.target;if(t.matches&&t.matches('img[data-lb]'))open(t);else if(t.closest&&t.closest('.ow-shotv')){var f=t.closest('.ow-shot'),m=f&&f.querySelector('img[data-lb]');if(m)open(m)}});
 document.addEventListener('keydown',function(e){var t=e.target;if((e.key==='Enter'||e.key===' ')&&t.matches&&t.matches('img[data-lb]')){e.preventDefault();open(t)}});})();</script>
 ` : ''}
 <script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.ow-ytlink');if(!a)return;e.preventDefault();var f=document.createElement('iframe');f.src=a.dataset.fb?'https://www.facebook.com/plugins/video.php?href='+a.dataset.fb+'&show_text=false&autoplay=true':'https://www.youtube-nocookie.com/embed/'+a.dataset.yt+'?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3';f.setAttribute('sandbox','allow-scripts allow-same-origin allow-presentation');f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';f.setAttribute('allowfullscreen','');f.referrerPolicy='strict-origin-when-cross-origin';f.title='${s.ytTitle}';f.className='ow-ytframe';a.replaceWith(f);});</script>
