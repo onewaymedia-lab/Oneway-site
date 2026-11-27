@@ -191,9 +191,10 @@ function buildLang(lang) {
     if (v.date) videoLd.push({ '@context': 'https://schema.org', '@type': 'VideoObject', name, description: v.description || name, thumbnailUrl: thumb, uploadDate: v.date, embedUrl: `https://www.youtube.com/embed/${id}`, contentUrl: `https://www.youtube.com/watch?v=${id}` });
     return `<div class="ow-yt"><a class="ow-ytlink" href="https://www.youtube.com/watch?v=${id}" data-yt="${id}" target="_blank" rel="noopener noreferrer"><img src="${thumb}" alt="${esc(name)}" loading="lazy" decoding="async" width="480" height="360"><span class="ow-ytplay">▶</span></a><p>${esc(name)}</p>${fu ? fbLink(fu) : ''}</div>`;
   };
-  const shotItem = (r, dup) => { const cap = [r.who, r.what].map((x) => String(x || '').trim()).filter(Boolean).join(' - '); const alt = cap || t.reviews; return `<figure class="ow-shot" dir="${lang === 'ar' ? 'rtl' : 'ltr'}"><div class="ow-shotbox"><img class="ow-shotimg" ${dup ? 'data-dup="1" aria-hidden="true" alt="" tabindex="-1"' : `role="button" tabindex="0" alt="${esc(alt)}"`} data-lb="1" decoding="async" src="${esc(r.image)}"></div><figcaption><span>${esc(cap || s.revDef)}</span><button class="ow-shotv" type="button"${dup ? ' tabindex="-1" aria-hidden="true"' : ''}>${s.viewShot}</button></figcaption></figure>`; };
+  const isPh = (x) => /\((demo|sample)\)|\(تجريبي\)|\[[^\]]*\]/i.test(String(x || ''));
+  const shotItem = (r, dup) => { const cap = (isPh(r.who) || isPh(r.what)) ? '' : [r.who, r.what].map((x) => String(x || '').trim()).filter(Boolean).join(' - '); const alt = cap || t.reviews; return `<figure class="ow-shot" dir="${lang === 'ar' ? 'rtl' : 'ltr'}"><div class="ow-shotbox"><img class="ow-shotimg" ${dup ? 'data-dup="1" aria-hidden="true" alt="" tabindex="-1"' : `role="button" tabindex="0" alt="${esc(alt)}"`} data-lb="1" decoding="async" src="${esc(r.image)}"></div><figcaption><span>${esc(cap || s.revDef)}</span><button class="ow-shotv" type="button"${dup ? ' tabindex="-1" aria-hidden="true"' : ''}>${s.viewShot}</button></figcaption></figure>`; };
   const shots = d.reviews.filter((r) => r.image);
-  const textRevs = d.reviews.filter((r) => !r.image && String(r.text || '').trim());
+  const textRevs = d.reviews.filter((r) => !r.image && String(r.text || '').trim() && !(shots.length && isPh(r.text)));
   const reviewsBody = (shots.length ? (() => {
     const half = Array.from({ length: Math.max(1, Math.ceil(6 / shots.length)) }, () => shots).flat();
     const dur = Math.max(30, Math.round(half.length * 7));
