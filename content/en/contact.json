@@ -5,7 +5,8 @@
     "phone": "01157661811",
     "email": "onewaymediaegypt@gmail.com",
     "address": "First Mall, 1st floor, 4th Model Area, 3rd District, 6th of October City, Giza, Egypt",
-    "map": "https://g.page/iso-studio"
+    "map": "https://g.page/iso-studio",
+    "siteUrl": ""
   },
   "socials": [
     {
@@ -22,7 +23,7 @@
     },
     {
       "name": "X (Twitter)",
-      "url": "https://x.com/[الحساب]"
+      "url": "https://x.com/OneWayMedi96462"
     }
   ]
 }
