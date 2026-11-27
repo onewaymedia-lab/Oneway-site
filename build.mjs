@@ -15,7 +15,7 @@ const S = {
     waBtn: 'ابعت رسالة على واتساب', askPkg: 'إسأل عن الباقة', askPrice: 'تواصل معانا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
     phone: 'التليفون', whatsapp: 'واتساب', address: 'العنوان', email: 'الإيميل', openMap: 'افتح الخريطة', map: 'الخريطة',
     talkWa: 'كلمنا على واتساب', ready: 'جاهزين نرد عليك.', readyWa: 'جاهزين نرد عليك على واتساب.',
-    addYt: 'ضيف لينك يوتيوب من اللوحة', photoHere: 'مكان الصور', defVideo: 'فيديو من ون واي ميديا', ytTitle: 'فيديو', lbOpen: 'كبّر الصورة', lbClose: 'اقفل', lbNext: 'الصورة اللي بعدها', lbPrev: 'الصورة اللي قبلها', lbOf: 'من', menu: 'القائمة', mServices: 'خدماتنا', mWork: 'من شغلنا', mPackages: 'الباقات', workAlt: ' - ون واي ميديا',
+    addYt: 'ضيف لينك يوتيوب من اللوحة', watchFb: 'شاهد على فيسبوك', photoHere: 'مكان الصور', defVideo: 'فيديو من ون واي ميديا', ytTitle: 'فيديو', lbOpen: 'كبّر الصورة', lbClose: 'اقفل', lbNext: 'الصورة اللي بعدها', lbPrev: 'الصورة اللي قبلها', lbOf: 'من', menu: 'القائمة', mServices: 'خدماتنا', mWork: 'من شغلنا', mPackages: 'الباقات', workAlt: ' - ون واي ميديا',
     artTitle: 'مقالات ونصايح', artHead: 'مقالات ونصايح عن البث المباشر والتصوير | ون واي ميديا',
     artDesc: 'مقالات ونصايح عملية عن البث المباشر وتصوير الفيديو والتصوير الفوتوغرافي في مصر من ون واي ميديا.', artEmpty: 'هننزل مقالات ونصايح جديدة قريباً.',
     faqHead: 'الأسئلة الشائعة | ون واي ميديا', faqDesc: 'إجابات على أسئلة العملاء عن الأسعار ومدة التسليم ومناطق التغطية وطريقة الحجز مع ون واي ميديا.',
@@ -28,7 +28,7 @@ const S = {
     waBtn: 'Message us on WhatsApp', askPkg: 'Ask about this package', askPrice: 'Message us for the price', seeWork: 'See our work', allArticles: 'All articles', allFaq: 'All questions',
     phone: 'Phone', whatsapp: 'WhatsApp', address: 'Address', email: 'Email', openMap: 'Open the map', map: 'Map',
     talkWa: 'Talk to us on WhatsApp', ready: "We're ready to reply.", readyWa: "We're ready to reply on WhatsApp.",
-    addYt: 'Add a YouTube link from the dashboard', photoHere: 'Photos go here', defVideo: 'Video by OneWay Media', ytTitle: 'Video', lbOpen: 'Enlarge photo', lbClose: 'Close', lbNext: 'Next photo', lbPrev: 'Previous photo', lbOf: 'of', menu: 'Menu', mServices: 'Services', mWork: 'Our work', mPackages: 'Packages', workAlt: ' - OneWay Media',
+    addYt: 'Add a YouTube link from the dashboard', watchFb: 'Watch on Facebook', photoHere: 'Photos go here', defVideo: 'Video by OneWay Media', ytTitle: 'Video', lbOpen: 'Enlarge photo', lbClose: 'Close', lbNext: 'Next photo', lbPrev: 'Previous photo', lbOf: 'of', menu: 'Menu', mServices: 'Services', mWork: 'Our work', mPackages: 'Packages', workAlt: ' - OneWay Media',
     artTitle: 'Articles and tips', artHead: 'Articles and Tips on Live Streaming and Photography | OneWay Media',
     artDesc: 'Practical articles and tips on live streaming, video production and photography in Egypt from OneWay Media.', artEmpty: 'New articles and tips are coming soon.',
     faqHead: 'FAQ | OneWay Media', faqDesc: 'Answers to client questions about prices, delivery time, coverage area and how to book with OneWay Media.',
@@ -82,7 +82,13 @@ const readJson = (f) => JSON.parse(fs.readFileSync(f, 'utf8'));
 const DATA = {};
 for (const lang of LANGS) {
   const base = `content/${lang}`;
-  const d = readJson(`${base}/site.json`);
+  let d = {};
+  try { d = readJson(`${base}/site.json`); } catch (e) {}
+  // section files (content/<lang>/<section>.json) override the same keys of the old site.json
+  for (const f of fs.existsSync(base) ? fs.readdirSync(base).sort() : []) {
+    if (!f.endsWith('.json') || f === 'site.json') continue;
+    try { const o = readJson(`${base}/${f}`); if (o && typeof o === 'object' && !Array.isArray(o)) for (const k of Object.keys(o)) d[k] = o[k]; } catch (e) { console.log('skipped unreadable ' + base + '/' + f); }
+  }
   const articles = (d.articles || []).filter((a) => a && a.slug && a.title && (!a.draft || process.env.INCLUDE_DRAFTS))
     .sort((x, y) => String(y.date).localeCompare(String(x.date)));
   const pages = ['about', 'contact', 'privacy'].filter((k) => d.pages && d.pages[k] && d.pages[k].title && String(d.pages[k].body || '').trim()).map((k) => ({ slug: k, ...d.pages[k] }));
@@ -90,7 +96,7 @@ for (const lang of LANGS) {
 }
 // Arabic is the single source for entry. English only overrides prose; shared data always comes from Arabic,
 // and empty English prose falls back to the Arabic text so no blanks appear.
-const SHARED = [/^hero\.eyebrow$/, /^works\.\d+\.(photos|videos|type)$/, /^services\.\d+\.icon$/, /^videos\.\d+\.url$/, /^packages\.\d+\.(price|hot)$/, /^clients$/, /^sections\./, /^socials\.\d+\.url$/, /^settings\.(whatsapp|phone|email|map)$/, /^logo\.image$/, /^favicon$/, /^seo\.shareImage$/];
+const SHARED = [/^hero\.eyebrow$/, /^works\.\d+\.(photos|videos|type)$/, /^services\.\d+\.icon$/, /^videos\.\d+\.(url|youtube|facebook)$/, /^packages\.\d+\.(price|hot)$/, /^clients$/, /^sections\./, /^socials\.\d+\.url$/, /^settings\.(whatsapp|phone|email|map)$/, /^logo\.image$/, /^favicon$/, /^seo\.shareImage$/];
 const isShared = (p) => SHARED.some((r) => r.test(p));
 const mergeEn = (a, e, p = '') => {
   if (isShared(p)) return a;
@@ -165,17 +171,20 @@ function buildLang(lang) {
   if (logoOk) ld.logo = abs(d.logo.image);
 
   const videoLd = [];
+  const isFb = (u) => /^https?:\/\/([\w-]+\.)?(facebook\.com|fb\.watch)\//i.test(String(u || '').trim());
+  const fbOf = (v) => { const u = String(v.facebook || (isFb(v.url) ? v.url : '') || '').trim(); return u ? (FBMAP[u] || u) : ''; };
+  const fbLink = (fu) => `<a class="ow-fblink" href="${esc(fu)}" target="_blank" rel="noopener noreferrer">${SOCIAL_ICONS.facebook}<span>${s.watchFb}</span></a>`;
   const ytCard = (v) => {
-    const id = ytId(v.url);
-    if (!id && /^https?:\/\/([\w-]+\.)?(facebook\.com|fb\.watch)\//i.test(String(v.url || '').trim())) {
-      const fu = String(v.url).trim();
+    const id = ytId(v.youtube) || ytId(v.url);
+    const fu = fbOf(v);
+    if (!id && fu) {
       return `<div class="ow-yt"><a class="ow-ytlink ow-fb" href="${esc(fu)}" data-fb="${esc(encodeURIComponent(fu))}" target="_blank" rel="noopener noreferrer"><span class="ow-fbbg">${SOCIAL_ICONS.facebook}<b>Facebook</b></span><span class="ow-ytplay">▶</span></a><p>${esc(v.title || s.defVideo)}</p></div>`;
     }
     if (!id) return '';
     const name = v.title || s.defVideo;
     const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
     if (v.date) videoLd.push({ '@context': 'https://schema.org', '@type': 'VideoObject', name, description: v.description || name, thumbnailUrl: thumb, uploadDate: v.date, embedUrl: `https://www.youtube.com/embed/${id}`, contentUrl: `https://www.youtube.com/watch?v=${id}` });
-    return `<div class="ow-yt"><a class="ow-ytlink" href="https://www.youtube.com/watch?v=${id}" data-yt="${id}" target="_blank" rel="noopener noreferrer"><img src="${thumb}" alt="${esc(name)}" loading="lazy" decoding="async" width="480" height="360"><span class="ow-ytplay">▶</span></a><p>${esc(name)}</p></div>`;
+    return `<div class="ow-yt"><a class="ow-ytlink" href="https://www.youtube.com/watch?v=${id}" data-yt="${id}" target="_blank" rel="noopener noreferrer"><img src="${thumb}" alt="${esc(name)}" loading="lazy" decoding="async" width="480" height="360"><span class="ow-ytplay">▶</span></a><p>${esc(name)}</p>${fu ? fbLink(fu) : ''}</div>`;
   };
   const works = d.works.map((x) => {
     if (x.type === 'videos') {
@@ -253,7 +262,7 @@ ${menuJs}
   <main>
   ${sec('', 'services', t.services, `<div class="ow-grid">${d.services.map((x) => `<div class="ow-card ow-svc"><span class="ow-icon">${ICONS[x.icon] || ICONS.video}</span><h3>${esc(x.name)}</h3><p>${esc(x.text)}</p></div>`).join('')}</div>`)}
   ${sec('ow-alt', 'work', t.work, works)}
-  ${sec('', 'videos', t.videos, `<div class="ow-grid">${d.videos.map((v) => `<a class="ow-card ow-vid" ${ext(v.url)}><span class="ow-play">▶</span><h3>${esc(v.title)}</h3><p>${esc(v.note)}</p></a>`).join('')}</div>`)}
+  ${sec('', 'videos', t.videos, `<div class="ow-grid">${d.videos.map((v) => { const yu = String(v.youtube || '').trim(); const fu = fbOf(v); const main = yu || fu || v.url; const card = `<a class="ow-card ow-vid" ${ext(main)}><span class="ow-play">▶</span><h3>${esc(v.title)}</h3><p>${esc(v.note)}</p></a>`; return yu && fu ? `<div class="ow-vwrap">${card}${fbLink(fu)}</div>` : card; }).join('')}</div>`)}
   ${sec('ow-alt', 'packages', t.packages, `<div class="ow-grid">${d.packages.map((x) => `<div class="ow-card${x.hot ? ' ow-hot' : ''}"><h3>${esc(x.name)}</h3>${(() => { const pr = String(x.price || '').trim(); return !pr || /^\[.*\]$/.test(pr) ? `<div class="ow-price ow-price-ask">${s.askPrice}</div>` : `<div class="ow-price">${esc(pr)}</div>`; })()}<ul>${x.items.map((i) => `<li>${esc(i.text)}</li>`).join('')}</ul>${btn(s.askPkg)}</div>`).join('')}</div>`)}
   ${sec('', 'steps', t.steps, `<ol class="ow-steps">${d.steps.map((x) => `<li>${esc(x.text)}</li>`).join('')}</ol>`)}
   ${clientsSec}
@@ -319,6 +328,21 @@ ${menuJs}
   }
 }
 
+const FBMAP = {};
+{
+  const found = new Set();
+  const walk = (o) => { if (typeof o === 'string') { const t = o.trim(); if (/^https?:\/\/([\w-]+\.)?(facebook\.com\/(share\/|watch\/?\?|reel\/|[^\s]*\/videos\/)|fb\.watch\/)/i.test(t)) found.add(t); } else if (o && typeof o === 'object') Object.values(o).forEach(walk); };
+  for (const l of LANGS) { try { for (const f of fs.readdirSync('content/' + l)) if (f.endsWith('.json')) walk(readJson('content/' + l + '/' + f)); } catch (e) {} }
+  for (const u of found) {
+    if (!/\/share\/|fb\.watch/i.test(u)) continue;
+    try {
+      const r = await fetch(u, { redirect: 'follow', signal: AbortSignal.timeout(10000) });
+      const f = r.url || '';
+      const m = f.match(/facebook\.com\/reel\/(\d+)/) || f.match(/facebook\.com\/(?:[^/?#]+\/videos\/|watch\/?\?v=)(\d+)/);
+      if (m) FBMAP[u] = 'https://www.facebook.com/reel/' + m[1] + '/';
+    } catch (e) { console.log('fb link not resolved, kept as is: ' + u); }
+  }
+}
 for (const lang of LANGS) buildLang(lang);
 
 fs.writeFileSync('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /content/\n\nSitemap: ${SITE}/sitemap.xml\n`);
