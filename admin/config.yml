@@ -376,22 +376,30 @@ collections:
     file: content/{{locale}}/reviews.json
     i18n: true
     fields:
-    - label: آراء العملاء
+    - label: آراء العملاء (صورة سكرينشوت و/أو نص)
       name: reviews
       widget: list
       i18n: true
       fields:
-      - label: الاسم
+      - label: صورة الرأي (سكرينشوت واتساب مثلا، بتظهر في الشريط المتحرك)
+        name: image
+        widget: image
+        required: false
+        i18n: duplicate
+      - label: الاسم (اختياري، بيظهر تحت الصورة)
         name: who
         widget: string
+        required: false
         i18n: true
-      - label: نوع الشغل
+      - label: نوع الشغل (اختياري)
         name: what
         widget: string
+        required: false
         i18n: true
-      - label: الرأي
+      - label: الرأي كنص (اختياري، لو مفيش صورة)
         name: text
         widget: text
+        required: false
         i18n: true
 - divider: true
 - name: articles
@@ -536,6 +544,11 @@ collections:
       - label: لينك الخريطة
         name: map
         widget: string
+        i18n: duplicate
+      - label: عنوان الموقع الأساسي (مثال https://onewayeg.com، سيبه فاضي لحد ما الدومين يشتغل. بيتحط في خريطة الموقع وروابط جوجل)
+        name: siteUrl
+        widget: string
+        required: false
         i18n: duplicate
     - label: حسابات السوشيال (ضيف أو احذف)
       name: socials
@@ -733,6 +746,21 @@ collections:
         i18n: true
       - label: زرار اسأل عن الباقة
         name: askPkg
+        widget: string
+        required: false
+        i18n: true
+      - label: كلمة مشاهدة (في كارت رأي العميل)
+        name: viewShot
+        widget: string
+        required: false
+        i18n: true
+      - label: الكلمة الافتراضية تحت رأي العميل (لو الاسم فاضي)
+        name: revDef
+        widget: string
+        required: false
+        i18n: true
+      - label: كلمة شاهد على فيسبوك
+        name: watchFb
         widget: string
         required: false
         i18n: true
