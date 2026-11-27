@@ -34,14 +34,7 @@
     },
     {
       "name": "مؤتمرات",
-      "photos": [
-        {
-          "image": "/uploads/340274.jpg"
-        },
-        {
-          "image": "/uploads/340280.jpg"
-        }
-      ],
+      "photos": [],
       "type": "videos",
       "videos": [
         {
@@ -57,7 +50,14 @@
     },
     {
       "name": "بورتريه",
-      "photos": [],
+      "photos": [
+        {
+          "image": "/uploads/340274.jpg"
+        },
+        {
+          "image": "/uploads/340280.jpg"
+        }
+      ],
       "type": "photos",
       "videos": []
     },
