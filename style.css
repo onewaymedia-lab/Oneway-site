@@ -208,3 +208,6 @@ html[lang="en"] body * { font-family: 'Poppins', 'IBM Plex Sans Arabic', 'Segoe 
 .ow-shot figcaption span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ow-shotv{flex:0 0 auto;white-space:nowrap}
 .ow-shot{flex-basis:260px}
+
+.ow-drthumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ow-drl svg { fill: none; }
