@@ -187,3 +187,7 @@ html[lang="en"] body * { font-family: 'Poppins', 'IBM Plex Sans Arabic', 'Segoe 
 .ow-eyebrow { flex-wrap: nowrap; font-size: 13px; letter-spacing: .17em; gap: .45em; white-space: nowrap; }
 .ow-eyebrow::before, .ow-eyebrow::after { flex: 0 0 18px; }
 .ow-eyebrow::before { margin-inline-end: .5em; } .ow-eyebrow::after { margin-inline-start: .5em; }
+
+.ow-fblink { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 14px; color: #d9d9d9; text-decoration: underline; text-underline-offset: 3px; }
+.ow-fblink svg { width: 16px; height: 16px; fill: #1877f2; }
+.ow-vwrap { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; } .ow-vwrap .ow-card { align-self: stretch; }
