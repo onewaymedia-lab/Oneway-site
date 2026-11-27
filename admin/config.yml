@@ -7,253 +7,859 @@ public_folder: /uploads
 locale: ar
 i18n:
   structure: multiple_folders
-  locales: [ar, en]
+  locales:
+  - ar
+  - en
   default_locale: ar
 collections:
-  - name: site
-    label: محتوى الموقع (عربي / English)
+- name: home
+  label: 🏠 الصفحة الرئيسية
+  icon: home
+  description: العنوان الكبير والوصف وزرار الحجز والسطر الصغير فوق العنوان
+  i18n: true
+  files:
+  - name: home
+    label: 🏠 الصفحة الرئيسية
+    file: content/{{locale}}/home.json
     i18n: true
-    files:
-      - name: site
-        label: كل المحتوى
+    fields:
+    - label: الصفحة الرئيسية
+      name: hero
+      widget: object
+      i18n: true
+      fields:
+      - label: العنوان الكبير
+        name: title
+        widget: string
         i18n: true
-        file: content/{{locale}}/site.json
-        format: json
+      - label: الوصف
+        name: text
+        widget: text
+        i18n: true
+      - label: كلمة زرار الحجز
+        name: button
+        widget: string
+        i18n: true
+      - label: السطر الصغير فوق العنوان (انجليزي - الكلمة 1 أبيض، 2 أحمر، الباقي خفيف. سيبه فاضي لو عايز تخفيه)
+        name: eyebrow
+        widget: string
+        required: false
+        i18n: duplicate
+- name: sections
+  label: 👁 إظهار وإخفاء الأقسام
+  icon: toggle_on
+  description: شغّل أو اقفل أي قسم من الموقع
+  i18n: true
+  files:
+  - name: sections
+    label: 👁 إظهار وإخفاء الأقسام
+    file: content/{{locale}}/sections.json
+    i18n: true
+    fields:
+    - label: إظهار وإخفاء الأقسام (شغّل أو اقفل أي قسم، الكل شغال افتراضيا)
+      name: sections
+      widget: object
+      i18n: duplicate
+      required: false
+      fields:
+      - label: إظهار قسم الخدمات (بنعمل إيه؟)
+        name: services
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم من شغلنا (الصور والفيديوهات)
+        name: work
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم أحدث البرومو
+        name: videos
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم الباقات
+        name: packages
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم خطوات الحجز
+        name: steps
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم العملاء
+        name: clients
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم آراء العملاء
+        name: reviews
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم المقالات
+        name: articles
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم الأسئلة الشائعة
+        name: faq
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم من نحن
+        name: about
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+      - label: إظهار قسم التواصل
+        name: contact
+        widget: boolean
+        default: true
+        required: false
+        i18n: duplicate
+- divider: true
+- name: services
+  label: 🎬 الخدمات
+  icon: design_services
+  description: الخدمات اللي بتقدمها
+  i18n: true
+  files:
+  - name: services
+    label: 🎬 الخدمات
+    file: content/{{locale}}/services.json
+    i18n: true
+    fields:
+    - label: الخدمات
+      name: services
+      widget: list
+      i18n: true
+      fields:
+      - label: الاسم
+        name: name
+        widget: string
+        i18n: true
+      - label: الأيقونة
+        name: icon
+        widget: select
+        options:
+        - label: بث مباشر
+          value: live
+        - label: فيديو
+          value: video
+        - label: تصوير فوتوغرافي
+          value: photo
+        default: video
+        i18n: duplicate
+      - label: الوصف
+        name: text
+        widget: text
+        i18n: true
+- name: works
+  label: 📸 الأعمال (صور وفيديوهات)
+  icon: photo_library
+  description: كاتيجوري الشغل والصور وفيديوهات يوتيوب وفيسبوك
+  i18n: true
+  files:
+  - name: works
+    label: 📸 الأعمال (صور وفيديوهات)
+    file: content/{{locale}}/works.json
+    i18n: true
+    fields:
+    - label: كاتيجوريز معرض الشغل (ضيف كاتيجوري جديدة وحط صورها)
+      name: works
+      widget: list
+      i18n: true
+      fields:
+      - label: اسم الكاتيجوري
+        name: name
+        widget: string
+        i18n: true
+      - label: الصور
+        name: photos
+        widget: list
+        i18n: duplicate
+        required: false
         fields:
-          - label: الصفحة الرئيسية
-            name: hero
-            widget: object
-            i18n: true
-            fields:
-              - { label: العنوان الكبير, name: title, widget: string, i18n: true }
-              - { label: الوصف, name: text, widget: text, i18n: true }
-              - { label: كلمة زرار الحجز, name: button, widget: string, i18n: true }
-              - { label: "السطر الصغير فوق العنوان (انجليزي - الكلمة 1 أبيض، 2 أحمر، الباقي خفيف. سيبه فاضي لو عايز تخفيه)", name: eyebrow, widget: string, required: false, i18n: duplicate }
-          - label: الشعار والأيقونة وصورة المشاركة
-            name: logo
-            widget: object
-            i18n: true
-            fields:
-              - { label: لوجو الشركة (يظهر في أعلى الموقع), name: image, widget: image, required: false, i18n: duplicate }
-              - { label: وصف اللوجو, name: alt, widget: string, required: false, i18n: true }
-          - { label: أيقونة تبويب المتصفح (favicon) صورة مربعة, name: favicon, widget: image, required: false, i18n: duplicate }
-          - label: ظهور الموقع في جوجل ومشاركته
-            name: seo
-            widget: object
-            i18n: true
-            fields:
-              - { label: عنوان الموقع في جوجل, name: title, widget: string, i18n: true }
-              - { label: وصف الموقع في جوجل (حوالي 150 حرف), name: description, widget: text, i18n: true }
-              - { label: صورة المشاركة على واتساب وفيسبوك (1200x630), name: shareImage, widget: image, required: false, i18n: duplicate }
-          - label: عناوين الأقسام (غيّرها زي ما تحب)
-            name: titles
-            widget: object
-            i18n: true
-            fields:
-              - { label: عنوان الخدمات, name: services, widget: string, i18n: true }
-              - { label: عنوان معرض الشغل, name: work, widget: string, i18n: true }
-              - { label: عنوان الفيديوهات (مثلا أحدث أعمالنا), name: videos, widget: string, i18n: true }
-              - { label: عنوان الباقات, name: packages, widget: string, i18n: true }
-              - { label: عنوان خطوات الحجز, name: steps, widget: string, i18n: true }
-              - { label: عنوان آراء العملاء, name: reviews, widget: string, i18n: true }
-              - { label: عنوان عن الشركة, name: about, widget: string, i18n: true }
-              - { label: عنوان التواصل, name: contact, widget: string, i18n: true }
-              - { label: عنوان قسم المقالات, name: articles, widget: string, i18n: true }
-              - { label: عنوان قسم العملاء, name: clients, widget: string, i18n: true }
-              - { label: عنوان قسم الأسئلة, name: faq, widget: string, i18n: true }
-          - label: أسماء القوائم والأزرار (اتركها فاضية لو عاوز الاسم الأصلي)
-            name: labels
-            widget: object
-            i18n: true
-            required: false
-            fields:
-              - { label: كلمة زرار القائمة, name: menu, widget: string, required: false, i18n: true }
-              - { label: القائمة، الرئيسية, name: home, widget: string, required: false, i18n: true }
-              - { label: القائمة، الخدمات, name: mServices, widget: string, required: false, i18n: true }
-              - { label: القائمة، من شغلنا, name: mWork, widget: string, required: false, i18n: true }
-              - { label: القائمة، الباقات, name: mPackages, widget: string, required: false, i18n: true }
-              - { label: القائمة، العملاء أو الشركاء (لو فاضية بتاخد عنوان قسم العملاء), name: mClients, widget: string, required: false, i18n: true }
-              - { label: القائمة، المقالات, name: articles, widget: string, required: false, i18n: true }
-              - { label: القائمة، الأسئلة الشائعة, name: faq, widget: string, required: false, i18n: true }
-              - { label: القائمة، من نحن, name: about, widget: string, required: false, i18n: true }
-              - { label: القائمة، تواصل معنا, name: contact, widget: string, required: false, i18n: true }
-              - { label: زرار شوف شغلنا, name: seeWork, widget: string, required: false, i18n: true }
-              - { label: زرار اسأل عن الباقة, name: askPkg, widget: string, required: false, i18n: true }
-              - { label: زرار الواتساب الأخضر, name: waBtn, widget: string, required: false, i18n: true }
-              - { label: زرار الواتساب العايم (تحت), name: floatWa, widget: string, required: false, i18n: true }
-              - { label: لينك كل المقالات, name: allArticles, widget: string, required: false, i18n: true }
-              - { label: لينك كل الأسئلة, name: allFaq, widget: string, required: false, i18n: true }
-              - { label: عنوان قسم التواصل الأخير, name: talkWa, widget: string, required: false, i18n: true }
-              - { label: جملة تحت عنوان التواصل, name: ready, widget: string, required: false, i18n: true }
-              - { label: جملة التواصل على واتساب, name: readyWa, widget: string, required: false, i18n: true }
-              - { label: كلمة التليفون, name: phone, widget: string, required: false, i18n: true }
-              - { label: كلمة واتساب, name: whatsapp, widget: string, required: false, i18n: true }
-              - { label: كلمة العنوان, name: address, widget: string, required: false, i18n: true }
-              - { label: كلمة الإيميل, name: email, widget: string, required: false, i18n: true }
-              - { label: لينك افتح الخريطة, name: openMap, widget: string, required: false, i18n: true }
-          - label: إظهار وإخفاء الأقسام (شغّل أو اقفل أي قسم، الكل شغال افتراضيا)
-            name: sections
-            widget: object
-            i18n: duplicate
-            required: false
-            fields:
-              - { label: إظهار قسم الخدمات (بنعمل إيه؟), name: services, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم من شغلنا (الصور والفيديوهات), name: work, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم أحدث البرومو, name: videos, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم الباقات, name: packages, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم خطوات الحجز, name: steps, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم العملاء, name: clients, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم آراء العملاء, name: reviews, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم المقالات, name: articles, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم الأسئلة الشائعة, name: faq, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم من نحن, name: about, widget: boolean, default: true, required: false, i18n: duplicate }
-              - { label: إظهار قسم التواصل, name: contact, widget: boolean, default: true, required: false, i18n: duplicate }
-          - label: بيانات التواصل
-            name: settings
-            widget: object
-            i18n: true
-            fields:
-              - { label: رقم واتساب (بصيغة دولية بدون +, مثال 201157661811), name: whatsapp, widget: string, i18n: duplicate }
-              - { label: رسالة واتساب الجاهزة, name: whatsappMessage, widget: string, i18n: true }
-              - { label: التليفون, name: phone, widget: string, i18n: duplicate }
-              - { label: الإيميل, name: email, widget: string, i18n: duplicate }
-              - { label: العنوان, name: address, widget: string, i18n: true }
-              - { label: لينك الخريطة, name: map, widget: string, i18n: duplicate }
-          - label: حسابات السوشيال (ضيف أو احذف)
-            name: socials
-            widget: list
-            i18n: true
-            fields:
-              - { label: الاسم, name: name, widget: string, i18n: true }
-              - { label: اللينك, name: url, widget: string, i18n: duplicate }
-          - label: الخدمات
-            name: services
-            widget: list
-            i18n: true
-            fields:
-              - { label: الاسم, name: name, widget: string, i18n: true }
-              - { label: الأيقونة, name: icon, widget: select, options: [{ label: بث مباشر, value: live }, { label: فيديو, value: video }, { label: تصوير فوتوغرافي, value: photo }], default: video, i18n: duplicate }
-              - { label: الوصف, name: text, widget: text, i18n: true }
-          - label: كاتيجوريز معرض الشغل (ضيف كاتيجوري جديدة وحط صورها)
-            name: works
-            widget: list
-            i18n: true
-            fields:
-              - { label: اسم الكاتيجوري, name: name, widget: string, i18n: true }
-              - label: الصور
-                name: photos
-                widget: list
-                i18n: duplicate
-                required: false
-                fields:
-                  - { label: الصورة, name: image, widget: image, i18n: duplicate }
-              - { label: نوع الكاتيجوري, name: type, widget: select, options: [{ label: صور, value: photos }, { label: فيديوهات يوتيوب, value: videos }], default: photos, i18n: duplicate }
-              - label: فيديوهات يوتيوب (للكاتيجوري من نوع فيديوهات)
-                name: videos
-                widget: list
-                i18n: duplicate
-                required: false
-                fields:
-                  - { label: لينك يوتيوب, name: url, widget: string, i18n: duplicate }
-                  - { label: عنوان الفيديو (اختياري), name: title, widget: string, required: false, i18n: duplicate }
-                  - { label: وصف قصير (اختياري), name: description, widget: string, required: false, i18n: duplicate }
-                  - { label: تاريخ رفع الفيديو (اختياري، لظهوره في جوجل), name: date, widget: datetime, required: false, time_format: false, i18n: duplicate }
-          - label: برومو وأحدث الأعمال (ضيف لينك يوتيوب أو فيسبوك)
-            name: videos
-            widget: list
-            i18n: true
-            fields:
-              - { label: العنوان, name: title, widget: string, i18n: true }
-              - { label: وصف قصير, name: note, widget: string, i18n: true }
-              - { label: اللينك, name: url, widget: string, i18n: duplicate }
-          - label: الباقات والأسعار
-            name: packages
-            widget: list
-            i18n: true
-            fields:
-              - { label: اسم الباقة, name: name, widget: string, i18n: true }
-              - { label: السعر (سيبه فاضي لو مش عاوز تعرض سعر), name: price, widget: string, required: false, i18n: duplicate }
-              - { label: مميزة؟, name: hot, widget: boolean, required: false, i18n: duplicate }
-              - label: المحتويات
-                name: items
-                widget: list
-                i18n: true
-                fields:
-                  - { label: البند, name: text, widget: string, i18n: true }
-          - label: خطوات الحجز
-            name: steps
-            widget: list
-            i18n: true
-            fields:
-              - { label: الخطوة, name: text, widget: string, i18n: true }
-          - label: آراء العملاء
-            name: reviews
-            widget: list
-            i18n: true
-            fields:
-              - { label: الاسم, name: who, widget: string, i18n: true }
-              - { label: نوع الشغل, name: what, widget: string, i18n: true }
-              - { label: الرأي, name: text, widget: text, i18n: true }
-          - label: عملاؤنا (لوجوهات)
-            name: clients
-            widget: list
-            i18n: duplicate
-            fields:
-              - { label: اسم العميل, name: name, widget: string, i18n: duplicate }
-              - { label: اللوجو (يفضل PNG شفاف), name: logo, widget: image, required: false, i18n: duplicate }
-          - label: الأسئلة الشائعة
-            name: faq
-            widget: list
-            i18n: true
-            fields:
-              - { label: السؤال, name: q, widget: string, i18n: true }
-              - { label: الإجابة, name: a, widget: text, i18n: true }
-          - label: عن الشركة
-            name: about
-            widget: object
-            i18n: true
-            fields:
-              - { label: الفقرة, name: text, widget: text, i18n: true }
-          - label: المقالات (ضيف مقال جديد، ولو علّمت مسودة مش هيظهر)
-            name: articles
-            widget: list
-            i18n: true
-            summary: '{{fields.title}}'
-            fields:
-              - { label: العنوان, name: title, widget: string, i18n: true }
-              - { label: اسم اللينك بالإنجليزي (حروف صغيرة وشرطات، مثال live-streaming-guide), name: slug, widget: string, i18n: duplicate, pattern: ['^[a-z0-9-]+$', 'حروف إنجليزي صغيرة وأرقام وشرطات بس'] }
-              - { label: التاريخ, name: date, widget: datetime, time_format: false, date_format: 'YYYY-MM-DD', i18n: duplicate }
-              - { label: مسودة (لو متعلّم عليها المقال مش هيظهر في الموقع), name: draft, widget: boolean, default: false, i18n: duplicate }
-              - { label: صورة الغلاف, name: cover, widget: image, required: false, i18n: duplicate }
-              - { label: وصف الصورة, name: coverAlt, widget: string, required: false, i18n: true }
-              - { label: وصف المقال في جوجل (حوالي 150 حرف), name: description, widget: text, i18n: true }
-              - { label: نص المقال, name: body, widget: markdown, i18n: true }
-          - label: صفحات الموقع (من نحن، تواصل معنا، الخصوصية)
-            name: pages
-            widget: object
-            i18n: true
-            fields:
-              - label: من نحن
-                name: about
-                widget: object
-                i18n: true
-                fields:
-                  - { label: العنوان, name: title, widget: string, i18n: true }
-                  - { label: وصف الصفحة في جوجل, name: description, widget: text, i18n: true }
-                  - { label: النص, name: body, widget: markdown, i18n: true }
-              - label: تواصل معنا
-                name: contact
-                widget: object
-                i18n: true
-                fields:
-                  - { label: العنوان, name: title, widget: string, i18n: true }
-                  - { label: وصف الصفحة في جوجل, name: description, widget: text, i18n: true }
-                  - { label: النص, name: body, widget: markdown, i18n: true }
-              - label: سياسة الخصوصية
-                name: privacy
-                widget: object
-                i18n: true
-                fields:
-                  - { label: العنوان, name: title, widget: string, i18n: true }
-                  - { label: وصف الصفحة في جوجل, name: description, widget: text, i18n: true }
-                  - { label: النص, name: body, widget: markdown, i18n: true }
+        - label: الصورة
+          name: image
+          widget: image
+          i18n: duplicate
+      - label: نوع الكاتيجوري
+        name: type
+        widget: select
+        options:
+        - label: صور
+          value: photos
+        - label: فيديوهات يوتيوب
+          value: videos
+        default: photos
+        i18n: duplicate
+      - label: فيديوهات (لينك يوتيوب أو فيسبوك)
+        name: videos
+        widget: list
+        i18n: duplicate
+        required: false
+        fields:
+        - label: لينك يوتيوب (اختياري)
+          name: youtube
+          widget: string
+          required: false
+          i18n: duplicate
+        - label: لينك فيسبوك (اختياري، تقدر تلزق لينك المشاركة القصير)
+          name: facebook
+          widget: string
+          required: false
+          i18n: duplicate
+        - label: لينك قديم (سيبه زي ما هو أو فضّيه بعد ما تضيف اللينكات الجديدة)
+          name: url
+          widget: string
+          i18n: duplicate
+          required: false
+        - label: عنوان الفيديو (اختياري)
+          name: title
+          widget: string
+          required: false
+          i18n: duplicate
+        - label: وصف قصير (اختياري)
+          name: description
+          widget: string
+          required: false
+          i18n: duplicate
+        - label: تاريخ رفع الفيديو (اختياري، لظهوره في جوجل)
+          name: date
+          widget: datetime
+          required: false
+          time_format: false
+          i18n: duplicate
+- name: videos
+  label: 🎥 برومو وأحدث الأعمال
+  icon: videocam
+  description: لينك يوتيوب ولينك فيسبوك، واحد أو الاتنين
+  i18n: true
+  files:
+  - name: videos
+    label: 🎥 برومو وأحدث الأعمال
+    file: content/{{locale}}/videos.json
+    i18n: true
+    fields:
+    - label: برومو وأحدث الأعمال (ضيف لينك يوتيوب أو فيسبوك أو الاتنين)
+      name: videos
+      widget: list
+      i18n: true
+      fields:
+      - label: العنوان
+        name: title
+        widget: string
+        i18n: true
+      - label: وصف قصير
+        name: note
+        widget: string
+        i18n: true
+      - label: لينك يوتيوب (اختياري)
+        name: youtube
+        widget: string
+        required: false
+        i18n: duplicate
+      - label: لينك فيسبوك (اختياري، تقدر تلزق لينك المشاركة القصير)
+        name: facebook
+        widget: string
+        required: false
+        i18n: duplicate
+      - label: لينك قديم (سيبه زي ما هو أو فضّيه بعد ما تضيف اللينكات الجديدة)
+        name: url
+        widget: string
+        i18n: duplicate
+        required: false
+- name: packages
+  label: 💰 الباقات والأسعار
+  icon: sell
+  description: الباقات والسعر اختياري
+  i18n: true
+  files:
+  - name: packages
+    label: 💰 الباقات والأسعار
+    file: content/{{locale}}/packages.json
+    i18n: true
+    fields:
+    - label: الباقات والأسعار
+      name: packages
+      widget: list
+      i18n: true
+      fields:
+      - label: اسم الباقة
+        name: name
+        widget: string
+        i18n: true
+      - label: السعر (سيبه فاضي لو مش عاوز تعرض سعر)
+        name: price
+        widget: string
+        required: false
+        i18n: duplicate
+      - label: مميزة؟
+        name: hot
+        widget: boolean
+        required: false
+        i18n: duplicate
+      - label: المحتويات
+        name: items
+        widget: list
+        i18n: true
+        fields:
+        - label: البند
+          name: text
+          widget: string
+          i18n: true
+- name: steps
+  label: 🧭 خطوات الحجز
+  icon: format_list_numbered
+  description: إزاي العميل يحجز معاك
+  i18n: true
+  files:
+  - name: steps
+    label: 🧭 خطوات الحجز
+    file: content/{{locale}}/steps.json
+    i18n: true
+    fields:
+    - label: خطوات الحجز
+      name: steps
+      widget: list
+      i18n: true
+      fields:
+      - label: الخطوة
+        name: text
+        widget: string
+        i18n: true
+- name: clients
+  label: 🤝 العملاء
+  icon: handshake
+  description: لوجوهات العملاء والشركاء
+  i18n: true
+  files:
+  - name: clients
+    label: 🤝 العملاء
+    file: content/{{locale}}/clients.json
+    i18n: true
+    fields:
+    - label: عملاؤنا (لوجوهات)
+      name: clients
+      widget: list
+      i18n: duplicate
+      fields:
+      - label: اسم العميل
+        name: name
+        widget: string
+        i18n: duplicate
+      - label: اللوجو (يفضل PNG شفاف)
+        name: logo
+        widget: image
+        required: false
+        i18n: duplicate
+- name: reviews
+  label: ⭐ آراء العملاء
+  icon: reviews
+  description: آراء العملاء
+  i18n: true
+  files:
+  - name: reviews
+    label: ⭐ آراء العملاء
+    file: content/{{locale}}/reviews.json
+    i18n: true
+    fields:
+    - label: آراء العملاء
+      name: reviews
+      widget: list
+      i18n: true
+      fields:
+      - label: الاسم
+        name: who
+        widget: string
+        i18n: true
+      - label: نوع الشغل
+        name: what
+        widget: string
+        i18n: true
+      - label: الرأي
+        name: text
+        widget: text
+        i18n: true
+- divider: true
+- name: articles
+  label: 📝 المقالات
+  icon: article
+  description: المقالات (المسودة بتفضل مخفية لحد ما تشيل علامة مسودة)
+  i18n: true
+  files:
+  - name: articles
+    label: 📝 المقالات
+    file: content/{{locale}}/articles.json
+    i18n: true
+    fields:
+    - label: المقالات (ضيف مقال جديد، ولو علّمت مسودة مش هيظهر)
+      name: articles
+      widget: list
+      i18n: true
+      summary: '{{fields.title}}'
+      fields:
+      - label: العنوان
+        name: title
+        widget: string
+        i18n: true
+      - label: اسم اللينك بالإنجليزي (حروف صغيرة وشرطات، مثال live-streaming-guide)
+        name: slug
+        widget: string
+        i18n: duplicate
+        pattern:
+        - ^[a-z0-9-]+$
+        - حروف إنجليزي صغيرة وأرقام وشرطات بس
+      - label: التاريخ
+        name: date
+        widget: datetime
+        time_format: false
+        date_format: YYYY-MM-DD
+        i18n: duplicate
+      - label: مسودة (لو متعلّم عليها المقال مش هيظهر في الموقع)
+        name: draft
+        widget: boolean
+        default: false
+        i18n: duplicate
+      - label: صورة الغلاف
+        name: cover
+        widget: image
+        required: false
+        i18n: duplicate
+      - label: وصف الصورة
+        name: coverAlt
+        widget: string
+        required: false
+        i18n: true
+      - label: وصف المقال في جوجل (حوالي 150 حرف)
+        name: description
+        widget: text
+        i18n: true
+      - label: نص المقال
+        name: body
+        widget: markdown
+        i18n: true
+- name: faq
+  label: ❓ الأسئلة الشائعة
+  icon: help
+  description: أسئلة وإجابات
+  i18n: true
+  files:
+  - name: faq
+    label: ❓ الأسئلة الشائعة
+    file: content/{{locale}}/faq.json
+    i18n: true
+    fields:
+    - label: الأسئلة الشائعة
+      name: faq
+      widget: list
+      i18n: true
+      fields:
+      - label: السؤال
+        name: q
+        widget: string
+        i18n: true
+      - label: الإجابة
+        name: a
+        widget: text
+        i18n: true
+- name: about
+  label: 👥 من نحن
+  icon: groups
+  description: نبذة عن الشركة
+  i18n: true
+  files:
+  - name: about
+    label: 👥 من نحن
+    file: content/{{locale}}/about.json
+    i18n: true
+    fields:
+    - label: عن الشركة
+      name: about
+      widget: object
+      i18n: true
+      fields:
+      - label: الفقرة
+        name: text
+        widget: text
+        i18n: true
+- divider: true
+- name: contact
+  label: 📞 التواصل والعنوان والسوشيال
+  icon: call
+  description: واتساب والتليفون والإيميل والعنوان والخريطة والسوشيال
+  i18n: true
+  files:
+  - name: contact
+    label: 📞 التواصل والعنوان والسوشيال
+    file: content/{{locale}}/contact.json
+    i18n: true
+    fields:
+    - label: بيانات التواصل
+      name: settings
+      widget: object
+      i18n: true
+      fields:
+      - label: رقم واتساب (بصيغة دولية بدون +
+        مثال 201157661811): null
+        name: whatsapp
+        widget: string
+        i18n: duplicate
+      - label: رسالة واتساب الجاهزة
+        name: whatsappMessage
+        widget: string
+        i18n: true
+      - label: التليفون
+        name: phone
+        widget: string
+        i18n: duplicate
+      - label: الإيميل
+        name: email
+        widget: string
+        i18n: duplicate
+      - label: العنوان
+        name: address
+        widget: string
+        i18n: true
+      - label: لينك الخريطة
+        name: map
+        widget: string
+        i18n: duplicate
+    - label: حسابات السوشيال (ضيف أو احذف)
+      name: socials
+      widget: list
+      i18n: true
+      fields:
+      - label: الاسم
+        name: name
+        widget: string
+        i18n: true
+      - label: اللينك
+        name: url
+        widget: string
+        i18n: duplicate
+- name: branding
+  label: 🔎 الشعار وجوجل
+  icon: travel_explore
+  description: اللوجو والأيقونة وصورة المشاركة وعنوان ووصف جوجل
+  i18n: true
+  files:
+  - name: branding
+    label: 🔎 الشعار وجوجل
+    file: content/{{locale}}/branding.json
+    i18n: true
+    fields:
+    - label: الشعار والأيقونة وصورة المشاركة
+      name: logo
+      widget: object
+      i18n: true
+      fields:
+      - label: لوجو الشركة (يظهر في أعلى الموقع)
+        name: image
+        widget: image
+        required: false
+        i18n: duplicate
+      - label: وصف اللوجو
+        name: alt
+        widget: string
+        required: false
+        i18n: true
+    - label: أيقونة تبويب المتصفح (favicon) صورة مربعة
+      name: favicon
+      widget: image
+      required: false
+      i18n: duplicate
+    - label: ظهور الموقع في جوجل ومشاركته
+      name: seo
+      widget: object
+      i18n: true
+      fields:
+      - label: عنوان الموقع في جوجل
+        name: title
+        widget: string
+        i18n: true
+      - label: وصف الموقع في جوجل (حوالي 150 حرف)
+        name: description
+        widget: text
+        i18n: true
+      - label: صورة المشاركة على واتساب وفيسبوك (1200x630)
+        name: shareImage
+        widget: image
+        required: false
+        i18n: duplicate
+- name: titles
+  label: 🔤 عناوين الأقسام
+  icon: title
+  description: عناوين الأقسام على الصفحة
+  i18n: true
+  files:
+  - name: titles
+    label: 🔤 عناوين الأقسام
+    file: content/{{locale}}/titles.json
+    i18n: true
+    fields:
+    - label: عناوين الأقسام (غيّرها زي ما تحب)
+      name: titles
+      widget: object
+      i18n: true
+      fields:
+      - label: عنوان الخدمات
+        name: services
+        widget: string
+        i18n: true
+      - label: عنوان معرض الشغل
+        name: work
+        widget: string
+        i18n: true
+      - label: عنوان الفيديوهات (مثلا أحدث أعمالنا)
+        name: videos
+        widget: string
+        i18n: true
+      - label: عنوان الباقات
+        name: packages
+        widget: string
+        i18n: true
+      - label: عنوان خطوات الحجز
+        name: steps
+        widget: string
+        i18n: true
+      - label: عنوان آراء العملاء
+        name: reviews
+        widget: string
+        i18n: true
+      - label: عنوان عن الشركة
+        name: about
+        widget: string
+        i18n: true
+      - label: عنوان التواصل
+        name: contact
+        widget: string
+        i18n: true
+      - label: عنوان قسم المقالات
+        name: articles
+        widget: string
+        i18n: true
+      - label: عنوان قسم العملاء
+        name: clients
+        widget: string
+        i18n: true
+      - label: عنوان قسم الأسئلة
+        name: faq
+        widget: string
+        i18n: true
+- name: labels
+  label: 🏷 أسماء القوائم والأزرار
+  icon: label
+  description: نادرا ما تحتاجها
+  i18n: true
+  files:
+  - name: labels
+    label: 🏷 أسماء القوائم والأزرار
+    file: content/{{locale}}/labels.json
+    i18n: true
+    fields:
+    - label: أسماء القوائم والأزرار (اتركها فاضية لو عاوز الاسم الأصلي)
+      name: labels
+      widget: object
+      i18n: true
+      required: false
+      fields:
+      - label: كلمة زرار القائمة
+        name: menu
+        widget: string
+        required: false
+        i18n: true
+      - label: القائمة، الرئيسية
+        name: home
+        widget: string
+        required: false
+        i18n: true
+      - label: القائمة، الخدمات
+        name: mServices
+        widget: string
+        required: false
+        i18n: true
+      - label: القائمة، من شغلنا
+        name: mWork
+        widget: string
+        required: false
+        i18n: true
+      - label: القائمة، الباقات
+        name: mPackages
+        widget: string
+        required: false
+        i18n: true
+      - label: القائمة، العملاء أو الشركاء (لو فاضية بتاخد عنوان قسم العملاء)
+        name: mClients
+        widget: string
+        required: false
+        i18n: true
+      - label: القائمة، المقالات
+        name: articles
+        widget: string
+        required: false
+        i18n: true
+      - label: القائمة، الأسئلة الشائعة
+        name: faq
+        widget: string
+        required: false
+        i18n: true
+      - label: القائمة، من نحن
+        name: about
+        widget: string
+        required: false
+        i18n: true
+      - label: القائمة، تواصل معنا
+        name: contact
+        widget: string
+        required: false
+        i18n: true
+      - label: زرار شوف شغلنا
+        name: seeWork
+        widget: string
+        required: false
+        i18n: true
+      - label: زرار اسأل عن الباقة
+        name: askPkg
+        widget: string
+        required: false
+        i18n: true
+      - label: زرار الواتساب الأخضر
+        name: waBtn
+        widget: string
+        required: false
+        i18n: true
+      - label: زرار الواتساب العايم (تحت)
+        name: floatWa
+        widget: string
+        required: false
+        i18n: true
+      - label: لينك كل المقالات
+        name: allArticles
+        widget: string
+        required: false
+        i18n: true
+      - label: لينك كل الأسئلة
+        name: allFaq
+        widget: string
+        required: false
+        i18n: true
+      - label: عنوان قسم التواصل الأخير
+        name: talkWa
+        widget: string
+        required: false
+        i18n: true
+      - label: جملة تحت عنوان التواصل
+        name: ready
+        widget: string
+        required: false
+        i18n: true
+      - label: جملة التواصل على واتساب
+        name: readyWa
+        widget: string
+        required: false
+        i18n: true
+      - label: كلمة التليفون
+        name: phone
+        widget: string
+        required: false
+        i18n: true
+      - label: كلمة واتساب
+        name: whatsapp
+        widget: string
+        required: false
+        i18n: true
+      - label: كلمة العنوان
+        name: address
+        widget: string
+        required: false
+        i18n: true
+      - label: كلمة الإيميل
+        name: email
+        widget: string
+        required: false
+        i18n: true
+      - label: لينك افتح الخريطة
+        name: openMap
+        widget: string
+        required: false
+        i18n: true
+- name: pages
+  label: 📄 الصفحات (الخصوصية وغيرها)
+  icon: description
+  description: صفحات النص الطويل
+  i18n: true
+  files:
+  - name: pages
+    label: 📄 الصفحات (الخصوصية وغيرها)
+    file: content/{{locale}}/pages.json
+    i18n: true
+    fields:
+    - label: صفحات الموقع (من نحن، تواصل معنا، الخصوصية)
+      name: pages
+      widget: object
+      i18n: true
+      fields:
+      - label: من نحن
+        name: about
+        widget: object
+        i18n: true
+        fields:
+        - label: العنوان
+          name: title
+          widget: string
+          i18n: true
+        - label: وصف الصفحة في جوجل
+          name: description
+          widget: text
+          i18n: true
+        - label: النص
+          name: body
+          widget: markdown
+          i18n: true
+      - label: تواصل معنا
+        name: contact
+        widget: object
+        i18n: true
+        fields:
+        - label: العنوان
+          name: title
+          widget: string
+          i18n: true
+        - label: وصف الصفحة في جوجل
+          name: description
+          widget: text
+          i18n: true
+        - label: النص
+          name: body
+          widget: markdown
+          i18n: true
+      - label: سياسة الخصوصية
+        name: privacy
+        widget: object
+        i18n: true
+        fields:
+        - label: العنوان
+          name: title
+          widget: string
+          i18n: true
+        - label: وصف الصفحة في جوجل
+          name: description
+          widget: text
+          i18n: true
+        - label: النص
+          name: body
+          widget: markdown
+          i18n: true
