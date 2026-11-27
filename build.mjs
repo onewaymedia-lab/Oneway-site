@@ -1,210 +1,377 @@
-html, body { margin: 0; min-height: 100%; }
-body { background: #0e0f12; }
-.ow { --ow-bg:#0a0a0a; --ow-alt:#141414; --ow-ink:#ffffff; --ow-mute:#b5b5b5; --ow-gold:#e11d2e; --ow-wa:#25d366;
-  background: var(--ow-bg); color: var(--ow-ink); font-family: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, 'Noto Sans Arabic', 'Noto Naskh Arabic', system-ui, sans-serif; line-height: 1.7; padding-bottom: 72px; text-align: start; }
-.ow * { box-sizing: border-box; }
-.ow h1, .ow h2, .ow h3, .ow p { margin: 0; }
-.ow-hero { padding: 56px 22px 48px; background: radial-gradient(120% 80% at 80% 0%, #2a0a0d 0%, var(--ow-bg) 60%); display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
-.ow-brand { color: var(--ow-gold); font-weight: 700; font-size: 18px; letter-spacing: .5px; }
-.ow-hero h1 { font-size: 36px; line-height: 1.3; font-weight: 800; }
-.ow-hero p { color: var(--ow-mute); font-size: 17px; max-width: 520px; }
-.ow-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; background: var(--ow-wa); color: #fff; font-weight: 700; font-size: 17px; border-radius: 999px; text-decoration: none; }
-.ow-link { color: var(--ow-ink); text-decoration: underline; min-height: 44px; display: inline-flex; align-items: center; }
-.ow-sec { padding: 44px 22px; }
-.ow-alt { background: var(--ow-alt); }
-.ow-sec h2 { font-size: 26px; font-weight: 800; margin-bottom: 22px; }
-.ow-sec h2::after { content: ''; display: block; width: 44px; height: 3px; background: var(--ow-gold); margin-top: 8px; border-radius: 2px; }
-.ow-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
-.ow-card { background: #161616; border: 1px solid #2a2a2a; border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 10px; margin: 0; }
-.ow-card h3 { font-size: 20px; }
-.ow-card p, .ow-card li, .ow-card blockquote, .ow-card figcaption { color: var(--ow-mute); margin: 0; }
-.ow-ico { color: var(--ow-gold); font-size: 22px; }
-.ow-hot { border-color: var(--ow-gold); }
-.ow-price { font-size: 30px; font-weight: 800; color: var(--ow-gold); }
-.ow-card ul { padding: 0 20px 0 0; margin: 0; }
-.ow-card .ow-btn { margin-top: 8px; min-height: 46px; font-size: 15px; }
-.ow-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.ow-tile { aspect-ratio: 4/3; border-radius: 14px; background: repeating-linear-gradient(135deg, #1c1c1c 0 14px, #141414 14px 28px); border: 1px dashed #3a3a3a; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-weight: 700; }
-.ow-tile small { color: var(--ow-mute); font-weight: 400; font-size: 12px; }
-.ow-steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 12px; }
-.ow-steps li { counter-increment: s; display: flex; gap: 14px; align-items: center; }
-.ow-steps li::before { content: counter(s); flex: 0 0 36px; height: 36px; border-radius: 50%; background: var(--ow-gold); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; }
-.ow-about { color: var(--ow-mute); max-width: 560px; }
-.ow-contact { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
-.ow-contact h2 { margin-bottom: 0; }
-.ow-contact p { color: var(--ow-mute); }
-.ow-contact dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; }
-.ow-contact dt { color: var(--ow-gold); }
-.ow-contact dd { margin: 0; color: var(--ow-ink); overflow-wrap: anywhere; }
-.ow-social { display: flex; flex-wrap: wrap; gap: 10px; }
-.ow-social a { color: var(--ow-ink); border: 1px solid #3a3a3a; border-radius: 999px; padding: 0 18px; min-height: 44px; display: inline-flex; align-items: center; text-decoration: none; }
-.ow-foot { text-align: center; color: var(--ow-mute); padding: 18px; font-size: 13px; }
-.ow-float { position: sticky; bottom: 14px; margin: 0 auto; width: max-content; display: flex; align-items: center; min-height: 48px; padding: 0 22px; background: var(--ow-wa); color: #fff; font-weight: 700; border-radius: 999px; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,.5); }
-@media (min-width: 768px) {
-  .ow-hero { padding: 96px 8vw 80px; } .ow-hero h1 { font-size: 56px; }
-  .ow-sec { padding: 64px 8vw; }
-  .ow-grid { grid-template-columns: repeat(3, 1fr); }
-  .ow-tiles { grid-template-columns: repeat(3, 1fr); }
+// Cloudflare Pages build: node build.mjs  (output directory: dist)
+// Builds the Arabic site at / and the English site at /en/ from content/ar and content/en.
+// Plain HTML output so search engines see everything without running JavaScript.
+import fs from 'node:fs';
+import path from 'node:path';
+
+let SITE = 'https://oneway-site.onewaymediaegypt.workers.dev'; // replaced below by the dashboard setting (settings.siteUrl) when it is filled
+const LANGS = ['ar', 'en'];
+const PFX = { ar: '', en: '/en' };
+const S = {
+  ar: {
+    dir: 'rtl', locale: 'ar_EG', switchLabel: 'English', switchLang: 'en',
+    brand: 'ون واي ميديا', bizName: 'ون واي ميديا (OneWay Media)', city: '6 أكتوبر', region: 'الجيزة',
+    home: 'الرئيسية', about: 'من نحن', articles: 'المقالات', contact: 'تواصل معنا', faq: 'الأسئلة الشائعة', privacy: 'سياسة الخصوصية',
+    waBtn: 'ابعت رسالة على واتساب', askPkg: 'اسأل عن الباقة', askPrice: 'تواصل معانا لمعرفة السعر', seeWork: 'شوف شغلنا', allArticles: 'كل المقالات', allFaq: 'كل الأسئلة',
+    phone: 'التليفون', whatsapp: 'واتساب', address: 'العنوان', email: 'الإيميل', openMap: 'افتح الخريطة', map: 'الخريطة',
+    talkWa: 'كلمنا على واتساب', ready: 'جاهزين نرد عليك.', readyWa: 'جاهزين نرد عليك على واتساب.',
+    addYt: 'ضيف لينك يوتيوب من اللوحة', watchFb: 'شاهد على فيسبوك', viewShot: 'مشاهدة', watchDr: 'شاهد على جوجل درايف', revDef: 'رأي عميل', photoHere: 'مكان الصور', defVideo: 'فيديو من ون واي ميديا', ytTitle: 'فيديو', lbOpen: 'كبّر الصورة', lbClose: 'اقفل', lbNext: 'الصورة اللي بعدها', lbPrev: 'الصورة اللي قبلها', lbOf: 'من', menu: 'القائمة', mServices: 'خدماتنا', mWork: 'من شغلنا', mPackages: 'الباقات', workAlt: ' - ون واي ميديا',
+    artTitle: 'مقالات ونصايح', artHead: 'مقالات ونصايح عن البث المباشر والتصوير | ون واي ميديا',
+    artDesc: 'مقالات ونصايح عملية عن البث المباشر وتصوير الفيديو والتصوير الفوتوغرافي في مصر من ون واي ميديا.', artEmpty: 'هننزل مقالات ونصايح جديدة قريباً.',
+    faqHead: 'الأسئلة الشائعة | ون واي ميديا', faqDesc: 'إجابات على أسئلة العملاء عن الأسعار ومدة التسليم ومناطق التغطية وطريقة الحجز مع ون واي ميديا.',
+    floatWa: 'واتساب', toTop: 'للأعلى', logoAlt: 'شعار ون واي ميديا', defTitle: 'ون واي ميديا',
+  },
+  en: {
+    dir: 'ltr', locale: 'en_US', switchLabel: 'العربية', switchLang: 'ar',
+    brand: 'OneWay Media', bizName: 'OneWay Media', city: '6th of October City', region: 'Giza',
+    home: 'Home', about: 'About us', articles: 'Articles', contact: 'Contact us', faq: 'FAQ', privacy: 'Privacy Policy',
+    waBtn: 'Message us on WhatsApp', askPkg: 'Ask about this package', askPrice: 'Message us for the price', seeWork: 'See our work', allArticles: 'All articles', allFaq: 'All questions',
+    phone: 'Phone', whatsapp: 'WhatsApp', address: 'Address', email: 'Email', openMap: 'Open the map', map: 'Map',
+    talkWa: 'Talk to us on WhatsApp', ready: "We're ready to reply.", readyWa: "We're ready to reply on WhatsApp.",
+    addYt: 'Add a YouTube link from the dashboard', watchFb: 'Watch on Facebook', viewShot: 'View', watchDr: 'Watch on Google Drive', revDef: 'Client feedback', photoHere: 'Photos go here', defVideo: 'Video by OneWay Media', ytTitle: 'Video', lbOpen: 'Enlarge photo', lbClose: 'Close', lbNext: 'Next photo', lbPrev: 'Previous photo', lbOf: 'of', menu: 'Menu', mServices: 'Services', mWork: 'Our work', mPackages: 'Packages', workAlt: ' - OneWay Media',
+    artTitle: 'Articles and tips', artHead: 'Articles and Tips on Live Streaming and Photography | OneWay Media',
+    artDesc: 'Practical articles and tips on live streaming, video production and photography in Egypt from OneWay Media.', artEmpty: 'New articles and tips are coming soon.',
+    faqHead: 'FAQ | OneWay Media', faqDesc: 'Answers to client questions about prices, delivery time, coverage area and how to book with OneWay Media.',
+    floatWa: 'WhatsApp', toTop: 'Back to top', logoAlt: 'OneWay Media logo', defTitle: 'OneWay Media',
+  },
+};
+
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const abs = (u) => (!u ? '' : /^https?:/.test(u) ? u : SITE + (u.startsWith('/') ? u : '/' + u));
+const ext = (u) => `href="${esc(u)}" target="_blank" rel="noopener noreferrer"`;
+const SVG = (inner, fill) => `<svg class="ow-si" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"${fill ? ' fill="currentColor"' : ' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"'}>${inner}</svg>`;
+const SOCIAL_ICONS = {
+  map: SVG('<path d="M12 21s-7-6.1-7-11.2A7 7 0 0 1 19 9.8C19 14.9 12 21 12 21z"/><circle cx="12" cy="10" r="2.6"/>'),
+  instagram: SVG('<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/>'),
+  facebook: SVG('<path d="M14 8.5V7c0-.8.3-1.2 1.3-1.2H17V3h-2.6C11.7 3 10.5 4.6 10.5 6.8v1.7H8V12h2.5v9H14v-9h2.7l.4-3.5z"/>', true),
+  youtube: SVG('<rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor" stroke="none"/>'),
+  x: SVG('<path d="M17.8 3h3l-6.6 7.5L22 21h-6.1l-4.8-6.2L5.6 21h-3l7-8L2.2 3h6.2l4.3 5.7zm-1.1 16.2h1.7L7.6 4.7H5.8z"/>', true),
+  tiktok: SVG('<path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2 4.2 5 4.5"/>'),
+  linkedin: SVG('<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v6M8 7.2v.1M12 16v-6m0 3c0-2 1-3 2.5-3S17 11 17 13v3"/>'),
+  snapchat: SVG('<path d="M12 3.5c-3 0-4.6 2.2-4.6 4.8v1.7c-.8.2-1.6.4-2.4.6.5 1 1.3 1.2 2 1.4-.3 1.6-1.6 2.6-3 3 1 .7 2.2.7 3.3.9.3.5.5 1.2 1 1.5 1.3-.3 2.2-.8 3.7-.8s2.4.5 3.7.8c.5-.3.7-1 1-1.5 1.1-.2 2.3-.2 3.3-.9-1.4-.4-2.7-1.4-3-3 .7-.2 1.5-.4 2-1.4-.8-.2-1.6-.4-2.4-.6V8.3c0-2.6-1.6-4.8-4.6-4.8z"/>'),
+  link: SVG('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/>'),
+};
+const iconFor = (u) => { const h = String(u || '').toLowerCase(); return h.includes('instagram.') ? 'instagram' : h.includes('facebook.') || h.includes('fb.com') || h.includes('fb.me') ? 'facebook' : h.includes('youtube.') || h.includes('youtu.be') ? 'youtube' : h.includes('x.com') || h.includes('twitter.') ? 'x' : h.includes('tiktok.') ? 'tiktok' : h.includes('linkedin.') ? 'linkedin' : h.includes('snapchat.') ? 'snapchat' : 'link'; };
+const socialLink = (x, ex) => `<a ${ex(x.url)}>${SOCIAL_ICONS[iconFor(x.url)]}<span>${esc(x.name)}</span></a>`;
+const fileOk = (u) => u && fs.existsSync('.' + (u.startsWith('/') ? u : '/' + u));
+const ICONS = {
+  live: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.2" fill="#fff" stroke="none"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2"/></svg>',
+  video: '<svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5l6-3.5v10l-6-3.5z"/></svg>',
+  photo: '<svg viewBox="0 0 24 24"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h2l1.6-2h5.8L16.5 6h2A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.8"/></svg>',
+};
+const mdInline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
+const md = (src) => {
+  const out = []; let list = [];
+  const flush = () => { if (list.length) { out.push('<ul>' + list.map((x) => `<li>${mdInline(x)}</li>`).join('') + '</ul>'); list = []; } };
+  for (const para of String(src || '').replace(/\r/g, '').split(/\n{2,}/)) {
+    for (const line of para.split('\n').filter(Boolean)) {
+      if (/^##\s+/.test(line)) { flush(); out.push(`<h2>${mdInline(line.replace(/^##\s+/, ''))}</h2>`); }
+      else if (/^###\s+/.test(line)) { flush(); out.push(`<h3>${mdInline(line.replace(/^###\s+/, ''))}</h3>`); }
+      else if (/^[-*]\s+/.test(line)) list.push(line.replace(/^[-*]\s+/, ''));
+      else { flush(); out.push(`<p>${mdInline(line)}</p>`); }
+    }
+    flush();
+  }
+  return out.join('\n');
+};
+const ytId = (u) => { const m = String(u || '').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/))([\w-]{11})/); return m ? m[1] : ''; };
+const artDate = (a) => String(a.date || '').slice(0, 10);
+const readJson = (f) => JSON.parse(fs.readFileSync(f, 'utf8'));
+
+// ---------- load content for both languages ----------
+const DATA = {};
+for (const lang of LANGS) {
+  const base = `content/${lang}`;
+  let d = {};
+  try { d = readJson(`${base}/site.json`); } catch (e) {}
+  // section files (content/<lang>/<section>.json) override the same keys of the old site.json
+  for (const f of fs.existsSync(base) ? fs.readdirSync(base).sort() : []) {
+    if (!f.endsWith('.json') || f === 'site.json') continue;
+    try { const o = readJson(`${base}/${f}`); if (o && typeof o === 'object' && !Array.isArray(o)) for (const k of Object.keys(o)) d[k] = o[k]; } catch (e) { console.log('skipped unreadable ' + base + '/' + f); }
+  }
+  const articles = (d.articles || []).filter((a) => a && a.slug && a.title && (!a.draft || process.env.INCLUDE_DRAFTS))
+    .sort((x, y) => String(y.date).localeCompare(String(x.date)));
+  const pages = ['about', 'contact', 'privacy'].filter((k) => d.pages && d.pages[k] && d.pages[k].title && String(d.pages[k].body || '').trim()).map((k) => ({ slug: k, ...d.pages[k] }));
+  DATA[lang] = { d, articles, pages, faqs: d.faq || [] };
 }
-.ow-vid { text-decoration: none; color: inherit; }
-.ow-vid h3 { color: var(--ow-ink); }
-.ow-play { width: 48px; height: 48px; border-radius: 50%; background: var(--ow-gold); color: #fff; display: flex; align-items: center; justify-content: center; }
-.ow-cat { margin: 18px 0 10px; font-size: 18px; color: var(--ow-gold); }
-.ow-img { object-fit: cover; width: 100%; border: 0; }
-.ow-tile:only-child { grid-column: 1 / -1; aspect-ratio: 16/6; }
-.ow-brand { display: flex; align-items: center; gap: 10px; }
-.ow-logo { height: 48px; width: auto; display: block; }
+{
+  let u = String((DATA.ar.d.settings || {}).siteUrl || '').trim().replace(/\/+$/, '');
+  if (u && !/^https?:\/\//i.test(u)) u = 'https://' + u;
+  if (/^https?:\/\/[^\s/]+\.[^\s/]+$/i.test(u)) SITE = u; else if (u) console.log('settings.siteUrl ignored (not a plain domain): ' + u);
+}
+// Arabic is the single source for entry. English only overrides prose; shared data always comes from Arabic,
+// and empty English prose falls back to the Arabic text so no blanks appear.
+const SHARED = [/^hero\.eyebrow$/, /^works\.\d+\.(photos|videos|type)$/, /^services\.\d+\.icon$/, /^videos\.\d+\.(url|youtube|facebook|drive)$/, /^packages\.\d+\.(price|hot)$/, /^clients$/, /^sections\./, /^socials\.\d+\.url$/, /^settings\.(whatsapp|phone|email|map|siteUrl)$/, /^logo\.image$/, /^favicon$/, /^seo\.shareImage$/];
+const isShared = (p) => SHARED.some((r) => r.test(p));
+const mergeEn = (a, e, p = '') => {
+  if (isShared(p)) return a;
+  if (Array.isArray(a)) return a.map((x, i) => mergeEn(x, Array.isArray(e) ? e[i] : undefined, `${p}${p ? '.' : ''}${i}`));
+  if (a && typeof a === 'object') { const o = {}; for (const k of Object.keys(a)) o[k] = mergeEn(a[k], e && typeof e === 'object' ? e[k] : undefined, `${p}${p ? '.' : ''}${k}`); return o; }
+  return e === undefined || e === null || String(e).trim() === '' ? a : e;
+};
+{
+  const ar = DATA.ar.d, en = DATA.en.d;
+  const merged = mergeEn({ ...ar, articles: undefined, pages: undefined }, { ...en, articles: undefined, pages: undefined });
+  merged.articles = en.articles || []; merged.pages = en.pages || {};
+  merged.labels = en.labels || {}; // button/menu labels are per language, never inherited from Arabic
+  // reviews and FAQ are prose that cannot be shown in Arabic on an English page: keep only items that have English text
+  merged.reviews = (ar.reviews || []).map((a, i) => { const e = (en.reviews || [])[i] || {}; return { ...a, who: e.who || a.who, what: e.what || a.what, image: a.image, text: e.text || '' }; }).filter((r) => r && (r.image || String(r.text || '').trim()));
+  merged.faq = (en.faq || []).filter((f) => f && String(f.q || '').trim() && String(f.a || '').trim());
+  DATA.en.d = merged; DATA.en.faqs = merged.faq;
+}
+// which paths (without language prefix) exist per language
+const PATHS = {};
+for (const lang of LANGS) {
+  const x = DATA[lang];
+  PATHS[lang] = new Set(['/', ...x.pages.map((p) => `/${p.slug}/`), '/articles/', ...(x.faqs.length ? ['/faq/'] : []), ...x.articles.map((a) => `/articles/${a.slug}/`)]);
+}
+const alternates = (p) => LANGS.filter((l) => PATHS[l].has(p));
+const hreflangTags = (p) => {
+  const alts = alternates(p);
+  if (alts.length < 2) return '';
+  return alts.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE}${PFX[l]}${p}">`).join('\n') + `\n<link rel="alternate" hreflang="x-default" href="${SITE}${p}">`;
+};
 
-.ow-icon { width: 56px; height: 56px; border-radius: 14px; background: #e11d2e; display: flex; align-items: center; justify-content: center; }
-.ow-icon svg { width: 30px; height: 30px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.ow-logo-ph { height: 48px; padding: 0 14px; border: 1.5px dashed #777; border-radius: 10px; display: flex; align-items: center; color: #b5b5b5; font-size: 13px; }
-.ow-card.ow-svc { border-top: 3px solid #e11d2e; }
-.ow-chip { background: #fff; border-radius: 12px; padding: 6px 12px; display: inline-flex; }
-.ow-logo { height: 44px; }
-.ow-chip { background: none !important; padding: 0 !important; }
-.ow-logo { height: 56px !important; }
-.ow-btn, .ow-float { color: #06210f !important; }
-.ow-play { color: #fff; }
-.ow-wordmark { color: #fff; font-weight: 800; font-size: 20px; }
-.ow-contact dd a { color: inherit; text-decoration: none; }
-.ow-vtile { text-decoration: none; color: var(--ow-ink); flex-direction: column; gap: 8px; text-align: center; padding: 8px; }
-.ow-tile:only-child { grid-column: 1 / -1; }
+fs.rmSync('dist', { recursive: true, force: true });
+fs.mkdirSync('dist', { recursive: true });
+fs.copyFileSync('style.css', 'dist/style.css');
+for (const dir of ['content', 'admin', 'uploads']) if (fs.existsSync(dir)) fs.cpSync(dir, path.join('dist', dir), { recursive: true });
+let placeholderCount = 0;
+const sitemapEntries = [];
+const today = new Date().toISOString().slice(0, 10);
 
-.ow-vgrid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
-.ow-yt p { margin: 8px 0 0; color: var(--ow-ink); font-weight: 700; }
-.ow-ytlink { position: relative; display: block; aspect-ratio: 16/9; border-radius: 14px; overflow: hidden; background: #000; }
-.ow-ytlink img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .9; }
-.ow-ytplay { position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; border-radius: 50%; background: #e11d2e; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-.ow-ytframe { width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 14px; display: block; }
-@media (min-width: 768px) { .ow-vgrid { grid-template-columns: 1fr 1fr; } }
-.ow-vgrid { margin-bottom: 14px; }
-.ow-ytplay { width: 44px; height: 44px; font-size: 17px; }
-.ow-yt p { font-size: 14px; }
-.ow-vgrid .ow-tile:only-child { grid-column: 1 / -1; }
+function buildLang(lang) {
+  const LABEL_KEYS = ['menu', 'home', 'mServices', 'mWork', 'mPackages', 'mClients', 'articles', 'faq', 'about', 'contact', 'seeWork', 'askPkg', 'waBtn', 'allArticles', 'allFaq', 'talkWa', 'ready', 'readyWa', 'floatWa', 'phone', 'whatsapp', 'address', 'email', 'openMap', 'viewShot', 'revDef', 'watchFb', 'watchDr'];
+  const labelOverrides = {};
+  for (const k of LABEL_KEYS) { const v = DATA[lang].d.labels && DATA[lang].d.labels[k]; if (typeof v === 'string' && v.trim() && !/^\[.*\]$/.test(v.trim())) labelOverrides[k] = v.trim(); }
+  const s = { ...S[lang], ...labelOverrides };
+  const P = PFX[lang];
+  const other = s.switchLang;
+  const { d, articles, pages, faqs } = DATA[lang];
+  const outDir = path.join('dist', P);
+  const w = (rel, content) => { const f = path.join(outDir, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, content); };
+  const url = (p) => P + p;
+  const switchHref = (p) => (PATHS[other].has(p) ? PFX[other] + p : PFX[other] + '/');
+  const switcher = (p) => `<a class="ow-lang" href="${switchHref(p)}" hreflang="${other}" lang="${other}">${s.switchLabel}</a>`;
+  const t = d.titles;
+  const wa = `https://wa.me/${d.settings.whatsapp}?text=` + encodeURIComponent(d.settings.whatsappMessage);
+  const btn = (label) => `<a class="ow-btn" ${ext(wa)}>${esc(label)}</a>`;
+  const on = (k) => !(d.sections && d.sections[k] === false);
+  const sec = (cls, id, title, body) => id && !on(id) ? '' : `<section class="ow-sec ${cls}"${id ? ` id="${id}"` : ''}><h2>${esc(title)}</h2>${body}</section>`;
+  const seo = d.seo || {};
+  const title = seo.title || s.defTitle;
+  const desc = seo.description || d.hero.text;
+  const share = abs(seo.shareImage || '');
+  const realSocials = d.socials.filter((x) => x.url && !/[\[\]]/.test(x.url));
+  const logoOk = fileOk(d.logo && d.logo.image);
+  const logo = logoOk ? `<img class="ow-logo" src="${esc(d.logo.image)}" alt="${esc(d.logo.alt || s.logoAlt)}" height="56">` : `<span class="ow-wordmark">${esc(s.brand)}</span>`;
 
-.ow-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; border-bottom: 1px solid #222; gap: 12px; }
-.ow-bar nav { display: flex; gap: 16px; } .ow-bar nav a { color: var(--ow-ink); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
-.ow-bar .ow-logo { height: 40px; }
-.ow-page { padding: 28px 22px 40px; max-width: 760px; margin: 0 auto; }
-.ow-page h1 { font-size: 30px; line-height: 1.4; margin-bottom: 16px; }
-.ow-article h2 { font-size: 22px; margin: 28px 0 8px; color: #fff; }
-.ow-article p, .ow-article li { color: #d6d6d6; font-size: 17px; line-height: 1.9; }
-.ow-article a { color: #ff5a67; }
-.ow-crumb, .ow-meta { color: var(--ow-mute) !important; font-size: 14px !important; }
-.ow-crumb a { color: var(--ow-mute); }
-.ow-cover { width: 100%; height: auto; border-radius: 14px; margin: 8px 0 12px; }
-.ow-art { text-decoration: none; color: inherit; } .ow-art img { width: 100%; height: auto; border-radius: 10px; }
-.ow-art h3 { color: var(--ow-ink); }
-.ow-page .ow-grid { grid-template-columns: 1fr; }
+  const ld = {
+    '@context': 'https://schema.org', '@type': 'LocalBusiness', name: s.bizName, url: SITE + url('/'), description: desc, inLanguage: lang,
+    telephone: '+' + d.settings.whatsapp, email: d.settings.email,
+    address: { '@type': 'PostalAddress', streetAddress: d.settings.address, addressLocality: s.city, addressRegion: s.region, addressCountry: 'EG' }, areaServed: (lang === 'ar' ? ['القاهرة', 'الجيزة', 'مدينة نصر', 'التجمع الخامس', 'العاصمة الإدارية الجديدة', 'مصر'] : ['Cairo', 'Giza', 'Nasr City', 'New Cairo', 'New Administrative Capital', 'Egypt']).map((n) => ({ '@type': n === 'Egypt' || n === 'مصر' ? 'Country' : 'AdministrativeArea', name: n })),
+    hasMap: d.settings.map, sameAs: realSocials.map((x) => x.url),
+  };
+  if (share) ld.image = share;
+  if (logoOk) ld.logo = abs(d.logo.image);
 
-.ow-bar { flex-wrap: wrap; } .ow-bar nav { flex-wrap: wrap; gap: 4px 14px; }
-.ow-fnav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; margin-bottom: 10px; }
-.ow-fnav a { color: var(--ow-mute); min-height: 44px; display: inline-flex; align-items: center; }
-.ow-cinfo { margin-top: 20px; align-items: flex-start; } .ow-cinfo dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; } .ow-cinfo dt { color: var(--ow-gold); } .ow-cinfo dd { margin: 0; overflow-wrap: anywhere; } .ow-cinfo a { color: inherit; }
+  const videoLd = [];
+  const isFb = (u) => /^https?:\/\/([\w-]+\.)?(facebook\.com|fb\.watch)\//i.test(String(u || '').trim());
+  const fbOf = (v) => { const u = String(v.facebook || (isFb(v.url) ? v.url : '') || '').trim(); return u ? (FBMAP[u] || u) : ''; };
+  const fbLink = (fu) => `<a class="ow-fblink" href="${esc(fu)}" target="_blank" rel="noopener noreferrer">${SOCIAL_ICONS.facebook}<span>${s.watchFb}</span></a>`;
+  const drId = (u) => { const m = String(u || '').match(/drive\.google\.com\/(?:file\/d\/|open\?(?:[^#]*&)?id=|uc\?(?:[^#]*&)?id=)([\w-]{10,})/i); return m ? m[1] : ''; };
+  const driveOf = (v) => drId(v.drive) || drId(v.url);
+  const drView = (id) => `https://drive.google.com/file/d/${id}/view`;
+  const drLink = (id) => `<a class="ow-fblink ow-drl" href="${drView(id)}" target="_blank" rel="noopener noreferrer">${SOCIAL_ICONS.link}<span>${s.watchDr}</span></a>`;
+  const ytCard = (v) => {
+    const id = ytId(v.youtube) || ytId(v.url);
+    const fu = fbOf(v);
+    const dr = driveOf(v);
+    const name = v.title || s.defVideo;
+    if (!id && dr) {
+      return `<div class="ow-yt"><a class="ow-ytlink ow-dr" href="${drView(dr)}" data-dr="${dr}" target="_blank" rel="noopener noreferrer"><span class="ow-fbbg">${SOCIAL_ICONS.link}<b>Google Drive</b></span><img class="ow-drthumb" src="https://drive.google.com/thumbnail?id=${dr}&amp;sz=w800" alt="${esc(name)}" loading="lazy" decoding="async" onerror="this.remove()"><span class="ow-ytplay">▶</span></a><p>${esc(name)}</p>${fu ? fbLink(fu) : ''}</div>`;
+    }
+    if (!id && fu) {
+      return `<div class="ow-yt"><a class="ow-ytlink ow-fb" href="${esc(fu)}" data-fb="${esc(encodeURIComponent(fu))}" target="_blank" rel="noopener noreferrer"><span class="ow-fbbg">${SOCIAL_ICONS.facebook}<b>Facebook</b></span><span class="ow-ytplay">▶</span></a><p>${esc(name)}</p></div>`;
+    }
+    if (!id) return '';
+    const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+    if (v.date) videoLd.push({ '@context': 'https://schema.org', '@type': 'VideoObject', name, description: v.description || name, thumbnailUrl: thumb, uploadDate: v.date, embedUrl: `https://www.youtube.com/embed/${id}`, contentUrl: `https://www.youtube.com/watch?v=${id}` });
+    return `<div class="ow-yt"><a class="ow-ytlink" href="https://www.youtube.com/watch?v=${id}" data-yt="${id}" target="_blank" rel="noopener noreferrer"><img src="${thumb}" alt="${esc(name)}" loading="lazy" decoding="async" width="480" height="360"><span class="ow-ytplay">▶</span></a><p>${esc(name)}</p>${fu ? fbLink(fu) : ''}${dr ? drLink(dr) : ''}</div>`;
+  };
+  const isPh = (x) => /\((demo|sample)\)|\(تجريبي\)|\[[^\]]*\]/i.test(String(x || ''));
+  const shotItem = (r, dup) => { const cap = (isPh(r.who) || isPh(r.what)) ? '' : [r.who, r.what].map((x) => String(x || '').trim()).filter(Boolean).join(' - '); const alt = cap || t.reviews; return `<figure class="ow-shot" dir="${lang === 'ar' ? 'rtl' : 'ltr'}"><div class="ow-shotbox"><img class="ow-shotimg" ${dup ? 'data-dup="1" aria-hidden="true" alt="" tabindex="-1"' : `role="button" tabindex="0" alt="${esc(alt)}"`} data-lb="1" decoding="async" src="${esc(r.image)}"></div><figcaption><span>${esc(cap || s.revDef)}</span><button class="ow-shotv" type="button"${dup ? ' tabindex="-1" aria-hidden="true"' : ''}>${s.viewShot}</button></figcaption></figure>`; };
+  const shots = d.reviews.filter((r) => r.image);
+  const textRevs = d.reviews.filter((r) => !r.image && String(r.text || '').trim() && !(shots.length && isPh(r.text)));
+  const reviewsBody = (shots.length ? (() => {
+    const half = Array.from({ length: Math.max(1, Math.ceil(6 / shots.length)) }, () => shots).flat();
+    const dur = Math.max(30, Math.round(half.length * 7));
+    return `<div class="ow-marquee ow-shots" dir="ltr"><div class="ow-track" style="--dur:${dur}s">${half.map((r) => shotItem(r, false)).join('')}${half.map((r) => shotItem(r, true)).join('')}</div></div>`;
+  })() : '') + (textRevs.length ? `<div class="ow-grid">${textRevs.map((r) => `<figure class="ow-card"><blockquote>${esc(r.text)}</blockquote><figcaption>${esc(r.who)}${lang === 'ar' ? '،' : ','} ${esc(r.what)}</figcaption></figure>`).join('')}</div>` : '');
+  const works = d.works.map((x) => {
+    if (x.type === 'videos') {
+      const cards = (x.videos || []).map(ytCard).filter(Boolean);
+      return `<h3 class="ow-cat">${esc(x.name)}</h3><div class="ow-vgrid">${cards.length ? cards.join('') : `<div class="ow-tile"><span>${esc(x.name)}</span><small>${esc(s.addYt)}</small></div>`}</div>`;
+    }
+    const photos = (x.photos || []).map((p) => `<img class="ow-tile ow-img" role="button" tabindex="0" data-lb="1" loading="lazy" decoding="async" src="${esc(p.image)}" alt="${esc(x.name)}${esc(s.workAlt)}">`);
+    return `<h3 class="ow-cat">${esc(x.name)}</h3><div class="ow-tiles">${(photos.length ? photos : [`<div class="ow-tile"><span>${esc(x.name)}</span><small>${esc(s.photoHere)}</small></div>`]).join('')}</div>`;
+  }).join('');
 
-.ow-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.ow-logo-i{display:flex;align-items:center;justify-content:center;height:70px;padding:12px;border:1px solid #2a2a2a;border-radius:12px;background:#111}
-.ow-logo-i img{max-width:100%;max-height:100%;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.7;transition:opacity .2s}
-.ow-logo-i img:hover{opacity:1}
-.ow-logo-ph span{color:#777;font-size:12px;text-align:center}
-.ow-faq{border:1px solid #2a2a2a;border-radius:12px;background:#111;margin:0 0 10px;padding:0 14px}
-.ow-faq summary{cursor:pointer;padding:14px 0;font-weight:700;list-style:none}
-.ow-faq summary::-webkit-details-marker{display:none}
-.ow-faq summary::after{content:"+";float:inline-end;color:#e11d2e;font-size:20px}
-.ow-faq[open] summary::after{content:"−"}
-.ow-faq p{margin:0 0 14px;color:#cfcfcf}
-@media(min-width:700px){.ow-logos{grid-template-columns:repeat(6,1fr)}}
+  const artCard = (a) => `<a class="ow-card ow-art" href="${url(`/articles/${a.slug}/`)}">${a.cover ? `<img src="${esc(a.cover)}" alt="${esc(a.coverAlt || a.title)}" loading="lazy" decoding="async" width="640" height="360">` : ''}<h3>${esc(a.title)}</h3><p>${esc(a.description)}</p></a>`;
+  const articlesSec = articles.length ? sec('ow-alt', 'articles', t.articles || s.artTitle, `<div class="ow-grid">${articles.slice(0, 3).map(artCard).join('')}</div><p><a class="ow-link" href="${url('/articles/')}">${s.allArticles}</a></p>`) : '';
 
-.ow-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.ow-track{display:flex;gap:10px;width:max-content;animation:ow-scroll var(--dur,30s) linear infinite;will-change:transform}
-.ow-track .ow-logo-i{flex:0 0 150px}
-.ow-marquee:hover .ow-track,.ow-marquee:active .ow-track,.ow-marquee:focus-within .ow-track{animation-play-state:paused}
-@keyframes ow-scroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 5px))}}
-@media(prefers-reduced-motion:reduce){.ow-marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.ow-track{animation:none}}
+  const clientItem = (c) => c.logo ? `<div class="ow-logo-i"><img src="${esc(c.logo)}" alt="${esc(c.name)}" loading="lazy" decoding="async"></div>` : `<div class="ow-logo-i ow-logo-ph"><span>${esc(c.name)}</span></div>`;
+  const clientsSec = (d.clients && d.clients.length) ? (() => {
+    const reps = Math.max(1, Math.ceil(8 / d.clients.length));
+    const half = Array.from({ length: reps }, () => d.clients).flat();
+    const dur = Math.max(20, Math.round(half.length * 2.3));
+    return sec('ow-clients', 'clients', t.clients, `<div class="ow-marquee" dir="ltr"><div class="ow-track" style="--dur:${dur}s">${half.map(clientItem).join('')}${half.map((c) => clientItem(c).replace('<div class="ow-logo-i', '<div aria-hidden="true" class="ow-logo-i').replace(' alt="' + esc(c.name) + '"', ' alt=""')).join('')}</div></div>`);
+  })() : '';
+  const faqHtml = faqs.map((f) => `<details class="ow-faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('');
 
-.ow-herotop{display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px}
-.ow-lang{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;text-decoration:none;font-size:14px;font-weight:600;background:#161616}
-.ow-lang:hover{border-color:#e11d2e}
-.ow-bar nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
-.ow-fnav{align-items:center}
-[dir=ltr] .ow-steps li{}
-.ow-img[data-lb] { cursor: zoom-in; }
-.ow-img[data-lb]:focus-visible { outline: 3px solid #e11d2e; outline-offset: 2px; }
-.ow-lbo { overflow: hidden; }
-.ow-lb { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.94); display: flex; align-items: center; justify-content: center; touch-action: pan-y; }
-.ow-lb[hidden] { display: none; }
-.ow-lb img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 0; border: 0; aspect-ratio: auto; }
-.ow-lb button { position: absolute; background: rgba(30,30,30,.75); color: #fff; border: 1px solid #444; border-radius: 50%; width: 46px; height: 46px; font-size: 28px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; font-family: inherit; }
-.ow-lb button:hover { background: #e11d2e; border-color: #e11d2e; }
-.ow-lb button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
-.ow-lb-x { top: 12px; inset-inline-end: 12px; }
-.ow-lb-p, .ow-lb-n { top: 50%; transform: translateY(-50%); }
-.ow-lb-p { inset-inline-start: 10px; } .ow-lb-n { inset-inline-end: 10px; }
-.ow-lb-c { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: #ddd; font-size: 14px; background: rgba(0,0,0,.6); padding: 3px 12px; border-radius: 999px; }
-.ow-top { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 18px; background: rgba(10,10,10,.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid #222; }
-.ow-top .ow-logo { height: 40px; width: auto; }
-.ow-topr { display: flex; align-items: center; gap: 10px; }
-.ow-menu { position: relative; }
-.ow-menu summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid #3a3a3a; border-radius: 999px; background: #141414; font-weight: 600; font-size: 15px; user-select: none; }
-.ow-menu summary::-webkit-details-marker { display: none; }
-.ow-menu summary:focus-visible, .ow-menu nav a:focus-visible { outline: 3px solid #e11d2e; outline-offset: 2px; }
-.ow-menu[open] summary { border-color: #e11d2e; }
-.ow-burger, .ow-burger::before, .ow-burger::after { display: block; width: 18px; height: 2px; background: #fff; border-radius: 2px; content: ''; position: relative; }
-.ow-burger::before { position: absolute; top: -6px; } .ow-burger::after { position: absolute; top: 6px; }
-.ow-menu nav { position: absolute; top: calc(100% + 8px); inset-inline-end: 0; min-width: 230px; max-width: calc(100vw - 36px); background: #141414; border: 1px solid #333; border-radius: 16px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.6); display: flex; flex-direction: column; }
-.ow-menu nav a { display: flex; align-items: center; min-height: 46px; padding: 0 14px; border-radius: 10px; color: #fff; text-decoration: none; font-size: 17px; }
-.ow-menu nav a:hover, .ow-menu nav a:active { background: #e11d2e; }
-.ow-sec { scroll-margin-top: 70px; }
-.ow-hero { padding-top: 36px; }
-.ow-sec { position: relative; }
-.ow-hero + .ow-sec::before, .ow-sec + .ow-sec::before, .ow-page + .ow-sec::before { content: ''; position: absolute; top: 0; left: 14%; right: 14%; height: 1px; background: linear-gradient(90deg, transparent, #e11d2e 50%, transparent); opacity: .85; }
-.ow-social a { gap: 8px; }
-.ow-social .ow-si { flex: none; color: var(--ow-gold); }
-.ow-social a:hover .ow-si, .ow-social a:focus-visible .ow-si { color: #fff; }
-.ow-social a:hover { border-color: var(--ow-gold); }
-@media (max-width: 719px) { .ow-hero { padding-bottom: 22px; gap: 14px; } .ow-sec { padding: 30px 22px; } }
-.ow-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.ow-btn2 { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 24px; border: 1.5px solid #5a5a5a; color: #fff; font-weight: 600; font-size: 17px; border-radius: 999px; text-decoration: none; background: transparent; }
-.ow-btn2:hover { border-color: var(--ow-red, #e11d2e); }
-@media (max-width: 719px) { html[lang="en"] .ow-cta { flex-wrap: nowrap; gap: 8px; } html[lang="en"] .ow-cta .ow-btn, html[lang="en"] .ow-cta .ow-btn2 { padding: 0 14px; font-size: 15px; white-space: nowrap; } }
-@media (max-width: 380px) { .ow-top { gap: 6px; padding: 10px 12px; } .ow-top .ow-logo, .ow-top img { max-height: 38px; width: auto; } .ow-menu summary { padding: 0 10px; font-size: 14px; } .ow-lang { padding: 0 10px; } }
-html[lang="en"] body, html[lang="en"] button, html[lang="en"] summary, html[lang="en"] .ow-btn, html[lang="en"] .ow-btn2, html[lang="en"] .ow-lang { font-family: 'Poppins', 'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif; }
-html[lang="en"] body * { font-family: 'Poppins', 'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif; }
-.ow-vgrid { grid-template-columns: 1fr; }
-@media (min-width: 768px) { .ow-vgrid { grid-template-columns: 1fr 1fr; } .ow-vgrid .ow-yt:only-child { grid-column: 1 / -1; } }
-.ow-yt { min-width: 0; } .ow-ytframe { width: 100%; height: auto; aspect-ratio: 16/9; }
-.ow-fbbg { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; padding-bottom: 14px; background: radial-gradient(120% 120% at 50% 0%, #1b2a44 0%, #0b0f17 70%); color: #cfd8e8; }
-.ow-fbbg .ow-si { width: 26px; height: 26px; }
-.ow-price-ask { font-size: 18px; font-weight: 700; }
-.ow-top-btn { position: fixed; inset-inline-end: 16px; bottom: 18px; z-index: 40; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #e11d2e; background: rgba(20,20,20,.88); color: #fff; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; -webkit-tap-highlight-color: transparent; }
-.ow-top-btn.ow-show { opacity: .92; visibility: visible; transform: none; }
-.ow-top-btn:hover { background: #e11d2e; }
-.ow-eyebrow { align-self: stretch; text-align: center; font-family: 'Poppins', 'IBM Plex Sans Arabic', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #fff; margin: 4px 0 6px; display: flex; justify-content: center; align-items: center; gap: .5em; flex-wrap: wrap; }
-.ow-eyebrow .ow-er { color: #e11d2e; }
-.ow-eyebrow .ow-ew { font-weight: 400; color: #d9d9d9; }
-.ow-eyebrow::before, .ow-eyebrow::after { content: ''; flex: 0 0 22px; height: 1.5px; background: linear-gradient(90deg, transparent, #e11d2e); }
-.ow-eyebrow::after { transform: scaleX(-1); }
-.ow-eyebrow { flex-wrap: nowrap; font-size: 13px; letter-spacing: .17em; gap: .45em; white-space: nowrap; }
-.ow-eyebrow::before, .ow-eyebrow::after { flex: 0 0 18px; }
-.ow-eyebrow::before { margin-inline-end: .5em; } .ow-eyebrow::after { margin-inline-start: .5em; }
+  const head2 = ({ ttl, dsc, p, type = 'website', image = '', ldList = [] }) => `<!doctype html>
+<html lang="${lang}" dir="${s.dir}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(ttl)}</title>
+<meta name="description" content="${esc(dsc)}">
+<link rel="canonical" href="${SITE}${url(p)}">
+${hreflangTags(p)}
+${d.favicon ? `<link rel="icon" href="${esc(d.favicon)}">` : ''}
+<meta property="og:type" content="${type}">
+<meta property="og:locale" content="${s.locale}">
+<meta property="og:site_name" content="${esc(s.brand)}">
+<meta property="og:title" content="${esc(ttl)}">
+<meta property="og:description" content="${esc(dsc)}">
+<meta property="og:url" content="${SITE}${url(p)}">
+${image ? `<meta property="og:image" content="${esc(abs(image))}">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="${esc(abs(image))}">` : '<meta name="twitter:card" content="summary">'}
+<meta name="twitter:title" content="${esc(ttl)}">
+<meta name="twitter:description" content="${esc(dsc)}">
+${ldList.map((x) => `<script type="application/ld+json">${JSON.stringify(x).replace(/</g, '\\u003c')}</script>`).join('\n')}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>`;
+  const footerHtml = (p) => `<footer class="ow-foot"><nav class="ow-fnav"><a href="${url('/about/')}">${s.about}</a><a href="${url('/articles/')}">${s.articles}</a>${faqs.length ? `<a href="${url('/faq/')}">${s.faq}</a>` : ''}<a href="${url('/contact/')}">${s.contact}</a><a href="${url('/privacy/')}">${s.privacy}</a>${switcher(p)}</nav>© ${esc(s.brand)} 2026</footer>`;
+  const topbar = (p) => {
+    const L = (href, label) => `<a href="${href}">${esc(label)}</a>`;
+    const items = [L(url('/'), s.home), on('services') ? L(url('/') + '#services', s.mServices) : '', on('work') ? L(url('/') + '#work', s.mWork) : '', on('packages') ? L(url('/') + '#packages', s.mPackages) : '', (on('clients') && d.clients && d.clients.length ? L(url('/') + '#clients', s.mClients || t.clients) : ''), on('articles') ? L(url('/articles/'), s.articles) : '', on('faq') && faqs.length ? L(url('/faq/'), s.faq) : '', on('about') ? L(url('/about/'), s.about) : '', on('contact') ? L(url('/contact/'), s.contact) : ''].filter(Boolean).join('');
+    return `<header class="ow-top"><a href="${url('/')}" class="ow-brand">${logo}</a><div class="ow-topr">${switcher(p)}<details class="ow-menu"><summary aria-label="${s.menu}"><span class="ow-burger" aria-hidden="true"></span><span class="ow-menutxt">${s.menu}</span></summary><nav aria-label="${s.menu}">${items}</nav></details></div></header>`;
+  };
+  const menuJs = `<script>(function(){var m=document.querySelector('.ow-menu');if(!m)return;m.addEventListener('click',function(e){if(e.target.closest('nav a'))m.open=false});document.addEventListener('click',function(e){if(m.open&&!m.contains(e.target))m.open=false});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.open){m.open=false;m.querySelector('summary').focus()}})})();</script>`
+    + `<script>(function(){var b=document.createElement('button');b.type='button';b.className='ow-top-btn';b.setAttribute('aria-label','${s.toTop}');b.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';document.body.appendChild(b);function u(){b.classList.toggle('ow-show',(window.pageYOffset||document.documentElement.scrollTop)>500)}window.addEventListener('scroll',u,{passive:true});u();b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});})();</script>`;
+  const shell = (inner, p) => `<body>
+<div class="ow" dir="${s.dir}" lang="${lang}">
+  ${topbar(p)}
+  <main class="ow-page">${inner}</main>
+  <section class="ow-sec ow-alt ow-contact"><h2>${s.talkWa}</h2><p>${s.ready}</p>${btn(s.waBtn)}</section>
+  ${footerHtml(p)}
+</div>
+${menuJs}
+</body>
+</html>
+`;
+  const crumbs = (items) => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x[0], item: SITE + url(x[1]) })) });
 
-.ow-fblink { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 14px; color: #d9d9d9; text-decoration: underline; text-underline-offset: 3px; }
-.ow-fblink svg { width: 16px; height: 16px; fill: #1877f2; }
-.ow-vwrap { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; } .ow-vwrap .ow-card { align-self: stretch; }
+  // ----- home -----
+  const home = `${head2({ ttl: title, dsc: desc, p: '/', image: seo.shareImage || '', ldList: [ld, ...videoLd] }).replace('</head>', '</head>')}
+<body>
+<div class="ow" dir="${s.dir}" lang="${lang}">
+  ${topbar('/')}
+  <header class="ow-hero">${(() => { const e = d.hero.eyebrow === undefined ? 'OneWay Media Production' : String(d.hero.eyebrow || '').trim(); if (!e) return ''; const w = e.split(/\s+/); return `<div class="ow-eyebrow" dir="ltr" lang="en"><span>${esc(w[0])}</span>${w[1] ? ` <span class="ow-er">${esc(w[1])}</span>` : ''}${w.length > 2 ? ` <span class="ow-ew">${esc(w.slice(2).join(' '))}</span>` : ''}</div>`; })()}<h1>${esc(d.hero.title)}</h1><p>${esc(d.hero.text)}</p><div class="ow-cta">${btn(d.hero.button)}<a class="ow-btn2" href="#work">${s.seeWork}</a></div></header>
+  <main>
+  ${sec('', 'services', t.services, `<div class="ow-grid">${d.services.map((x) => `<div class="ow-card ow-svc"><span class="ow-icon">${ICONS[x.icon] || ICONS.video}</span><h3>${esc(x.name)}</h3><p>${esc(x.text)}</p></div>`).join('')}</div>`)}
+  ${sec('ow-alt', 'work', t.work, works)}
+  ${sec('', 'videos', t.videos, `<div class="ow-grid">${d.videos.map((v) => { const yu = String(v.youtube || '').trim(); const fu = fbOf(v); const dr = driveOf(v); const main = yu || (dr ? drView(dr) : '') || fu || v.url; const card = `<a class="ow-card ow-vid" ${ext(main)}><span class="ow-play">▶</span><h3>${esc(v.title)}</h3><p>${esc(v.note)}</p></a>`; const ex = (fu && main !== fu ? fbLink(fu) : '') + (dr && main !== drView(dr) ? drLink(dr) : ''); return ex ? `<div class="ow-vwrap">${card}${ex}</div>` : card; }).join('')}</div>`)}
+  ${sec('ow-alt', 'packages', t.packages, `<div class="ow-grid">${d.packages.map((x) => `<div class="ow-card${x.hot ? ' ow-hot' : ''}"><h3>${esc(x.name)}</h3>${(() => { const pr = String(x.price || '').trim(); return !pr || /^\[.*\]$/.test(pr) ? `<div class="ow-price ow-price-ask">${s.askPrice}</div>` : `<div class="ow-price">${esc(pr)}</div>`; })()}<ul>${x.items.map((i) => `<li>${esc(i.text)}</li>`).join('')}</ul>${btn(s.askPkg)}</div>`).join('')}</div>`)}
+  ${sec('', 'steps', t.steps, `<ol class="ow-steps">${d.steps.map((x) => `<li>${esc(x.text)}</li>`).join('')}</ol>`)}
+  ${clientsSec}
+  ${d.reviews.length ? sec('ow-alt', 'reviews', t.reviews, reviewsBody) : ''}
+  ${articlesSec}
+  ${faqs.length ? sec('', 'faq', t.faq, faqHtml + `<p><a class="ow-link" href="${url('/faq/')}">${s.allFaq}</a></p>`) : ''}
+  ${sec('ow-alt', 'about', t.about, `<p class="ow-about">${esc(d.about.text)}</p>`)}
+  ${on('contact') ? `<section class="ow-sec ow-contact" id="contact"><h2>${esc(t.contact)}</h2><p>${s.readyWa}</p>${btn(s.waBtn)}
+    <dl><dt>${s.phone}</dt><dd dir="ltr"><a href="tel:+${esc(d.settings.whatsapp)}">${esc(d.settings.phone)}</a></dd><dt>${s.address}</dt><dd>${esc(d.settings.address)}</dd><dt>${s.email}</dt><dd dir="ltr">${esc(d.settings.email)}</dd></dl>
+    <div class="ow-social"><a ${ext(d.settings.map)}>${SOCIAL_ICONS.map}<span>${s.map}</span></a>${d.socials.map((x) => socialLink(x, ext)).join('')}</div></section>` : ''}
+  </main>
+  ${footerHtml('/')}<a class="ow-float" ${ext(wa)}>${s.floatWa}</a>
+</div>
+${(d.works.some((w)=>(w.photos||[]).length) || d.reviews.some((r)=>r.image)) ? `<script>(function(){var rtl=document.documentElement.dir==='rtl'||document.querySelector('.ow').dir==='rtl';var L=${JSON.stringify({c:s.lbClose,n:s.lbNext,p:s.lbPrev,o:s.lbOf})};var g=[],i=0,box,im,ct,last,x0=null;
+function mk(){box=document.createElement('div');box.className='ow-lb';box.setAttribute('role','dialog');box.setAttribute('aria-modal','true');box.hidden=true;box.dir=rtl?'rtl':'ltr';
+box.innerHTML='<button class="ow-lb-x" type="button"></button><button class="ow-lb-p" type="button"></button><img alt=""><button class="ow-lb-n" type="button"></button><div class="ow-lb-c" aria-live="polite"></div>';document.body.appendChild(box);im=box.querySelector('img');ct=box.querySelector('.ow-lb-c');
+var x=box.querySelector('.ow-lb-x'),p=box.querySelector('.ow-lb-p'),n=box.querySelector('.ow-lb-n');x.setAttribute('aria-label',L.c);x.textContent='\u00d7';p.setAttribute('aria-label',L.p);n.setAttribute('aria-label',L.n);
+var a=rtl?['\u203a','\u2039']:['\u2039','\u203a'];p.textContent=a[0];n.textContent=a[1];
+x.onclick=close;p.onclick=function(e){e.stopPropagation();go(-1)};n.onclick=function(e){e.stopPropagation();go(1)};box.onclick=function(e){if(e.target===box||e.target===im)close()};
+box.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});box.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(d)<40)return;go((d>0)===rtl?1:-1)});
+box.addEventListener('keydown',function(e){if(e.key==='Escape'){close()}else if(e.key==='ArrowLeft'){go(rtl?1:-1)}else if(e.key==='ArrowRight'){go(rtl?-1:1)}else if(e.key==='Tab'){var f=box.querySelectorAll('button:not([hidden])');if(!f.length)return;var a0=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a0){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a0.focus()}}});}
+function show(){var e=g[i];im.src=e.currentSrc||e.src;im.alt=e.alt;ct.textContent=(i+1)+' '+L.o+' '+g.length;box.querySelector('.ow-lb-p').hidden=box.querySelector('.ow-lb-n').hidden=g.length<2;}
+function go(d){i=(i+d+g.length)%g.length;show()}
+function open(e){if(!box)mk();g=[].slice.call((e.closest('.ow-track')||e.parentNode).querySelectorAll('img[data-lb]:not([data-dup])')).filter(function(z,k,arr){return arr.findIndex(function(y){return y.src===z.src})===k});i=g.findIndex(function(z){return z.src===e.src});if(i<0)i=0;last=e;show();box.hidden=false;document.documentElement.classList.add('ow-lbo');box.querySelector('.ow-lb-x').focus()}
+function close(){box.hidden=true;document.documentElement.classList.remove('ow-lbo');im.removeAttribute('src');if(last)last.focus()}
+document.addEventListener('click',function(e){var t=e.target;if(t.matches&&t.matches('img[data-lb]'))open(t);else if(t.closest&&t.closest('.ow-shotv')){var f=t.closest('.ow-shot'),m=f&&f.querySelector('img[data-lb]');if(m)open(m)}});
+document.addEventListener('keydown',function(e){var t=e.target;if((e.key==='Enter'||e.key===' ')&&t.matches&&t.matches('img[data-lb]')){e.preventDefault();open(t)}});})();</script>
+` : ''}
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.ow-ytlink');if(!a)return;e.preventDefault();var f=document.createElement('iframe');f.src=a.dataset.dr?'https://drive.google.com/file/d/'+a.dataset.dr+'/preview':a.dataset.fb?'https://www.facebook.com/plugins/video.php?href='+a.dataset.fb+'&show_text=false&autoplay=true':'https://www.youtube-nocookie.com/embed/'+a.dataset.yt+'?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3';f.setAttribute('sandbox','allow-scripts allow-same-origin allow-presentation');f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';f.setAttribute('allowfullscreen','');f.referrerPolicy='strict-origin-when-cross-origin';f.title='${s.ytTitle}';f.className='ow-ytframe';a.replaceWith(f);});</script>
+${menuJs}
+</body>
+</html>
+`;
+  w('index.html', home);
+  placeholderCount += (JSON.stringify(d).match(/\[[^\]"]{1,60}\]/g) || []).length;
 
-.ow-shots .ow-track{animation-direction:reverse;gap:14px;align-items:flex-start}
-.ow-shot{flex:0 0 270px;margin:0;display:flex;flex-direction:column;background:#0f0f0f;border:1px solid #2e2e2e;border-radius:22px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.35)}
-.ow-shotbox{position:relative;height:220px;background:#0b0b0b;overflow:hidden}
-.ow-shotbox::after{content:'';position:absolute;inset:auto 0 0 0;height:60px;background:linear-gradient(transparent,#0f0f0f);pointer-events:none}
-.ow-shotimg{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;cursor:zoom-in;border:0;border-radius:0;background:none}
-.ow-shot figcaption{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-top:1px solid rgba(225,29,46,.55);font-size:15px;font-weight:700;color:#fff;text-align:start}
-.ow-shotv{appearance:none;background:none;border:0;padding:4px 2px;font:inherit;font-size:14px;font-weight:700;color:#e11d2e;cursor:pointer}
-.ow-shots + .ow-grid{margin-top:18px}
+  // ----- articles -----
+  const pubLd = { '@type': 'Organization', name: s.brand, url: SITE + url('/'), ...(logoOk ? { logo: { '@type': 'ImageObject', url: abs(d.logo.image) } } : {}) };
+  w('articles/index.html', head2({ ttl: s.artHead, dsc: s.artDesc, p: '/articles/', ldList: [crumbs([[s.home, '/'], [s.articles, '/articles/']])] }) + shell(`<h1>${s.artTitle}</h1>${articles.length ? `<div class="ow-grid">${articles.map(artCard).join('')}</div>` : `<p class="ow-meta">${s.artEmpty}</p>`}`, '/articles/'));
+  for (const a of articles) {
+    const p = `/articles/${a.slug}/`;
+    const ld2 = { '@context': 'https://schema.org', '@type': 'Article', headline: a.title, description: a.description, inLanguage: lang, mainEntityOfPage: SITE + url(p), datePublished: artDate(a), dateModified: artDate(a), author: pubLd, publisher: pubLd, ...(a.cover ? { image: abs(a.cover) } : {}) };
+    w(`articles/${a.slug}/index.html`, head2({ ttl: `${a.title} | ${s.brand}`, dsc: a.description, p, type: 'article', image: a.cover || '', ldList: [ld2, crumbs([[s.home, '/'], [s.articles, '/articles/'], [a.title, p]])] }) + shell(`<article class="ow-article"><p class="ow-crumb"><a href="${url('/')}">${s.home}</a> / <a href="${url('/articles/')}">${s.articles}</a></p><h1>${esc(a.title)}</h1><p class="ow-meta">${esc(artDate(a))}</p>${a.cover ? `<img class="ow-cover" src="${esc(a.cover)}" alt="${esc(a.coverAlt || a.title)}" width="800" height="450">` : ''}${md(a.body)}</article>`, p));
+  }
 
-.ow-shotbox{height:auto;min-height:150px;max-height:320px;display:flex;align-items:center;justify-content:center}
-.ow-shotimg{width:100%;height:auto;max-height:320px;object-fit:contain}
-.ow-shotbox::after{display:none}
+  // ----- pages -----
+  for (const pgd of pages) {
+    const p = `/${pgd.slug}/`;
+    const extra = pgd.slug === 'contact' ? `<div class="ow-card ow-cinfo">${btn(s.waBtn)}<dl><dt>${s.phone}</dt><dd dir="ltr"><a href="tel:+${esc(d.settings.whatsapp)}">${esc(d.settings.phone)}</a></dd><dt>${s.whatsapp}</dt><dd dir="ltr"><a ${ext(wa)}>${esc(d.settings.phone)}</a></dd><dt>${s.address}</dt><dd>${esc(d.settings.address)}</dd><dt>${s.email}</dt><dd dir="ltr"><a href="mailto:${esc(d.settings.email)}">${esc(d.settings.email)}</a></dd></dl><div class="ow-social"><a ${ext(d.settings.map)}>${SOCIAL_ICONS.map}<span>${s.openMap}</span></a>${d.socials.filter((x) => !x.url.includes('[')).map((x) => socialLink(x, ext)).join('')}</div></div>` : '';
+    w(`${pgd.slug}/index.html`, head2({ ttl: `${pgd.title} | ${s.brand}`, dsc: pgd.description, p, ldList: [crumbs([[s.home, '/'], [pgd.title, p]])] }) + shell(`<article class="ow-article"><h1>${esc(pgd.title)}</h1>${md(pgd.body)}${extra}</article>`, p));
+  }
 
-.ow-shot figcaption span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ow-shotv{flex:0 0 auto;white-space:nowrap}
-.ow-shot{flex-basis:260px}
+  // ----- FAQ page (FAQPage data only for answered questions, so placeholders never reach Google) -----
+  if (faqs.length) {
+    const real = faqs.filter((f) => !/[\[\]]/.test(f.q + f.a));
+    const fl = real.length ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: lang, mainEntity: real.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }] : [];
+    w('faq/index.html', head2({ ttl: s.faqHead, dsc: s.faqDesc, p: '/faq/', ldList: [...fl, crumbs([[s.home, '/'], [s.faq, '/faq/']])] }) + shell(`<h1>${s.faq}</h1>${faqHtml}`, '/faq/'));
+  }
+
+  for (const p of PATHS[lang]) {
+    const last = p.startsWith('/articles/') && p !== '/articles/' ? (artDate(articles.find((a) => `/articles/${a.slug}/` === p) || {}) || today) : today;
+    sitemapEntries.push({ p, lang, last });
+  }
+}
+
+const FBMAP = {};
+{
+  const found = new Set();
+  const walk = (o) => { if (typeof o === 'string') { const t = o.trim(); if (/^https?:\/\/([\w-]+\.)?(facebook\.com\/(share\/|watch\/?\?|reel\/|[^\s]*\/videos\/)|fb\.watch\/)/i.test(t)) found.add(t); } else if (o && typeof o === 'object') Object.values(o).forEach(walk); };
+  for (const l of LANGS) { try { for (const f of fs.readdirSync('content/' + l)) if (f.endsWith('.json')) walk(readJson('content/' + l + '/' + f)); } catch (e) {} }
+  for (const u of found) {
+    if (!/\/share\/|fb\.watch/i.test(u)) continue;
+    try {
+      const r = await fetch(u, { redirect: 'follow', signal: AbortSignal.timeout(10000) });
+      const f = r.url || '';
+      const m = f.match(/facebook\.com\/reel\/(\d+)/) || f.match(/facebook\.com\/(?:[^/?#]+\/videos\/|watch\/?\?v=)(\d+)/);
+      if (m) FBMAP[u] = 'https://www.facebook.com/reel/' + m[1] + '/';
+    } catch (e) { console.log('fb link not resolved, kept as is: ' + u); }
+  }
+}
+for (const lang of LANGS) buildLang(lang);
+
+fs.writeFileSync('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /content/\n\nSitemap: ${SITE}/sitemap.xml\n`);
+const entry = (e) => {
+  const alts = alternates(e.p);
+  const links = alts.length > 1 ? alts.map((l) => `<xhtml:link rel="alternate" hreflang="${l}" href="${SITE}${PFX[l]}${e.p}"/>`).join('') + `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${e.p}"/>` : '';
+  return `<url><loc>${SITE}${PFX[e.lang]}${e.p}</loc><lastmod>${e.last}</lastmod>${links}</url>`;
+};
+fs.writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${sitemapEntries.map(entry).join('')}</urlset>\n`);
+console.log(`built dist/ (ar at /, en at /en/). urls in sitemap: ${sitemapEntries.length}. placeholders still in content: ${placeholderCount}`);
