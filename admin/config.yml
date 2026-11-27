@@ -221,6 +221,11 @@ collections:
           widget: string
           required: false
           i18n: duplicate
+        - label: لينك جوجل درايف (اختياري، لازم الملف يكون مشارك لأي حد معاه اللينك)
+          name: drive
+          widget: string
+          required: false
+          i18n: duplicate
         - label: لينك قديم (سيبه زي ما هو أو فضّيه بعد ما تضيف اللينكات الجديدة)
           name: url
           widget: string
@@ -273,6 +278,11 @@ collections:
         i18n: duplicate
       - label: لينك فيسبوك (اختياري، تقدر تلزق لينك المشاركة القصير)
         name: facebook
+        widget: string
+        required: false
+        i18n: duplicate
+      - label: لينك جوجل درايف (اختياري، لازم الملف يكون مشارك لأي حد معاه اللينك)
+        name: drive
         widget: string
         required: false
         i18n: duplicate
@@ -761,6 +771,11 @@ collections:
         i18n: true
       - label: كلمة شاهد على فيسبوك
         name: watchFb
+        widget: string
+        required: false
+        i18n: true
+      - label: كلمة شاهد على جوجل درايف
+        name: watchDr
         widget: string
         required: false
         i18n: true
