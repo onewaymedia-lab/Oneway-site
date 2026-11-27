@@ -211,3 +211,6 @@ html[lang="en"] body * { font-family: 'Poppins', 'IBM Plex Sans Arabic', 'Segoe 
 
 .ow-drthumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .ow-drl svg { fill: none; }
+
+/* Drive player: on phones it needs about 300px of height (video plus its control bar); with a plain 16:9 box the controls are cut off. */
+.ow-ytframe.ow-drframe { aspect-ratio: auto; height: 300px; background: #000; }
