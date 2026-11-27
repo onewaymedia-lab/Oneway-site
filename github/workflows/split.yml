@@ -1,0 +1,45 @@
+name: Split content
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Backup and split site.json into section files
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const groups = {
+            home: ['hero'], sections: ['sections'], services: ['services'], works: ['works'], videos: ['videos'],
+            packages: ['packages'], steps: ['steps'], clients: ['clients'], reviews: ['reviews'], articles: ['articles'],
+            faq: ['faq'], about: ['about'], contact: ['settings', 'socials'], branding: ['logo', 'favicon', 'seo'],
+            titles: ['titles'], labels: ['labels'], pages: ['pages'],
+          };
+          for (const lang of ['ar', 'en']) {
+            const src = `content/${lang}/site.json`;
+            if (!fs.existsSync(src)) { console.log('no ' + src); continue; }
+            const raw = fs.readFileSync(src, 'utf8');
+            const data = JSON.parse(raw);
+            fs.mkdirSync('content/backup', { recursive: true });
+            const bk = `content/backup/${lang}-site.json`;
+            if (!fs.existsSync(bk)) fs.writeFileSync(bk, raw);
+            for (const [name, keys] of Object.entries(groups)) {
+              const out = `content/${lang}/${name}.json`;
+              if (fs.existsSync(out)) { console.log('kept existing ' + out); continue; }
+              const o = {};
+              for (const k of keys) if (data[k] !== undefined) o[k] = data[k];
+              fs.writeFileSync(out, JSON.stringify(o, null, 2) + '\n');
+              console.log('wrote ' + out);
+            }
+          }
+          JS
+      - name: Commit
+        run: |
+          git config user.name "split-bot"
+          git config user.email "split-bot@users.noreply.github.com"
+          git add content
+          git diff --cached --quiet && echo "nothing to commit" || git commit -m "Split content into section files (backup in content/backup)"
+          git push
