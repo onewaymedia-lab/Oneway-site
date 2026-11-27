@@ -1,3 +1,32 @@
 {
-  "labels": null
+  "labels": {
+    "menu": "",
+    "home": "",
+    "mServices": "",
+    "mWork": "",
+    "mPackages": "",
+    "mClients": "",
+    "articles": "",
+    "faq": "",
+    "about": "",
+    "contact": "",
+    "seeWork": "",
+    "askPkg": "",
+    "viewShot": "",
+    "revDef": "",
+    "watchFb": "",
+    "watchDr": "",
+    "waBtn": "",
+    "floatWa": "",
+    "allArticles": "",
+    "allFaq": "",
+    "talkWa": "",
+    "ready": "",
+    "readyWa": "",
+    "phone": "",
+    "whatsapp": "",
+    "address": "",
+    "email": "",
+    "openMap": "اللوكيشين"
+  }
 }
